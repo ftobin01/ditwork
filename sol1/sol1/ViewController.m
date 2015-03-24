@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 ___FULLUSERNAME___. All rights reserved.
 //
 
+#define RANDOM_COLOR                                                           \
+[UIColor colorWithRed : (CGFloat)random() / (CGFloat)RAND_MAX green : (CGFloat)random() / (CGFloat)RAND_MAX blue : (CGFloat)random() / (CGFloat)RAND_MAX alpha : 1.0]
 #import "ViewController.h"
 
 @interface ViewController ()
@@ -23,19 +25,62 @@
     // [self view] could be the view managed by a UIViewController
     
     
-    // makeCard()
+    // makeFullCard()
+    int i=0;
+    int z=0;
+    float j=15;
+    float k=20;
+    float l=33;
+    float m=60;
+    UIView *view;
     
+    UIColor *rndColor= RANDOM_COLOR;
     
-    UIView* view1 = [[UIView alloc] initWithFrame:CGRectMake(20.0f, 20.0f, 200.0f, 200.0f)];
-    view1.backgroundColor = [UIColor redColor];
+    for (z=0; z<13; z++)
+    {
+        for ( i=0; i<7; i++)
+            {
+                UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake( j, k, l, m)];
+                view1.backgroundColor = rndColor;
     
-    [[self view] addSubview:view1];
+                [[self view] addSubview:view1];
     
-    [view1 setNeedsDisplay];
+       
+        
+        
+       // [view1 setNeedsDisplay];
+        j+=43;
+        //k+=30;
+        
+    }
+    // [view setNeedsDisplay];
+    j=15;
+    k+=32;
+    rndColor= RANDOM_COLOR;
+        
+    }
+    /*
+        
+     [view setNeedsDisplay];
+        j=15;
+        k=50;
+        l=33;
+        m=60;
+        for ( i=0; i<7; i++)
+        {
+            UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake( j, k, l, m)];
+            view1.backgroundColor = [UIColor blueColor];
+            
+            [[self view] addSubview:view1];
+             j+=43;
+        }
+        
+    */
+    
     
     
     NSLog(@"about to creatview 2");
-    
+ /*
     UIView* view2 = [[UIView alloc] initWithFrame:CGRectInset(view1.bounds, 20.0f, 20.0f)];
     view2.backgroundColor = [UIColor yellowColor];
     
@@ -43,7 +88,7 @@
     
     
     [view1 setNeedsDisplay];
-    
+   */
     
 }
 
