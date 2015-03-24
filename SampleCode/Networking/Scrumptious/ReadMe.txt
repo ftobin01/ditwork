@@ -1,0 +1,1 @@
+Demonstrates the usage Facebook api's.  Shows how to use the friends and place dialogs.  These dialogs let the user select friends and places.  This sample reflects the functionality of the native sample in Facebook's sdk.

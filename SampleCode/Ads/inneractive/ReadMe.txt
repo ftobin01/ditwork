@@ -1,0 +1,1 @@
+Shows an example of how to use Inneractive ads on iOS and Android devices.

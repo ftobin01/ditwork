@@ -1,0 +1,759 @@
+TCoreData1
+v6
+r1
+cCheck dependencies
+cDataModelVersionCompile /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Entry.momd /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Entry.xcdatamodeld
+cProcessPCH /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/PrecompiledHeaders/CoreData1-Prefix-asgjnlnvqyhucdbpizdhjoilgasc/CoreData1-Prefix.pch.pch CoreData1/CoreData1-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/Entity.o /LOCAL/.userdocs/d14126211/Documents/CoreData1/Entity.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/ViewController.o /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/ViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/AppDelegate.o /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/AppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/main.o /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/main.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cLd /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/CoreData1 normal i386
+cCopyStringsFile /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/en.lproj/InfoPlist.strings CoreData1/en.lproj/InfoPlist.strings
+cCompileStoryboard /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Base.lproj/Main.storyboard
+cCompileAssetCatalog /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Images.xcassets
+cProcessInfoPlistFile /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Info.plist /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/CoreData1-Info.plist
+cGenerateDSYMFile /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app.dSYM /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/CoreData1
+cTouch /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk
+c0000000053BA514B0000000000000198
+t1404719435
+s408
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/SDKSettings.plist
+c000000005321953B00000000000003B4
+t1394709819
+s948
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/CoreServices/SystemVersion.plist
+c0000000053219540000000000000019E
+t1394709824
+s414
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/CFNetwork.framework/CFNetwork
+c0000000053219541000000000058E0E0
+t1394709825
+s5824736
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/CoreData.framework/CoreData
+c000000005321954100000000006CED60
+t1394709825
+s7138656
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+c000000005321954100000000005B82F0
+t1394709825
+s5997296
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c0000000053BA50EF0000000000446820
+t1404719343
+s4483104
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/CoreImage.framework/CoreImage
+c000000005321954100000000003599D0
+t1394709825
+s3512784
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/CoreText.framework/CoreText
+c000000005321954200000000002FC3B0
+t1394709826
+s3130288
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/CoreVideo.framework/CoreVideo
+c0000000053219542000000000004B000
+t1394709826
+s307200
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c0000000053219542000000000088D8C0
+t1394709826
+s8968384
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/OpenGLES.framework/OpenGLES
+c00000000532195430000000000037680
+t1394709827
+s226944
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/QuartzCore.framework/QuartzCore
+c0000000053219543000000000048F720
+t1394709827
+s4781856
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/Security.framework/Security
+c0000000053219543000000000013FD70
+t1394709827
+s1310064
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c00000000532195450000000001F1DE10
+t1394709829
+s32628240
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
+c000000005321954D00000000002BC360
+t1394709837
+s2868064
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/crt1.o
+c00000000532195520000000000002338
+t1394709842
+s9016
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/libSystem.dylib
+c0000000053219552000000000008D370
+t1394709842
+s578416
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/libobjc.dylib
+c00000000532195520000000000392E20
+t1394709842
+s3747360
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/host/libdyld.dylib
+c0000000053BA548B00000000000141F0
+t1404720267
+s82416
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libcache_sim.dylib
+c00000000532195520000000000014A80
+t1394709842
+s84608
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libcommonCrypto_sim.dylib
+c00000000532195520000000000033BA0
+t1394709842
+s211872
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libcompiler_rt_sim.dylib
+c0000000053219552000000000001CFB0
+t1394709842
+s118704
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libcopyfile_sim.dylib
+c0000000053219552000000000001B2B0
+t1394709842
+s111280
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libcorecrypto_sim.dylib
+c000000005321955200000000000C9570
+t1394709842
+s824688
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libdispatch.dylib
+c00000000532195520000000000063280
+t1394709842
+s406144
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libdyld_sim.dylib
+c00000000532195520000000000008880
+t1394709842
+s34944
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libmacho_sim.dylib
+c00000000532195520000000000015080
+t1394709842
+s86144
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libnotify_sim.dylib
+c000000005321955200000000000230F0
+t1394709842
+s143600
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libremovefile_sim.dylib
+c0000000053219552000000000000E380
+t1394709842
+s58240
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_network.dylib
+c00000000532195520000000000089380
+t1394709842
+s562048
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_override.dylib
+c00000000532195520000000000017320
+t1394709842
+s95008
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_asl.dylib
+c00000000532195520000000000039CD0
+t1394709842
+s236752
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_blocks.dylib
+c0000000053219552000000000000B0B0
+t1394709842
+s45232
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_c.dylib
+c00000000532195520000000000167E80
+t1394709842
+s1474176
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_configuration.dylib
+c000000005321955200000000000106A0
+t1394709842
+s67232
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_dnssd.dylib
+c0000000053219552000000000001CE40
+t1394709842
+s118336
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_info.dylib
+c000000005321955200000000000740C0
+t1394709842
+s475328
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_m.dylib
+c0000000053219552000000000006CA60
+t1394709842
+s445024
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libunwind_sim.dylib
+c0000000053219552000000000001BAD0
+t1394709842
+s113360
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libxpc.dylib
+c00000000532195520000000000084A20
+t1394709842
+s543264
+
+N/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/include/module.map
+c00000000532195550000000000000ADC
+t1394709845
+s2780
+
+N/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/lib/darwin/libclang_rt.ios.a
+c0000000053BA50F0000000000000514C
+t1404719344
+s20812
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/AppDelegate.h
+c0000000054F4B7C90000000000000122
+t1425323977
+s290
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/AppDelegate.m
+c0000000054F4B7C900000000000007E4
+t1425323977
+s2020
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Base.lproj/Main.storyboard
+c0000000054F60476000000000000144A
+t1425409142
+s5194
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/CoreData1-Info.plist
+c0000000054F4B7C900000000000004BF
+t1425323977
+s1215
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/CoreData1-Prefix.pch
+c0000000054F4B7C90000000000000158
+t1425323977
+s344
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Entry.xcdatamodeld
+c0000000054F603970000000000000066
+t1425408919
+s102
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Images.xcassets
+c0000000054F4B7C90000000000000088
+t1425323977
+s136
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/ViewController.h
+c0000000054F6039700000000000000E7
+t1425408919
+s231
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/ViewController.m
+c0000000054F603C300000000000002BD
+t1425408963
+s701
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/en.lproj/InfoPlist.strings
+c0000000054F4B7C9000000000000002D
+t1425323977
+s45
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/main.m
+c0000000054F4B7C9000000000000015E
+t1425323977
+s350
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/AppDelegate.o
+t1425408921
+s62408
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/CoreData1.LinkFileList
+c0000000054F6039700000000000002BB
+t1425408919
+s699
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/Entity.o
+t1425408921
+s8064
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/ViewController.o
+t1425408963
+s46628
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/main.o
+t1425408921
+s3564
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/assetcatalog_dependencies.txt
+t1425408965
+s472
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/assetcatalog_generated_info.plist
+t1425408965
+s525
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/PrecompiledHeaders/CoreData1-Prefix-asgjnlnvqyhucdbpizdhjoilgasc/CoreData1-Prefix.pch.pch
+t1425408921
+s116452
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app
+t1425408965
+s340
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app.dSYM
+t1425408965
+s102
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Base.lproj/Main.storyboardc
+t1425409143
+s170
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/CoreData1
+t1425408964
+s22988
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Entry.momd
+t1425408920
+s136
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Info.plist
+t1425408965
+s1007
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/PkgInfo
+t1425408965
+s8
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/en.lproj/InfoPlist.strings
+t1425408964
+s42
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/Entity.h
+c0000000054F601880000000000000127
+t1425408392
+s295
+
+N/LOCAL/.userdocs/d14126211/Documents/CoreData1/Entity.m
+c0000000054F6018800000000000000CD
+t1425408392
+s205
+
+N/usr/lib/libSystem.B.dylib
+c0000000053BA548B000000000000E6D0
+t1404720267
+s59088
+
+N/usr/lib/system/libcache.dylib
+c000000005272C95D0000000000012A00
+t1383254365
+s76288
+
+N/usr/lib/system/libcommonCrypto.dylib
+c000000005272C946000000000002E320
+t1383254342
+s189216
+
+N/usr/lib/system/libcompiler_rt.dylib
+c000000005272C9510000000000021860
+t1383254353
+s137312
+
+N/usr/lib/system/libcopyfile.dylib
+c0000000053BA548B000000000001B610
+t1404720267
+s112144
+
+N/usr/lib/system/libcorecrypto.dylib
+c000000005272C95D00000000000BD920
+t1383254365
+s776480
+
+N/usr/lib/system/libdyld.dylib
+c0000000053BA548B00000000000141F0
+t1404720267
+s82416
+
+N/usr/lib/system/libkeymgr.dylib
+c000000005272C95D000000000000A120
+t1383254365
+s41248
+
+N/usr/lib/system/liblaunch.dylib
+c0000000053BA548B000000000001D550
+t1404720267
+s120144
+
+N/usr/lib/system/libmacho.dylib
+c000000005272C95D0000000000014EE0
+t1383254365
+s85728
+
+N/usr/lib/system/libquarantine.dylib
+c000000005272C95F0000000000010380
+t1383254367
+s66432
+
+N/usr/lib/system/libremovefile.dylib
+c000000005272C95F000000000000C4C0
+t1383254367
+s50368
+
+N/usr/lib/system/libsystem_asl.dylib
+c000000005272C95D00000000000357A0
+t1383254365
+s219040
+
+N/usr/lib/system/libsystem_blocks.dylib
+c000000005272C95D000000000000C070
+t1383254365
+s49264
+
+N/usr/lib/system/libsystem_c.dylib
+c0000000053BA548B0000000000168D00
+t1404720267
+s1477888
+
+N/usr/lib/system/libsystem_configuration.dylib
+c0000000053BA548B0000000000010630
+t1404720267
+s67120
+
+N/usr/lib/system/libsystem_dnssd.dylib
+c0000000053BA548B000000000001DF10
+t1404720267
+s122640
+
+N/usr/lib/system/libsystem_info.dylib
+c000000005272C9510000000000075B00
+t1383254353
+s482048
+
+N/usr/lib/system/libsystem_kernel.dylib
+c0000000053BA548B000000000007CD60
+t1404720267
+s511328
+
+N/usr/lib/system/libsystem_m.dylib
+c000000005272C95100000000000766C0
+t1383254353
+s485056
+
+N/usr/lib/system/libsystem_malloc.dylib
+c0000000053BA548B0000000000044DC0
+t1404720267
+s282048
+
+N/usr/lib/system/libsystem_notify.dylib
+c000000005272C9510000000000021FA0
+t1383254353
+s139168
+
+N/usr/lib/system/libsystem_platform.dylib
+c0000000053BA548B000000000002D920
+t1404720267
+s186656
+
+N/usr/lib/system/libsystem_pthread.dylib
+c000000005272C95E000000000001E570
+t1383254366
+s124272
+
+N/usr/lib/system/libsystem_sandbox.dylib
+c0000000053BA548B000000000000CC70
+t1404720267
+s52336
+
+N/usr/lib/system/libunc.dylib
+c000000005272C959000000000000C3F0
+t1383254361
+s50160
+
+N/usr/lib/system/libunwind.dylib
+c000000005272C95E00000000000199F0
+t1383254366
+s104944
+
+CBuild AST from /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/AppDelegate.m
+r0
+
+CBuild AST from /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Entity.m
+r0
+
+CBuild AST from /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/ViewController.m
+r0
+
+CBuild AST from /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/main.m
+r0
+
+CBuild AST from /LOCAL/.userdocs/d14126211/Documents/CoreData1/Entity.m
+r0
+
+CCheck dependencies
+r0
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies9031ebf63ba6ba41^e605ecf63ba6ba41^---0#1#1#--18"Check dependencies36"A8E74822-F180-4017-9FE9-FC1F6ED3322D-
+
+CCompileAssetCatalog /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Images.xcassets
+s447101764.003467
+e447101765.087998
+r1
+xCompileAssetCatalog
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Images.xcassets
+o2015-03-03 18:56:04.759 IBCocoaTouchImageCatalogTool[1541:303] CFPreferences: user home directory at file:///Users/d14126211/Library/Application%20Support/iPhone%20Simulator/User/ is unavailable. User domains will be volatile.
+o/* com.apple.actool.compilation-results */
+o/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/LaunchImage-700-568h@2x.png
+o/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Assets.car
+o/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/assetcatalog_generated_info.plist
+o
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection118"CompileAssetCatalog DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app CoreData1/Images.xcassets118"CompileAssetCatalog DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app CoreData1/Images.xcassets41f000443ba6ba41^ca8916453ba6ba41^-727"2015-03-03 18:56:04.759 IBCocoaTouchImageCatalogTool[1541:303] CFPreferences: user home directory at file:///Users/d14126211/Library/Application%20Support/iPhone%20Simulator/User/ is unavailable. User domains will be volatile./* com.apple.actool.compilation-results *//LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/LaunchImage-700-568h@2x.png/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Assets.car/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/assetcatalog_generated_info.plist-0#0#1#-19%DVTDocumentLocation2@80"file:///LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Images.xcassets/0000000000000000^1282"CompileAssetCatalog DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app CoreData1/Images.xcassets    cd /LOCAL/.userdocs/d14126211/Documents/CoreData1    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/actool --output-format human-readable-text --notices --warnings --export-dependency-info /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/assetcatalog_dependencies.txt --output-partial-info-plist /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/assetcatalog_generated_info.plist --app-icon AppIcon --launch-image LaunchImage --platform iphonesimulator --minimum-deployment-target 7.1 --target-device iphone --compress-pngs --compile /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Images.xcassets36"053E4C85-2F37-45D9-93F5-EB612A53876F-
+b6DD69BBB-66A0-4994-B0A3-BC8A7928341D
+
+CCompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/AppDelegate.o /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/AppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s447101721.056309
+e447101721.318761
+r1
+xCompileC
+xDerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/AppDelegate.o
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/AppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/AppDelegate.m
+d/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/AppDelegate.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection78"Compile /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/AppDelegate.m230"CompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/AppDelegate.o CoreData1/AppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler9d800e193ba6ba41^e4d65c193ba6ba41^---0#0#1#-19%DVTDocumentLocation2@77"file:///LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/AppDelegate.m0000000000000000^4115"CompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/AppDelegate.o CoreData1/AppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /LOCAL/.userdocs/d14126211/Documents/CoreData1    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-generated-files.hmap -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-own-target-headers.hmap -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-all-target-headers.hmap -iquote /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-project-headers.hmap -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/DerivedSources/i386 -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/DerivedSources -F/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator -include /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/PrecompiledHeaders/CoreData1-Prefix-asgjnlnvqyhucdbpizdhjoilgasc/CoreData1-Prefix.pch -MMD -MT dependencies -MF /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/AppDelegate.d --serialize-diagnostics /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/AppDelegate.dia -c /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/AppDelegate.m -o /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/AppDelegate.o36"13125E88-E229-4BF9-AC26-BBC6618ABF44-
+bA401676C-A630-4B1E-A096-92E65711178F
+
+CCompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/Entity.o /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Entity.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+r0
+
+CCompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/Entity.o /LOCAL/.userdocs/d14126211/Documents/CoreData1/Entity.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s447101721.055791
+e447101721.318775
+r1
+xCompileC
+xDerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/Entity.o
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/Entity.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/LOCAL/.userdocs/d14126211/Documents/CoreData1/Entity.m
+d/LOCAL/.userdocs/d14126211/Documents/CoreData1/Entity.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection63"Compile /LOCAL/.userdocs/d14126211/Documents/CoreData1/Entity.m210"CompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/Entity.o Entity.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler67620e193ba6ba41^90da5c193ba6ba41^---0#0#1#-19%DVTDocumentLocation2@62"file:///LOCAL/.userdocs/d14126211/Documents/CoreData1/Entity.m0000000000000000^4065"CompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/Entity.o Entity.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /LOCAL/.userdocs/d14126211/Documents/CoreData1    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-generated-files.hmap -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-own-target-headers.hmap -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-all-target-headers.hmap -iquote /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-project-headers.hmap -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/DerivedSources/i386 -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/DerivedSources -F/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator -include /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/PrecompiledHeaders/CoreData1-Prefix-asgjnlnvqyhucdbpizdhjoilgasc/CoreData1-Prefix.pch -MMD -MT dependencies -MF /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/Entity.d --serialize-diagnostics /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/Entity.dia -c /LOCAL/.userdocs/d14126211/Documents/CoreData1/Entity.m -o /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/Entity.o36"28A3B40C-C4F0-41A6-8FCD-909FE31C4FBE-
+bA401676C-A630-4B1E-A096-92E65711178F
+
+CCompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/ViewController.o /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/ViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s447101763.487032
+e447101763.549404
+r1
+xCompileC
+xDerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/ViewController.o
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/ViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/ViewController.m
+d/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/ViewController.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection81"Compile /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/ViewController.m236"CompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/ViewController.o CoreData1/ViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compilerd2c37c433ba6ba41^dfa58c433ba6ba41^---0#0#1#-19%DVTDocumentLocation2@80"file:///LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/ViewController.m0000000000000000^4133"CompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/ViewController.o CoreData1/ViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /LOCAL/.userdocs/d14126211/Documents/CoreData1    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-generated-files.hmap -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-own-target-headers.hmap -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-all-target-headers.hmap -iquote /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-project-headers.hmap -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/DerivedSources/i386 -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/DerivedSources -F/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator -include /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/PrecompiledHeaders/CoreData1-Prefix-asgjnlnvqyhucdbpizdhjoilgasc/CoreData1-Prefix.pch -MMD -MT dependencies -MF /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/ViewController.d --serialize-diagnostics /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/ViewController.dia -c /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/ViewController.m -o /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/ViewController.o36"73E1378C-8AF7-420D-AD04-5BB8BA7B5FC1-
+b6DD69BBB-66A0-4994-B0A3-BC8A7928341D
+
+CCompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/main.o /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/main.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s447101721.056747
+e447101721.318769
+r1
+xCompileC
+xDerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/main.o
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/main.m
+d/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/AppDelegate.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection71"Compile /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/main.m216"CompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/main.o CoreData1/main.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler9eb20e193ba6ba41^55dc5c193ba6ba41^---0#0#1#-19%DVTDocumentLocation2@70"file:///LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/main.m0000000000000000^4073"CompileC DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/main.o CoreData1/main.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /LOCAL/.userdocs/d14126211/Documents/CoreData1    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-generated-files.hmap -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-own-target-headers.hmap -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-all-target-headers.hmap -iquote /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-project-headers.hmap -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/DerivedSources/i386 -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/DerivedSources -F/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator -include /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/PrecompiledHeaders/CoreData1-Prefix-asgjnlnvqyhucdbpizdhjoilgasc/CoreData1-Prefix.pch -MMD -MT dependencies -MF /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/main.d --serialize-diagnostics /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/main.dia -c /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/main.m -o /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/main.o36"B16F9464-5F73-478E-8D5B-A2DB911EFD17-
+bA401676C-A630-4B1E-A096-92E65711178F
+
+CCompileStoryboard /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Base.lproj/Main.storyboard
+s447101942.922333
+e447101943.739965
+r1
+xCompileStoryboard
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Base.lproj/Main.storyboard
+o2015-03-03 18:59:03.574 Interface Builder Cocoa Touch Tool[1601:303] CFPreferences: user home directory at file:///Users/d14126211/Library/Application%20Support/iPhone%20Simulator/User/ is unavailable. User domains will be volatile.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection54"CompileStoryboard CoreData1/Base.lproj/Main.storyboard54"CompileStoryboard CoreData1/Base.lproj/Main.storyboard882aecf63ba6ba41^9c6ebdf73ba6ba41^-233"2015-03-03 18:59:03.574 Interface Builder Cocoa Touch Tool[1601:303] CFPreferences: user home directory at file:///Users/d14126211/Library/Application%20Support/iPhone%20Simulator/User/ is unavailable. User domains will be volatile.-0#0#1#-19%DVTDocumentLocation2@90"file:///LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Base.lproj/Main.storyboard0000000000000000^891"CompileStoryboard CoreData1/Base.lproj/Main.storyboard    cd /LOCAL/.userdocs/d14126211/Documents/CoreData1    export IBSC_MINIMUM_COMPATIBILITY_VERSION=7.1    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    export XCODE_DEVELOPER_USR_PATH=/Applications/Xcode.app/Contents/Developer/usr/bin/..    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/ibtool --errors --warnings --notices --minimum-deployment-target 7.1 --output-format human-readable-text --compile /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Base.lproj/Main.storyboardc /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Base.lproj/Main.storyboard36"04F05BBA-C05C-4F4D-8477-343A2A4DDC58-
+b1B2E72C6-12B0-4692-A105-180F4540B367
+
+CCopyStringsFile /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/en.lproj/InfoPlist.strings CoreData1/en.lproj/InfoPlist.strings
+s447101764.002924
+e447101764.004143
+r1
+xCopyStringsFile
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/en.lproj/InfoPlist.strings
+xCoreData1/en.lproj/InfoPlist.strings
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Copy CoreData1/en.lproj/InfoPlist.strings152"CopyStringsFile DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/en.lproj/InfoPlist.strings CoreData1/en.lproj/InfoPlist.strings03d000443ba6ba41^3d1001443ba6ba41^---0#0#1#-19%DVTDocumentLocation2@90"file:///LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/en.lproj/InfoPlist.strings0000000000000000^661"CopyStringsFile DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/en.lproj/InfoPlist.strings CoreData1/en.lproj/InfoPlist.strings    cd /LOCAL/.userdocs/d14126211/Documents/CoreData1    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/en.lproj -- CoreData1/en.lproj/InfoPlist.strings36"7E6C9394-F5BF-495A-ABB4-F836540FE4DC-
+b6DD69BBB-66A0-4994-B0A3-BC8A7928341D
+
+CDataModelVersionCompile /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Entry.momd /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Entry.xcdatamodeld
+s447101719.789341
+e447101720.076764
+r1
+xDataModelVersionCompile
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Entry.momd
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Entry.xcdatamodeld
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection136"DataModelVersionCompile DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Entry.momd CoreData1/Entry.xcdatamodeld136"DataModelVersionCompile DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Entry.momd CoreData1/Entry.xcdatamodeld9e5dca173ba6ba41^33a713183ba6ba41^---0#0#1#-19%DVTDocumentLocation2@83"file:///LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Entry.xcdatamodeld/0000000000000000^949"DataModelVersionCompile DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Entry.momd CoreData1/Entry.xcdatamodeld    cd /LOCAL/.userdocs/d14126211/Documents/CoreData1    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/momc -XD_MOMC_SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -XD_MOMC_IOS_TARGET_VERSION=7.1 -MOMC_PLATFORMS iphonesimulator -MOMC_PLATFORMS iphoneos -XD_MOMC_TARGET_VERSION=10.6 /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/Entry.xcdatamodeld /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Entry.momd36"EA66CBA5-38DA-4726-B38C-D47A2F80657A-
+bA401676C-A630-4B1E-A096-92E65711178F
+
+CGenerateDSYMFile /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app.dSYM /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/CoreData1
+s447101765.090646
+e447101765.150624
+r1
+xGenerateDSYMFile
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app.dSYM
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/CoreData1
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection133"Generate /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app.dSYM177"GenerateDSYMFile DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app.dSYM DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/CoreData1a73f17453ba6ba41^369026453ba6ba41^---0#0#1#-19%DVTDocumentLocation2@131"file:///LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app.dSYM003498b8ddffdf42^785"GenerateDSYMFile DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app.dSYM DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/CoreData1    cd /LOCAL/.userdocs/d14126211/Documents/CoreData1    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/CoreData1 -o /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app.dSYM36"D8E3B2B6-040D-4DF6-93A1-A3CE3363FE7E-
+b6DD69BBB-66A0-4994-B0A3-BC8A7928341D
+
+CLd /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/CoreData1 normal i386
+s447101763.550132
+e447101764.002145
+r1
+xLd
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/CoreData1
+xnormal
+xi386
+d/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/CoreData1.LinkFileList
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/crt1.o
+d/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/Entity.o
+d/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/ViewController.o
+d/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/AppDelegate.o
+d/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/main.o
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/libobjc.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/libSystem.dylib
+d/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/lib/darwin/libclang_rt.ios.a
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/CoreVideo.framework/CoreVideo
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/CoreText.framework/CoreText
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/CoreData.framework/CoreData
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/CoreImage.framework/CoreImage
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/Security.framework/Security
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/CFNetwork.framework/CFNetwork
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/OpenGLES.framework/OpenGLES
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/QuartzCore.framework/QuartzCore
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_override.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libcache_sim.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libcommonCrypto_sim.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libcorecrypto_sim.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libcompiler_rt_sim.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libcopyfile_sim.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libdispatch.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libdyld_sim.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libmacho_sim.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libnotify_sim.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libremovefile_sim.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_blocks.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_c.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_dnssd.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_info.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_m.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_network.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libunwind_sim.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libxpc.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_configuration.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_asl.dylib
+d/usr/lib/libSystem.B.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
+d/usr/lib/system/libcache.dylib
+d/usr/lib/system/libcommonCrypto.dylib
+d/usr/lib/system/libcompiler_rt.dylib
+d/usr/lib/system/libcopyfile.dylib
+d/usr/lib/system/libcorecrypto.dylib
+d/usr/lib/system/libdyld.dylib
+d/usr/lib/system/libkeymgr.dylib
+d/usr/lib/system/liblaunch.dylib
+d/usr/lib/system/libmacho.dylib
+d/usr/lib/system/libquarantine.dylib
+d/usr/lib/system/libremovefile.dylib
+d/usr/lib/system/libsystem_asl.dylib
+d/usr/lib/system/libsystem_blocks.dylib
+d/usr/lib/system/libsystem_c.dylib
+d/usr/lib/system/libsystem_configuration.dylib
+d/usr/lib/system/libsystem_dnssd.dylib
+d/usr/lib/system/libsystem_info.dylib
+d/usr/lib/system/libsystem_kernel.dylib
+d/usr/lib/system/libsystem_m.dylib
+d/usr/lib/system/libsystem_malloc.dylib
+d/usr/lib/system/libsystem_notify.dylib
+d/usr/lib/system/libsystem_platform.dylib
+d/usr/lib/system/libsystem_pthread.dylib
+d/usr/lib/system/libsystem_sandbox.dylib
+d/usr/lib/system/libunc.dylib
+d/usr/lib/system/libunwind.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/host/libdyld.dylib
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection134"Link /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/CoreData197"Ld DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/CoreData1 normal i38682e58c433ba6ba41^6d8d00443ba6ba41^---0#0#1#--1589"Ld DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/CoreData1 normal i386    cd /LOCAL/.userdocs/d14126211/Documents/CoreData1    export IPHONEOS_DEPLOYMENT_TARGET=7.1    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -L/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator -F/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator -filelist /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/CoreData1.LinkFileList -Xlinker -objc_abi_version -Xlinker 2 -fobjc-arc -fobjc-link-runtime -Xlinker -no_implicit_dylibs -mios-simulator-version-min=7.1 -framework CoreGraphics -framework UIKit -framework Foundation -Xlinker -dependency_info -Xlinker /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/Objects-normal/i386/CoreData1_dependency_info.dat -o /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/CoreData136"A6B62139-A183-4F34-9432-82A1661E2BBD-
+b6DD69BBB-66A0-4994-B0A3-BC8A7928341D
+
+CProcessInfoPlistFile /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Info.plist /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/CoreData1-Info.plist
+s447101765.088494
+e447101765.090252
+r1
+xProcessInfoPlistFile
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Info.plist
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/CoreData1-Info.plist
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection85"Process /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/CoreData1-Info.plist135"ProcessInfoPlistFile DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Info.plist CoreData1/CoreData1-Info.plistfeb716453ba6ba41^691b17453ba6ba41^---0#0#1#-19%DVTDocumentLocation2@84"file:///LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/CoreData1-Info.plist0000000000000000^1028"ProcessInfoPlistFile DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Info.plist CoreData1/CoreData1-Info.plist    cd /LOCAL/.userdocs/d14126211/Documents/CoreData1    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/CoreData1-Info.plist -genpkginfo /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/assetcatalog_generated_info.plist -o /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app/Info.plist36"062E16D9-EEAA-4083-A06F-78F6DAC073FC-
+b6DD69BBB-66A0-4994-B0A3-BC8A7928341D
+
+CProcessPCH /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/PrecompiledHeaders/CoreData1-Prefix-asgjnlnvqyhucdbpizdhjoilgasc/CoreData1-Prefix.pch.pch CoreData1/CoreData1-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s447101719.790239
+e447101721.055162
+r1
+xProcessPCH
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/PrecompiledHeaders/CoreData1-Prefix-asgjnlnvqyhucdbpizdhjoilgasc/CoreData1-Prefix.pch.pch
+xCoreData1/CoreData1-Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/CoreData1-Prefix.pch
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection41"Precompile CoreData1/CoreData1-Prefix.pch241"ProcessPCH DerivedData/CoreData1/Build/Intermediates/PrecompiledHeaders/CoreData1-Prefix-asgjnlnvqyhucdbpizdhjoilgasc/CoreData1-Prefix.pch.pch CoreData1/CoreData1-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler936fca173ba6ba41^86210e193ba6ba41^---0#0#1#-19%DVTDocumentLocation2@84"file:///LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/CoreData1-Prefix.pch0000000000000000^3958"ProcessPCH DerivedData/CoreData1/Build/Intermediates/PrecompiledHeaders/CoreData1-Prefix-asgjnlnvqyhucdbpizdhjoilgasc/CoreData1-Prefix.pch.pch CoreData1/CoreData1-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /LOCAL/.userdocs/d14126211/Documents/CoreData1    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-generated-files.hmap -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-own-target-headers.hmap -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-all-target-headers.hmap -iquote /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/CoreData1-project-headers.hmap -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/DerivedSources/i386 -I/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/CoreData1.build/Debug-iphonesimulator/CoreData1.build/DerivedSources -F/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator --serialize-diagnostics /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/PrecompiledHeaders/CoreData1-Prefix-asgjnlnvqyhucdbpizdhjoilgasc/CoreData1-Prefix.pch.dia -MMD -MT dependencies -MF /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/PrecompiledHeaders/CoreData1-Prefix-asgjnlnvqyhucdbpizdhjoilgasc/CoreData1-Prefix.pch.d -c /LOCAL/.userdocs/d14126211/Documents/CoreData1/CoreData1/CoreData1-Prefix.pch -o /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Intermediates/PrecompiledHeaders/CoreData1-Prefix-asgjnlnvqyhucdbpizdhjoilgasc/CoreData1-Prefix.pch.pch36"E4D44A98-87E3-48F7-9DCA-C56048BD7934-
+bA401676C-A630-4B1E-A096-92E65711178F
+
+CProcessPCH /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Index/PrecompiledHeaders/CoreData1-Prefix-cyoehzvfxyzwnodsjkqiiprbddut_ast/CoreData1-Prefix.pch.pch CoreData1/CoreData1-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.astbuilder
+r0
+
+CTouch /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app
+s447101943.740788
+e447101943.744725
+r1
+xTouch
+x/LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection125"Touch /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app78"Touch DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app57b0bdf73ba6ba41^37a7bef73ba6ba41^---0#0#1#--470"Touch DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app    cd /LOCAL/.userdocs/d14126211/Documents/CoreData1    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /LOCAL/.userdocs/d14126211/Documents/CoreData1/DerivedData/CoreData1/Build/Products/Debug-iphonesimulator/CoreData1.app36"80DE83DC-9E7D-418B-9E52-9EECFE134E9B-
+b1B2E72C6-12B0-4692-A105-180F4540B367
+

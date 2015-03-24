@@ -1,0 +1,13 @@
+[
+	"generator.checkerboard",
+	"generator.lenticularHalo",
+	"generator.linearGradient",
+	"generator.marchingAnts",
+	"generator.perlinNoise",
+	"generator.radialGradient",
+	"generator.random",
+	"generator.stripes",
+	"generator.sunbeams"
+]
+
+

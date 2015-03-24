@@ -1,0 +1,1 @@
+Shows an example of how to use InMobi ads on both iOS and Android devices.

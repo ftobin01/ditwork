@@ -1,0 +1,1 @@
+A multiplayer math-based trivia game that uses the PubNub Multiplayer API in Corona Labs Corona SDK.  The game features an auto-hosting capability and plays well in 3G as well as Wi-Fi.

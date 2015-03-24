@@ -1,0 +1,1 @@
+This project demonstrates Corona In-App Purchase support. The code attempts to connect to a store such as iTunes or Google's Android Marketplace to retrieve valid product information and handle transactions.
