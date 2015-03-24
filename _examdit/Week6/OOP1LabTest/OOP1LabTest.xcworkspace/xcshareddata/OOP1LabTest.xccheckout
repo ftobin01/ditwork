@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FF23B3CF-1F3D-4B6A-A77C-AD5DD6CB4379</string>
+	<key>IDESourceControlProjectName</key>
+	<string>OOP1LabTest</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EBE9426A-1517-455F-A6CE-63C67C128302</key>
+		<string>https://github.com/zdavison/DIT.OOP1</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Week6/OOP1LabTest/OOP1LabTest.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EBE9426A-1517-455F-A6CE-63C67C128302</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/zdavison/DIT.OOP1</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EBE9426A-1517-455F-A6CE-63C67C128302</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EBE9426A-1517-455F-A6CE-63C67C128302</string>
+			<key>IDESourceControlWCCName</key>
+			<string>EXAmDIT</string>
+		</dict>
+	</array>
+</dict>
+</plist>

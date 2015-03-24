@@ -1,0 +1,6 @@
+target "OOP1LabTest" do
+end
+
+target "OOP1LabTestTests" do
+  pod 'Kiwi'
+end
