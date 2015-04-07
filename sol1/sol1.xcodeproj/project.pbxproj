@@ -476,6 +476,7 @@
 				A62413FF1AC09BC600364556 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A62414001AC09BC600364556 /* Build configuration list for PBXNativeTarget "sol1Tests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +485,7 @@
 				A62414021AC09BC600364556 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
