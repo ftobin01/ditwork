@@ -10,29 +10,29 @@
 	<string>sol1</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C676830D-244C-4148-8E04-74B42E3E57FE</key>
+		<key>CAD1072E8134122527FA8702B46E8370B5070072</key>
 		<string>https://github.com/ftobin01/ditwork.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>sol1/sol1.xcodeproj/project.xcworkspace</string>
+	<string>sol1/sol1.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C676830D-244C-4148-8E04-74B42E3E57FE</key>
+		<key>CAD1072E8134122527FA8702B46E8370B5070072</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/ftobin01/ditwork.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C676830D-244C-4148-8E04-74B42E3E57FE</string>
+	<string>CAD1072E8134122527FA8702B46E8370B5070072</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C676830D-244C-4148-8E04-74B42E3E57FE</string>
+			<string>CAD1072E8134122527FA8702B46E8370B5070072</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ditwork</string>
 		</dict>
