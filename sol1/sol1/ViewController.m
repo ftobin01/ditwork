@@ -10,10 +10,11 @@
 [UIColor colorWithRed : (CGFloat)random() / (CGFloat)RAND_MAX green : (CGFloat)random() / (CGFloat)RAND_MAX blue : (CGFloat)random() / (CGFloat)RAND_MAX alpha : 1.0]
 
 
-#define  MAXCARDROWS        7
-#define  MAXCARDCOLUMNS     7
+#define     MAXCARDROWS        7
+#define     MAXCARDCOLUMNS     7
 
-
+#define     CARDWIDTH           33.0
+#define     CARDLENGTH          60.0
 
 #import "ViewController.h"
 
@@ -55,7 +56,7 @@
     int z=0;
     float j=15;
     float k=20;
-    float l=33;
+   float l=33;
     float m=60;
     
     CGRect aRect;
@@ -88,7 +89,7 @@
         for ( i=0; i<7; i++)
             {
      //           make_card(j, k, l,  m);
-                aRect = CGRectMake( j, k, l, m);
+                aRect = CGRectMake( j, k, CARDWIDTH, CARDLENGTH);
                 
                 [rectArray addObject:[NSValue valueWithCGRect:aRect]];
                 NSLog(@"rect_Array count = %lu", [rectArray count]);
@@ -148,10 +149,16 @@
     //UIPanGestureRecognizer *panGestureRecognizer = (UIPanGestureRecognizer *) sender;
     
     NSArray *subviews = [self.view subviews];
+    NSArray *dragviews;
+    
     
     CGPoint locationInView = [panGestureRecognizer locationInView:self.view];
     float x = locationInView.x;
     float y = locationInView.y;
+    float   dragCardOriginX=x;
+    float   dragCardOriginY=y;
+    static unsigned long CountOfStartingSubviews=0;
+    
     
     
     NSLog(@"Drag Dectected %@", NSStringFromCGPoint(locationInView));
@@ -161,6 +168,8 @@
         
         case UIGestureRecognizerStateBegan:   //Drag Started
             {
+                
+                    CountOfStartingSubviews=[subviews count];
                         NSLog(@"**** UIGestureRecognizerStateBegan - Drag Started %@", NSStringFromCGPoint(locationInView));
                 
                // NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.view.frame));
@@ -169,7 +178,7 @@
                 unsigned long q = (unsigned long)[subviews count];
                 NSLog(@"Subviews count %lu",(unsigned long) [subviews count]);
                 NSLog(@"NOW FINd subview Point Location is in....");
-                NSLog(@"Coubt of number of subviews = %lu",q);
+                NSLog(@"Count of number of subviews = %lu",q);
                 
                 
                // -(UIView *)findTopMostViewForPoint : (CGPoint) point
@@ -186,9 +195,10 @@
                         // we want locations thtat are in top view except the last view.
                         if (CGRectContainsPoint(viewRect, locationInView))
                         {
-                            
+                            dragCardOriginX=viewRect.origin.x;
+                            dragCardOriginY=viewRect.origin.y;
                 // YES! Found Card to Drag
-                            NSLog(@"Found REct  i=%lu",i);
+                            NSLog(@"Found REct  i=%d",i);
                             //NSLog("@")
                             NSLog(@"Frame found = %@", NSStringFromCGRect(viewRect));
                             
@@ -202,6 +212,7 @@
                             
        // we want to gety co-ords from top of current view to bottem
        // of last view placed
+                            //CountOfStartingSubviews=i;
                             
                             break;
                         }
@@ -214,14 +225,41 @@
         case UIGestureRecognizerStateChanged:  //While Dragging
             {
                 
+                UIColor *rndColor= RANDOM_COLOR;
+                
                 NSLog(@"Dragging ... UIGestureRecogniserChanged %@", NSStringFromCGPoint(locationInView));
-                                    ;
+                
+                //view1 = [[UIView alloc] initWithFrame:aRect];
+                
+                //view1.backgroundColor = rndColor;
+                dragCardOriginX =x-5;
+                dragCardOriginY=y-5;
+                CGRect tmpRect=CGRectMake( dragCardOriginX-2,dragCardOriginY-5 , CARDWIDTH, CARDLENGTH) ;
+                UIView *tmpView = [[UIView alloc] initWithFrame: tmpRect];
+                tmpView.backgroundColor = [UIColor redColor];
+                [self.view addSubview: tmpView];
+               
             }
             break;
         case UIGestureRecognizerStateEnded:    //Drop - Dragging Ended
         {
             CGPoint dropLocationInView = [panGestureRecognizer locationInView:self.view];
             NSLog(@"DROPPED UIGestureRecogniserStateEnded %@", NSStringFromCGPoint(dropLocationInView));
+            
+            //DElete All subviews created since Drag Started
+            // Delete Forward if dropped on target
+            // Delete Backward if nnot found;
+            unsigned long CurrentSubviewCount = [subviews count];
+                NSLog(@"CurrentSubviewCount = %lu, Count ofStartingSubviews= %lu", CurrentSubviewCount ,CountOfStartingSubviews);
+            for (int  i=(int) CurrentSubviewCount -(int) 1; i>=(int) CountOfStartingSubviews; i--)
+            {
+          
+            
+            
+                UIView *subview = [subviews objectAtIndex:i];
+                [subview removeFromSuperview];
+                
+            }
         //    for (UIView *dropView in _subviews)
             
             // if (CGRectIntersectsRect(playerRect, mineRect))
