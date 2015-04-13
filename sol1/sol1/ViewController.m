@@ -39,6 +39,7 @@
 #define     CARDLENGTH          60.0
 
 #define     GAPBETWEENCARDS     10
+#define     GAPBETWEENACECARDS     20
 
 #define     CARDSTARTPOS        20
 
@@ -168,6 +169,19 @@
     
    subviews = [self.view subviews] ;
     NSLog(@"subview count 1 %lu",(unsigned long)[subviews count]);
+    
+    // Create Aces Area
+    int acesArea_YPos = self.view.bounds.size.width - 4*CARDWIDTH + 4 *GAPBETWEENACECARDS;
+    int acesArea_XPos = 13 * CARDLENGTH + (CARDLENGTH *.25);
+    for (int i=0; i<4; i++)
+    {
+        CGRect cardRect = CGRectMake(acesArea_XPos, acesArea_YPos, CARDWIDTH,CARDLENGTH);
+        UIView *aceView = [[UIView alloc] initWithFrame:cardRect];
+        aceView.backgroundColor = [UIColor blackColor];
+        [[self view] addSubview:aceView];
+        
+    }
+    
     NSLog(@"Leaving Didload  dropArea count =  %d",(int )[_dropAreas count]);
     
 }
