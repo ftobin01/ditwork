@@ -39,7 +39,7 @@
 #define     CARDLENGTH          60.0
 
 #define     GAPBETWEENCARDS     10
-#define     GAPBETWEENACECARDS     20
+#define     GAPBETWEENACECARDS     15
 
 #define     CARDSTARTPOS        20
 
@@ -127,7 +127,22 @@
         // view1.backgroundColor = redColor;
         for ( i=0; i<MAXCARDROWS; i++)
         {
+            
+            // UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
+            
+            //customView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"YourImage.png"]];
+            
+            //[self.view addSubview:customView];
+            
             //           make_card(j, k, l,  m);
+            
+            
+            
+            
+            
+            
+            
+            
             aRect = CGRectMake( j, k, CARDWIDTH, CARDLENGTH);
             
             [rectArray addObject:[NSValue valueWithCGRect:aRect]];
@@ -135,10 +150,29 @@
             
             view1 = [[UIView alloc] initWithFrame:aRect];
             
-            view1.backgroundColor = cardColor;
+           //view1.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"3_of_clubs.png"]];
+            
+            
+            UIGraphicsBeginImageContext(view1.frame.size);
+            [[UIImage imageNamed:@"3_of_clubs.png"] drawInRect:view1.bounds];
+            UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+
+            
+            
+            
+            
+            //UIImage* img = [UIImage imageNamed:@"3_of_clubs.png"];
+            view1.backgroundColor = [UIColor colorWithPatternImage:img];
+            
+            // view1.backgroundColor = cardColor;
+            
+            
+            
+            
             [[self view] addSubview:view1];
             
-            cardColor= RANDOM_COLOR;
+           // cardColor= RANDOM_COLOR;
             k+=CARDLENGTH/2;
             // Linking Pan Gesture Recogniser to entire view - as need to make it easier once item is dragged.
             
@@ -171,12 +205,14 @@
     NSLog(@"subview count 1 %lu",(unsigned long)[subviews count]);
     
     // Create Aces Area
-    int acesArea_YPos = self.view.bounds.size.width - 4*CARDWIDTH + 4 *GAPBETWEENACECARDS;
-    int acesArea_XPos = 13 * CARDLENGTH + (CARDLENGTH *.25);
-    for (int i=0; i<4; i++)
+    
+    int acesArea_YPos = (5* CARDLENGTH );
+    int acesArea_XPos = self.view.bounds.size.width - 4*(CARDWIDTH + GAPBETWEENACECARDS);
+    for (int i=0; i<(CARDWIDTH+GAPBETWEENACECARDS)*4; i+=CARDWIDTH+GAPBETWEENACECARDS)
     {
-        CGRect cardRect = CGRectMake(acesArea_XPos, acesArea_YPos, CARDWIDTH,CARDLENGTH);
-        UIView *aceView = [[UIView alloc] initWithFrame:cardRect];
+        
+        CGRect cardRect = CGRectMake(acesArea_XPos+i, acesArea_YPos, CARDWIDTH,CARDLENGTH);
+        NSLog(@"Frame cardRect f = %@", NSStringFromCGRect(cardRect));        UIView *aceView = [[UIView alloc] initWithFrame:cardRect];
         aceView.backgroundColor = [UIColor blackColor];
         [[self view] addSubview:aceView];
         
