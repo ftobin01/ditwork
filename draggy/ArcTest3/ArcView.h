@@ -10,4 +10,6 @@
 
 @interface ArcView : UIView
 
+
+-(void) drawArc:(CGRect)rect;
 @end

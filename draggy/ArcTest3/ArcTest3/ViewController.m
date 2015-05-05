@@ -13,18 +13,89 @@
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
+
 @property (strong, nonatomic) ArcView *arcview;
+
+-(void) drawArc:(CGRect)rect;
 @end
+
 
 @implementation ViewController
 
 
+-(void)pauseLayer:(CALayer*)layer {
+    
+    CFTimeInterval pausedTime = [layer convertTime:CACurrentMediaTime() fromLayer:nil];
+    
+    layer.speed = 0.0;
+    
+    layer.timeOffset = pausedTime;
+    
+}
+
+
+
+-(void)resumeLayer:(CALayer*)layer {
+    
+    CFTimeInterval pausedTime = [layer timeOffset];
+    
+    
+    
+    layer.speed = 1.0;
+    
+    layer.timeOffset = 0.0;
+    
+    layer.beginTime = 0.0;
+    
+    CFTimeInterval timeSincePause = [layer convertTime:CACurrentMediaTime() fromLayer:nil] - pausedTime;
+    
+    layer.beginTime = timeSincePause;
+    
+}
+
+
+- (IBAction)pressedSlider:(id)sender {
+    NSLog(@"SLider Pressed");
+    static BOOL sliderMoved=NO;
+    
+ //   int sliderValue = [mySlider intValue];
+    
+    if (sliderMoved)
+    {
+        [self  resumeLayer: _arcview.layer];
+        sliderMoved= YES;
+    }
+    else
+    {
+        [self  pauseLayer: _arcview.layer];
+        sliderMoved = NO;
+    }
+}
+
+
+
 - (IBAction)pressedButton:(id)sender {
     NSLog(@"Button Pressed");
+    static BOOL buttonPressed=NO;
+    if (!buttonPressed)
+        {
+        [self  pauseLayer: _arcview.layer];
+            buttonPressed = YES;
+        }
+    else
+        {
+        [self  resumeLayer: _arcview.layer];
+            buttonPressed = NO;
+        }
+    CALayer* layer = [CALayer layer];
+    
+    /*
+    
     [ArcView beginAnimations:nil context:NULL];
     [ArcView setAnimationBeginsFromCurrentState:YES];
     [ArcView setAnimationDuration:0.1];
     [ArcView setAnimationCurve: UIViewAnimationCurveLinear];
+     */
     // other animation properties
     
     // set view properties
@@ -67,8 +138,7 @@
     CGContextDrawPath(context, kCGPathFill);
     
     CGContextStrokePath(context);
-    
-}
+    [self  pauseLayer: _arcview.layer];}
 
 
 - (void) viewDidAppear:(BOOL)animated
@@ -92,6 +162,9 @@
     [animation setFromValue:[NSNumber numberWithFloat:0] ];
     [animation setToValue:[NSNumber numberWithFloat:M_PI * 2.0]];
     [layer addAnimation:animation forKey:nil];
+
+
+
 }
 
 

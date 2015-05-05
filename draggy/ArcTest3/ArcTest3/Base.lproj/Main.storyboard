@@ -25,10 +25,17 @@
                                     <action selector="pressedButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="F5p-0c-SO6"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="pc5-Sz-Ppb">
+                                <rect key="frame" x="268" y="353" width="118" height="31"/>
+                                <connections>
+                                    <action selector="pressedSlider:" destination="vXZ-lx-hvc" eventType="valueChanged" id="Nf6-gt-Qls"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="pressedSlider" destination="pc5-Sz-Ppb" id="yBZ-s2-nFF"/>
                         <outlet property="startButton" destination="yL8-UD-4Bi" id="Ogg-y6-wSv"/>
                     </connections>
                 </viewController>

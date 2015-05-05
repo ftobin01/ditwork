@@ -145,6 +145,9 @@
     drawAnimation.duration            = timeInSeconds;
     drawAnimation.fromValue = [NSNumber numberWithFloat:startAngle];
     drawAnimation.toValue   = [NSNumber numberWithFloat:endAngle];
+    drawAnimation.autoreverses=YES;
+    drawAnimation.repeatCount= INT_MAX;
+    
     drawAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     [circle addAnimation:drawAnimation forKey:@"drawCircleAnimation"];
     
@@ -153,7 +156,55 @@
     
 }
 
-
+-(void)drawArc:(CGRect)rect
+{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(context, [UIColor yellowColor].CGColor);
+    CGContextDrawPath(context, kCGPathStroke);
+    CGContextDrawPath(context, kCGPathFill);
+    CGContextAddArc(context, 100, 126, 86, 0, 30, 0);
+    CGContextFillPath(context);
+    CGContextStrokePath(context);
+    
+    
+    int radius = 70;
+    int strokeWidth = 15;
+    CGColorRef color = [UIColor blueColor].CGColor;
+    int timeInSeconds = 5;
+    
+    CGFloat startAngle = 0;
+    CGFloat endAngle = .25;
+    
+    CAShapeLayer *circle = [CAShapeLayer layer];
+    
+    circle.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(-100.0, -44, 2.0*radius, 2.0*radius) cornerRadius:radius].CGPath;
+    
+    circle.position = CGPointMake(CGRectGetMidX(self.frame)-radius, CGRectGetMidY(self.frame)-radius);
+    
+    circle.fillColor = [UIColor clearColor].CGColor;
+    circle.strokeColor = color;
+    circle.lineWidth = strokeWidth;
+    
+    [self.layer addSublayer:circle];
+    
+    
+    
+    circle.strokeEnd = endAngle;
+    
+    //  Apply the animation.
+    CABasicAnimation *drawAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    drawAnimation.duration            = timeInSeconds;
+    drawAnimation.fromValue = [NSNumber numberWithFloat:startAngle];
+    drawAnimation.toValue   =  [NSNumber numberWithFloat:endAngle];
+    
+    drawAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    
+    [circle addAnimation:drawAnimation forKey:@"drawCircleAnimation"];
+    
+    
+    
+    
+}
 
 
 
