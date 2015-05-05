@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B4EB13191AF7B14900283015 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4EB13181AF7B14900283015 /* main.m */; };
+		B4EB131C1AF7B14900283015 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4EB131B1AF7B14900283015 /* AppDelegate.m */; };
+		B4EB131F1AF7B14900283015 /* ArcTest2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4EB131D1AF7B14900283015 /* ArcTest2.xcdatamodeld */; };
+		B4EB13221AF7B14900283015 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4EB13211AF7B14900283015 /* ViewController.m */; };
+		B4EB13251AF7B14900283015 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4EB13231AF7B14900283015 /* Main.storyboard */; };
+		B4EB13271AF7B14900283015 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4EB13261AF7B14900283015 /* Images.xcassets */; };
+		B4EB132A1AF7B14900283015 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4EB13281AF7B14900283015 /* LaunchScreen.xib */; };
+		B4EB13361AF7B14900283015 /* ArcTest2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4EB13351AF7B14900283015 /* ArcTest2Tests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B4EB13301AF7B14900283015 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4EB130B1AF7B14900283015 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4EB13121AF7B14900283015;
+			remoteInfo = ArcTest2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B4EB13131AF7B14900283015 /* ArcTest2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcTest2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4EB13171AF7B14900283015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4EB13181AF7B14900283015 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B4EB131A1AF7B14900283015 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B4EB131B1AF7B14900283015 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B4EB131E1AF7B14900283015 /* ArcTest2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArcTest2.xcdatamodel; sourceTree = "<group>"; };
+		B4EB13201AF7B14900283015 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B4EB13211AF7B14900283015 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B4EB13241AF7B14900283015 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B4EB13261AF7B14900283015 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B4EB13291AF7B14900283015 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		B4EB132F1AF7B14900283015 /* ArcTest2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArcTest2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4EB13341AF7B14900283015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4EB13351AF7B14900283015 /* ArcTest2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArcTest2Tests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B4EB13101AF7B14900283015 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4EB132C1AF7B14900283015 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B4EB130A1AF7B14900283015 = {
+			isa = PBXGroup;
+			children = (
+				B4EB13151AF7B14900283015 /* ArcTest2 */,
+				B4EB13321AF7B14900283015 /* ArcTest2Tests */,
+				B4EB13141AF7B14900283015 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B4EB13141AF7B14900283015 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B4EB13131AF7B14900283015 /* ArcTest2.app */,
+				B4EB132F1AF7B14900283015 /* ArcTest2Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B4EB13151AF7B14900283015 /* ArcTest2 */ = {
+			isa = PBXGroup;
+			children = (
+				B4EB131A1AF7B14900283015 /* AppDelegate.h */,
+				B4EB131B1AF7B14900283015 /* AppDelegate.m */,
+				B4EB13201AF7B14900283015 /* ViewController.h */,
+				B4EB13211AF7B14900283015 /* ViewController.m */,
+				B4EB13231AF7B14900283015 /* Main.storyboard */,
+				B4EB13261AF7B14900283015 /* Images.xcassets */,
+				B4EB13281AF7B14900283015 /* LaunchScreen.xib */,
+				B4EB131D1AF7B14900283015 /* ArcTest2.xcdatamodeld */,
+				B4EB13161AF7B14900283015 /* Supporting Files */,
+			);
+			path = ArcTest2;
+			sourceTree = "<group>";
+		};
+		B4EB13161AF7B14900283015 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B4EB13171AF7B14900283015 /* Info.plist */,
+				B4EB13181AF7B14900283015 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B4EB13321AF7B14900283015 /* ArcTest2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B4EB13351AF7B14900283015 /* ArcTest2Tests.m */,
+				B4EB13331AF7B14900283015 /* Supporting Files */,
+			);
+			path = ArcTest2Tests;
+			sourceTree = "<group>";
+		};
+		B4EB13331AF7B14900283015 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B4EB13341AF7B14900283015 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B4EB13121AF7B14900283015 /* ArcTest2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4EB13391AF7B14900283015 /* Build configuration list for PBXNativeTarget "ArcTest2" */;
+			buildPhases = (
+				B4EB130F1AF7B14900283015 /* Sources */,
+				B4EB13101AF7B14900283015 /* Frameworks */,
+				B4EB13111AF7B14900283015 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArcTest2;
+			productName = ArcTest2;
+			productReference = B4EB13131AF7B14900283015 /* ArcTest2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B4EB132E1AF7B14900283015 /* ArcTest2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4EB133C1AF7B14900283015 /* Build configuration list for PBXNativeTarget "ArcTest2Tests" */;
+			buildPhases = (
+				B4EB132B1AF7B14900283015 /* Sources */,
+				B4EB132C1AF7B14900283015 /* Frameworks */,
+				B4EB132D1AF7B14900283015 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4EB13311AF7B14900283015 /* PBXTargetDependency */,
+			);
+			name = ArcTest2Tests;
+			productName = ArcTest2Tests;
+			productReference = B4EB132F1AF7B14900283015 /* ArcTest2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B4EB130B1AF7B14900283015 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = FT;
+				TargetAttributes = {
+					B4EB13121AF7B14900283015 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					B4EB132E1AF7B14900283015 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = B4EB13121AF7B14900283015;
+					};
+				};
+			};
+			buildConfigurationList = B4EB130E1AF7B14900283015 /* Build configuration list for PBXProject "ArcTest2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B4EB130A1AF7B14900283015;
+			productRefGroup = B4EB13141AF7B14900283015 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B4EB13121AF7B14900283015 /* ArcTest2 */,
+				B4EB132E1AF7B14900283015 /* ArcTest2Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B4EB13111AF7B14900283015 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EB13251AF7B14900283015 /* Main.storyboard in Resources */,
+				B4EB132A1AF7B14900283015 /* LaunchScreen.xib in Resources */,
+				B4EB13271AF7B14900283015 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4EB132D1AF7B14900283015 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B4EB130F1AF7B14900283015 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EB131C1AF7B14900283015 /* AppDelegate.m in Sources */,
+				B4EB131F1AF7B14900283015 /* ArcTest2.xcdatamodeld in Sources */,
+				B4EB13221AF7B14900283015 /* ViewController.m in Sources */,
+				B4EB13191AF7B14900283015 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4EB132B1AF7B14900283015 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EB13361AF7B14900283015 /* ArcTest2Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B4EB13311AF7B14900283015 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4EB13121AF7B14900283015 /* ArcTest2 */;
+			targetProxy = B4EB13301AF7B14900283015 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B4EB13231AF7B14900283015 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4EB13241AF7B14900283015 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B4EB13281AF7B14900283015 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4EB13291AF7B14900283015 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B4EB13371AF7B14900283015 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B4EB13381AF7B14900283015 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B4EB133A1AF7B14900283015 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ArcTest2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B4EB133B1AF7B14900283015 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ArcTest2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B4EB133D1AF7B14900283015 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ArcTest2Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ArcTest2.app/ArcTest2";
+			};
+			name = Debug;
+		};
+		B4EB133E1AF7B14900283015 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ArcTest2Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ArcTest2.app/ArcTest2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B4EB130E1AF7B14900283015 /* Build configuration list for PBXProject "ArcTest2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4EB13371AF7B14900283015 /* Debug */,
+				B4EB13381AF7B14900283015 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4EB13391AF7B14900283015 /* Build configuration list for PBXNativeTarget "ArcTest2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4EB133A1AF7B14900283015 /* Debug */,
+				B4EB133B1AF7B14900283015 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B4EB133C1AF7B14900283015 /* Build configuration list for PBXNativeTarget "ArcTest2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4EB133D1AF7B14900283015 /* Debug */,
+				B4EB133E1AF7B14900283015 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B4EB131D1AF7B14900283015 /* ArcTest2.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B4EB131E1AF7B14900283015 /* ArcTest2.xcdatamodel */,
+			);
+			currentVersion = B4EB131E1AF7B14900283015 /* ArcTest2.xcdatamodel */;
+			path = ArcTest2.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B4EB130B1AF7B14900283015 /* Project object */;
+}
