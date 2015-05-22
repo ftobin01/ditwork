@@ -32,16 +32,22 @@
 #define             MYLONGLOG     NSLog(@"%_func %s, _line %d, _file %s, calling _func %s", __func__, __Line__, __File__, __PRETTY_FUNCTION__);
 #endif
 
-#define     MAXCARDROWS        7
+#define     MAXCARDROWS        8
 #define     MAXCARDCOLUMNS     7
 
 #define     CARDWIDTH           33.0
 #define     CARDLENGTH          60.0
 
-#define     GAPBETWEENCARDS     10
-#define     GAPBETWEENACECARDS     15
+#define     GAPBETWEENCARDS     8
+#define     GAPBETWEENACECARDS     10
 
-#define     CARDSTARTPOS        20
+#define     CARDSTARTPOS        40
+#define     CARDSTARTROW        GAPBETWEENCARDS
+
+#define     ACECARDSTARTPOS     xx
+
+#define     DECKCARD_XPOS     14
+#define     DECKCARD_YPOS    ( (MAXCARDROWS-2) * CARDLENGTH )
 
 
 #import "ViewController.h"
@@ -57,10 +63,10 @@
 @property NSMutableArray* rectArray;
 @property NSMutableArray *dropAreas;
 @property NSArray *subviews;
-//-(void)listSubviewsOfView: (UIView  *) view;
+@property UIImage *globalCardImage;
 
 
-
+-(void)  showDeck;
 
 
 
@@ -69,6 +75,8 @@
 
 @implementation ViewController
 
+//- (IBAction)tapDetected:(id)sender {
+//}
 
 
 - (void)viewDidLoad
@@ -135,14 +143,7 @@
             //[self.view addSubview:customView];
             
             //           make_card(j, k, l,  m);
-            
-            
-            
-            
-            
-            
-            
-            
+         
             aRect = CGRectMake( j, k, CARDWIDTH, CARDLENGTH);
             
             [rectArray addObject:[NSValue valueWithCGRect:aRect]];
@@ -155,7 +156,7 @@
             
             UIGraphicsBeginImageContext(view1.frame.size);
             [[UIImage imageNamed:@"3_of_clubs.png"] drawInRect:view1.bounds];
-            UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+            _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
 
             
@@ -163,7 +164,7 @@
             
             
             //UIImage* img = [UIImage imageNamed:@"3_of_clubs.png"];
-            view1.backgroundColor = [UIColor colorWithPatternImage:img];
+            view1.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage];
             
             // view1.backgroundColor = cardColor;
             
@@ -206,25 +207,112 @@
     
     // Create Aces Area
     
-    int acesArea_YPos = (5* CARDLENGTH );
-    int acesArea_XPos = self.view.bounds.size.width - 4*(CARDWIDTH + GAPBETWEENACECARDS);
+    int acesArea_YPos = (6 * CARDLENGTH );
+    int acesArea_XPos = self.view.bounds.size.width - (4*(CARDWIDTH) + 6*(GAPBETWEENACECARDS));
     for (int i=0; i<(CARDWIDTH+GAPBETWEENACECARDS)*4; i+=CARDWIDTH+GAPBETWEENACECARDS)
     {
         
         CGRect cardRect = CGRectMake(acesArea_XPos+i, acesArea_YPos, CARDWIDTH,CARDLENGTH);
-        NSLog(@"Frame cardRect f = %@", NSStringFromCGRect(cardRect));        UIView *aceView = [[UIView alloc] initWithFrame:cardRect];
+        NSLog(@"Frame cardRect f = %@", NSStringFromCGRect(cardRect));
+        
+        UIView *aceView = [[UIView alloc] initWithFrame:cardRect];
         aceView.backgroundColor = [UIColor blackColor];
         [[self view] addSubview:aceView];
         
     }
+    
+    
+    // Create Deck Area
+    int deckArea_YPos = (6 * CARDLENGTH );
+    int deckArea_XPos = self.view.bounds.size.width;
+    
+   
+    
+    CGRect cardRect = CGRectMake(DECKCARD_XPOS, DECKCARD_YPOS, CARDWIDTH,CARDLENGTH);
+    UIView *deckView = [[UIView alloc] initWithFrame:cardRect];
+    
+    deckView.backgroundColor = [UIColor blueColor];
+    
+    [[self view] addSubview:deckView];
+    
+    UITapGestureRecognizer *tapGesture =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:)];
+    [self.view addGestureRecognizer:tapGesture];
+    
+    
+    [self.view _showDeck ];
+    
+    
+    
     
     NSLog(@"Leaving Didload  dropArea count =  %d",(int )[_dropAreas count]);
     
 }
 
 
+- (void)tapDetected: (UIGestureRecognizer *)tapGestureRecognizer
+{
+    NSLog(@"In Tap Detected");
+    
+    CGPoint locationInView = [tapGestureRecognizer locationInView:self.view];
+  
+    CGRect tmpDeckRect = CGRectMake(DECKCARD_XPOS, DECKCARD_YPOS, CARDWIDTH,CARDLENGTH);
+    
+    if (CGRectContainsPoint(tmpDeckRect, locationInView))
+        {
+        NSLog(@"Deck Pressed!!!!");
+            [self showDeck];
+        }
+        switch (tapGestureRecognizer.state)
+    {
+        case UIGestureRecognizerStateBegan:
+        {
+              NSLog(@"Tap |Recognised");
+            break;
+        }
+        case UIGestureRecognizerStateChanged:
+            NSLog(@"Tap |Recognised 2");
+            break;
+        case UIGestureRecognizerStateEnded:
+            NSLog(@"Tap |Recognised 3");
+            
+            
+            break;
+        default:
+            NSLog(@"Error - Gesture State Not Recognised 4");
+            break;
+    
+    
+    }
+}
 
+#define SHOWDECK_XPOS    40
+-(void) showDeck
+{
+    static BOOL SHOW_3_CARDS= TRUE;
 
+    // need at least 1 view
+    
+    NSLog(@"calling showDeck");
+    CGRect cardRect1 = CGRectMake( SHOWDECK_XPOS, DECKCARD_XPOS, CARDWIDTH, CARDLENGTH);
+    UIView *showCard1 = [[UIView alloc] initWithFrame:cardRect1];
+    [self.view addSubview: showCard1];
+/*
+ 
+    if (SHOW_3_CARDS)
+            {
+                cardRect2 = CGRectMake( SHOWDECK_XPOS+10, k, CARDWIDTH, CARDLENGTH);
+                UIView *showCard2=[[UIView alloc] initWithFrame:cardRect2];
+                cardRect3 = CGRectMake( SHOWDECK_XPOS+20, k, CARDWIDTH, CARDLENGTH);
+                UIView *showCard3=[[UIView alloc] initWithFrame:cardRect3];                cardRect2 =CGRectMake( j, k, CARDWIDTH, CARDLENGTH);
+                //  if not Created  add subview
+            }
+    
+    
+*/
+    
+    
+    
+}
 
 - (void)dragDetected: (UIPanGestureRecognizer *)panGestureRecognizer
 {
@@ -248,6 +336,7 @@
     float   dragCardOriginX=x;
     float   dragCardOriginY=y;
     static unsigned long CountOfStartingSubviews=0;
+    static UIView *subviewFound=nil;
     
     
     
@@ -259,6 +348,12 @@
             
         case UIGestureRecognizerStateBegan:   //Drag Started
         {
+            
+            // Need to Check if Pan has occorred in Rects Bounded by CArds Out on Table
+            
+            
+            
+            
             
             CountOfStartingSubviews=[subviews count];
             NSLog(@"**** UIGestureRecognizerStateBegan - Drag Started %@", NSStringFromCGPoint(locationInView));
@@ -295,9 +390,10 @@
                     //NSLog("@")
                     NSLog(@"Frame found = %@", NSStringFromCGRect(viewRect));
                     
-                    [self.view bringSubviewToFront :subview];
-                    subview.backgroundColor = [UIColor blackColor];
-                    //UIView *tmpView = [[UIView alloc] initWithFrame:viewRect];
+                  //  [self.view bringSubviewToFront :subview];
+                    subviewFound=subview;
+                   // subview.backgroundColor = [UIColor blackColor];
+                //UIView *tmpView = [[UIView alloc] initWithFrame:viewRect];
                     // Find TopMOst view and amke if black.
                     //        UIView *ggg  = [subview findTopMostViewForPoint:locationInView];
                     // .backgroundColor = [UIColor blackColor];
@@ -317,6 +413,13 @@
         break;
         case UIGestureRecognizerStateChanged:  //While Dragging
         {
+            static int first=1;
+            if (first==1)
+            {
+                [self.view sendSubviewToBack :subviewFound];
+            
+                first=1;
+            }
             
             UIColor *rndColor= RANDOM_COLOR;
             unsigned long dropAreaCount = [_dropAreas count];
@@ -330,7 +433,8 @@
             dragCardOriginY=y-5;
             CGRect tmpRect=CGRectMake( dragCardOriginX-2,dragCardOriginY-5 , CARDWIDTH, CARDLENGTH) ;
             UIView *tmpView = [[UIView alloc] initWithFrame: tmpRect];
-            tmpView.backgroundColor = [UIColor redColor];
+            tmpView.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage];
+           // tmpView.backgroundColor = [UIColor redColor];
             [self.view addSubview: tmpView];
             
             
@@ -434,6 +538,8 @@
                     //[NSThread sleepForTimeInterval:0.6];
                     
                 }
+                 // [self.view sendSubviewToBack :subviewFound];
+                
                 //    for (UIView *dropView in _subviews)
                 
                 // if (CGRectIntersectsRect(playerRect, mineRect))
@@ -443,12 +549,14 @@
                 
                 ;
             }
+            [self.view setNeedsDisplay];
             break;
             
         default:
             NSLog(@"Error - Gesture State Not Recognised ");
             break;
         }
+     [self.view setNeedsDisplay];
             
     }
     
