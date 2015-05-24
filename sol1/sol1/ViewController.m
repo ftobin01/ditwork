@@ -39,7 +39,7 @@
 #define     CARDLENGTH          60.0
 
 #define     GAPBETWEENCARDS     8
-#define     GAPBETWEENACECARDS     10
+#define     GAPBETWEENACECARDS     5
 
 #define     CARDSTARTPOS        40
 #define     CARDSTARTROW        GAPBETWEENCARDS
@@ -90,7 +90,7 @@
     
     // makeFullCard()
     int i=0;
-    int z=0;
+    int cardColumn=0;
     float j=15;
     float k=CARDSTARTPOS;
     
@@ -125,15 +125,18 @@
     
     
     UIPanGestureRecognizer *panGesture =[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragDetected:)];
+    panGesture.minimumNumberOfTouches = 1;
+   //  panGesture.delegate = self; // Very important
     [self.view addGestureRecognizer:panGesture];
     
-    
+    int column_num =0;
     UIColor *cardColor = RANDOM_COLOR;
     
-    for (z=0; z<MAXCARDCOLUMNS; z++)
+    for (cardColumn=0; cardColumn<MAXCARDCOLUMNS; cardColumn++)
     {
         // view1.backgroundColor = redColor;
-        for ( i=0; i<MAXCARDROWS; i++)
+        
+        for ( i=0; i<= cardColumn ; i++)
         {
             
             // UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
@@ -165,12 +168,8 @@
             
             //UIImage* img = [UIImage imageNamed:@"3_of_clubs.png"];
             view1.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage];
-            
+    
             // view1.backgroundColor = cardColor;
-            
-            
-            
-            
             [[self view] addSubview:view1];
             
            // cardColor= RANDOM_COLOR;
@@ -218,7 +217,7 @@
         UIView *aceView = [[UIView alloc] initWithFrame:cardRect];
         aceView.backgroundColor = [UIColor blackColor];
         [[self view] addSubview:aceView];
-        
+        [_dropAreas addObject: aceView];
     }
     
     
@@ -235,11 +234,12 @@
     
     [[self view] addSubview:deckView];
     
-    UITapGestureRecognizer *tapGesture =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:)];
+    UITapGestureRecognizer *tapGesture =[[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(tapDetected:)];
+   // tapGesture.delegate = self;
     [self.view addGestureRecognizer:tapGesture];
     
     
-    [self.view _showDeck ];
+   // [self showDeck ];
     
     
     
@@ -285,30 +285,38 @@
     }
 }
 
-#define SHOWDECK_XPOS    40
+#define SHOWDECK_XPOS    60
 -(void) showDeck
 {
     static BOOL SHOW_3_CARDS= TRUE;
-
+    static BOOL DECK_SHOWN=FALSE;
+    
+    if (!DECK_SHOWN)
     // need at least 1 view
-    
-    NSLog(@"calling showDeck");
-    CGRect cardRect1 = CGRectMake( SHOWDECK_XPOS, DECKCARD_XPOS, CARDWIDTH, CARDLENGTH);
-    UIView *showCard1 = [[UIView alloc] initWithFrame:cardRect1];
-    [self.view addSubview: showCard1];
-/*
+        {
+            NSLog(@"calling showDeck");
+            CGRect cardRect1 = CGRectMake( SHOWDECK_XPOS, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
+            UIView *showCard1 = [[UIView alloc] initWithFrame:cardRect1];
+            showCard1.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage];
+            [self.view addSubview: showCard1];
+      
+
  
-    if (SHOW_3_CARDS)
+    if (SHOW_3_CARDS==TRUE)
             {
-                cardRect2 = CGRectMake( SHOWDECK_XPOS+10, k, CARDWIDTH, CARDLENGTH);
+
+                CGRect cardRect2 = CGRectMake( SHOWDECK_XPOS+10, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
                 UIView *showCard2=[[UIView alloc] initWithFrame:cardRect2];
-                cardRect3 = CGRectMake( SHOWDECK_XPOS+20, k, CARDWIDTH, CARDLENGTH);
-                UIView *showCard3=[[UIView alloc] initWithFrame:cardRect3];                cardRect2 =CGRectMake( j, k, CARDWIDTH, CARDLENGTH);
-                //  if not Created  add subview
+            showCard2.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage];                CGRect cardRect3 = CGRectMake( SHOWDECK_XPOS+20, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
+                UIView *showCard3=[[UIView alloc] initWithFrame:cardRect3];
+            showCard3.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage];                //  if not Created  add subview
+            NSLog(@"Adding ShowDEcdk Card  2 and ShowDeck Card 3");
+                [self.view addSubview: showCard2];
+                [self.view addSubview: showCard3];
             }
-    
-    
-*/
+
+             DECK_SHOWN=TRUE;
+             }
     
     
     
@@ -325,6 +333,16 @@
     // card should movde at this location
     
     //UIPanGestureRecognizer *panGestureRecognizer = (UIPanGestureRecognizer *) sender;
+   /*
+    CGPoint t = [panGestureRecognizer translationInView:panGestureRecognizer.view];
+    [panGestureRecognizer setTranslation:CGPointZero inView:panGestureRecognizer.view];
+    
+    // TODO: Here, you should translate your target view using this translation
+    UIView *someView.center = CGPointMake(someView.center.x + t.x, someView.center.y + t.y);
+    */
+    
+    
+    
     
     NSArray *subviews = [self.view subviews];
     NSArray *dragviews;
@@ -333,8 +351,8 @@
     CGPoint locationInView = [panGestureRecognizer locationInView:self.view];
     float x = locationInView.x;
     float y = locationInView.y;
-    float   dragCardOriginX=x;
-    float   dragCardOriginY=y;
+    static float   dragCardOriginX;
+    static float   dragCardOriginY;
     static unsigned long CountOfStartingSubviews=0;
     static UIView *subviewFound=nil;
     
@@ -383,8 +401,8 @@
                 // we want locations thtat are in top view except the last view.
                 if (CGRectContainsPoint(viewRect, locationInView))
                 {
-                    dragCardOriginX=viewRect.origin.x;
-                    dragCardOriginY=viewRect.origin.y;
+                    dragCardOriginX=-5; // viewRect.origin.x;
+                    dragCardOriginY=-5; //  viewRect.origin.y;
                     // YES! Found Card to Drag
                     NSLog(@"Found REct  i=%d",i);
                     //NSLog("@")
@@ -413,6 +431,7 @@
         break;
         case UIGestureRecognizerStateChanged:  //While Dragging
         {
+           /*
             static int first=1;
             if (first==1)
             {
@@ -420,7 +439,7 @@
             
                 first=1;
             }
-            
+            */
             UIColor *rndColor= RANDOM_COLOR;
             unsigned long dropAreaCount = [_dropAreas count];
             
@@ -429,14 +448,17 @@
             //view1 = [[UIView alloc] initWithFrame:aRect];
             
             //view1.backgroundColor = rndColor;
-            dragCardOriginX =x-5;
-            dragCardOriginY=y-5;
-            CGRect tmpRect=CGRectMake( dragCardOriginX-2,dragCardOriginY-5 , CARDWIDTH, CARDLENGTH) ;
+            
+            dragCardOriginX =x-10;  //To allow for Pan Delay
+            dragCardOriginY=y-11;   // Works fine in Simulator
+            ;
+            CGRect tmpRect=CGRectMake( dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
             UIView *tmpView = [[UIView alloc] initWithFrame: tmpRect];
             tmpView.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage];
            // tmpView.backgroundColor = [UIColor redColor];
             [self.view addSubview: tmpView];
             
+            [self.view setNeedsDisplay];
             
             
             unsigned long topSubviewCount = [subviews count];
@@ -529,7 +551,7 @@
                 //Not Found
                 unsigned long CurrentSubviewCount = [subviews count];
                 NSLog(@"CurrentSubviewCount = %lu, Count ofStartingSubviews= %lu", CurrentSubviewCount ,CountOfStartingSubviews);
-                for (int  i=(int) CurrentSubviewCount -(int) 1; i>=(int) CountOfStartingSubviews; i--)
+                for (int  i=(int) CurrentSubviewCount-(int)1 ; i>= (int) CountOfStartingSubviews; i--)
                 {
                     
                     UIView *subview = [subviews objectAtIndex:i];
@@ -549,7 +571,7 @@
                 
                 ;
             }
-            [self.view setNeedsDisplay];
+            
             break;
             
         default:
