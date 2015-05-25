@@ -67,7 +67,7 @@
 
 
 -(void)  showDeck;
-
+-(BOOL) inSubViewList ;
 
 
 @end
@@ -361,7 +361,32 @@
     NSLog(@"Drag Dectected %@", NSStringFromCGPoint(locationInView));
     
     
-    switch (panGestureRecognizer.state)
+    
+    if ( ![self inSubViewList: locationInView] )
+        return;
+    
+    
+     dragCardOriginX=-5; // viewRect.origin.x;
+        dragCardOriginY=-5; //  viewRect.origin.y;
+        // YES! Found Card to Dra
+        //NSLog(@"Found REct  i=%d",i);
+        //NSLog("@")
+        //NSLog(@"Frame found = %@", NSStringFromCGRect(viewRect));
+        
+        //  [self.view bringSubviewToFront :subview];
+        //subviewFound=subview;
+        // subview.backgroundColor = [UIColor blackColor];
+        //UIView *tmpView = [[UIView alloc] initWithFrame:viewRect];
+        // Find TopMOst view and amke if black.
+        //        UIView *ggg  = [subview findTopMostViewForPoint:locationInView];
+        // .backgroundColor = [UIColor blackColor];
+        //  [self.view addSubview:tmpView];
+        
+        // we want to gety co-ords from top of current view to bottem
+        // of last view placed
+        //CountOfStartingSubviews=i;
+        switch (panGestureRecognizer.state)
+    
     {
             
         case UIGestureRecognizerStateBegan:   //Drag Started
@@ -369,63 +394,22 @@
             
             // Need to Check if Pan has occorred in Rects Bounded by CArds Out on Table
             
-            
-            
-            
-            
             CountOfStartingSubviews=[subviews count];
             NSLog(@"**** UIGestureRecognizerStateBegan - Drag Started %@", NSStringFromCGPoint(locationInView));
-            
             // NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.view.frame));
             NSLog(@" Xpoint is %f",locationInView.x);
             // find view started
-            unsigned long q = (unsigned long)[subviews count];
+         
             NSLog(@"Subviews count %lu",(unsigned long) [subviews count]);
             NSLog(@"NOW FINd subview Point Location is in....");
-            NSLog(@"Count of number of subviews = %lu",q);
+           // NSLog(@"Count of number of subviews = %lu",q);
             
             
             // -(UIView *)findTopMostViewForPoint : (CGPoint) point
-            for (int  i=(int) q -(int) 1; i>=0; i--)
-            {
-                
-                // [_dropAreas addObject:[NSValue valueWithCGRect:aRect]];//Add last Cartd which will be face up as A droppable Area - ACE's area will also need to be added.
-                UIView *subview = [subviews objectAtIndex:i];
-                //    if(!subview.hidden && CGRectContainsPoint(subview.frame, point))
-                //CGPoint pointConverted = [self.view convertPoint:point toView:subview];
-                //for (UIView *subview in self.view.subviews)
-                
-                NSLog(@"==>subview  i = %lu ",(unsigned long) i);
-                CGRect viewRect =  [subview frame];
-                
-                // we want locations thtat are in top view except the last view.
-                if (CGRectContainsPoint(viewRect, locationInView))
-                {
-                    dragCardOriginX=-5; // viewRect.origin.x;
-                    dragCardOriginY=-5; //  viewRect.origin.y;
-                    // YES! Found Card to Drag
-                    NSLog(@"Found REct  i=%d",i);
-                    //NSLog("@")
-                    NSLog(@"Frame found = %@", NSStringFromCGRect(viewRect));
-                    
-                  //  [self.view bringSubviewToFront :subview];
-                    subviewFound=subview;
-                   // subview.backgroundColor = [UIColor blackColor];
-                //UIView *tmpView = [[UIView alloc] initWithFrame:viewRect];
-                    // Find TopMOst view and amke if black.
-                    //        UIView *ggg  = [subview findTopMostViewForPoint:locationInView];
-                    // .backgroundColor = [UIColor blackColor];
-                    //  [self.view addSubview:tmpView];
-                    
-                    // we want to gety co-ords from top of current view to bottem
-                    // of last view placed
-                    //CountOfStartingSubviews=i;
-                    
-                    break;
-                }
-            }
+          
             
             
+         
         }
             
         break;
@@ -582,7 +566,36 @@
             
     }
     
+- (BOOL) inSubViewList: ( CGPoint ) locationInView
+{
+     NSArray *subviews = [self.view subviews];
+     int CurrentSubviewCount =(int)  [subviews count];
     
+    
+    
+    for (int  subview_index = CurrentSubviewCount
+         - 1; subview_index >=0; subview_index--)
+{
+    
+    // [_dropAreas addObject:[NSValue valueWithCGRect:aRect]];//Add last Cartd which will be face up as A droppable Area - ACE's area will also need to be added.
+    UIView *subview = [subviews objectAtIndex:subview_index];
+    //    if(!subview.hidden && CGRectContainsPoint(subview.frame, point))
+    //CGPoint pointConverted = [self.view convertPoint:point toView:subview];
+    //for (UIView *subview in self.view.subviews)
+    
+    NSLog(@"==>subview  i = %lu ",(unsigned long) subview_index);
+       // we want locations thtat are in top view except the last view.
+    CGRect viewRect =  [subview frame];
+    
+    if (CGRectContainsPoint(viewRect, locationInView))
+    {
+        return(TRUE);
+        
+    }
+}
+    return (FALSE);
+    }
+
     /*
      
      CGRect someRect;

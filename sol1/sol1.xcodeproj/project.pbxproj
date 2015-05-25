@@ -22,8 +22,9 @@
 		A62413F01AC09BC600364556 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62413CF1AC09BC500364556 /* UIKit.framework */; };
 		A62413F81AC09BC600364556 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A62413F61AC09BC600364556 /* InfoPlist.strings */; };
 		A62413FA1AC09BC600364556 /* sol1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A62413F91AC09BC600364556 /* sol1Tests.m */; };
-		A62414051AC0A3F300364556 /* cards.m in Sources */ = {isa = PBXBuildFile; fileRef = A62414041AC0A3F300364556 /* cards.m */; };
+		A62414051AC0A3F300364556 /* Cards.m in Sources */ = {isa = PBXBuildFile; fileRef = A62414041AC0A3F300364556 /* Cards.m */; };
 		B4D1ECDF1AD93B5D00E8AE60 /* UIViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D1ECDE1AD93B5C00E8AE60 /* UIViewHelper.m */; };
+		B4EB8A1E1B13246000CD8E97 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = B4EB8A1D1B13246000CD8E97 /* Deck.m */; };
 		B4F5AFF51ADD219C007C2192 /* 10_of_clubs.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F5AFB21ADD219C007C2192 /* 10_of_clubs.png */; };
 		B4F5AFF61ADD219C007C2192 /* 10_of_diamonds.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F5AFB31ADD219C007C2192 /* 10_of_diamonds.png */; };
 		B4F5AFF71ADD219C007C2192 /* 10_of_hearts.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F5AFB41ADD219C007C2192 /* 10_of_hearts.png */; };
@@ -132,11 +133,13 @@
 		A62413F51AC09BC600364556 /* sol1Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "sol1Tests-Info.plist"; sourceTree = "<group>"; };
 		A62413F71AC09BC600364556 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A62413F91AC09BC600364556 /* sol1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sol1Tests.m; sourceTree = "<group>"; };
-		A62414031AC0A3F300364556 /* cards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cards.h; sourceTree = "<group>"; };
-		A62414041AC0A3F300364556 /* cards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cards.m; sourceTree = "<group>"; };
+		A62414031AC0A3F300364556 /* Cards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cards.h; sourceTree = "<group>"; };
+		A62414041AC0A3F300364556 /* Cards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cards.m; sourceTree = "<group>"; };
 		B402E8621AD5792300B55A30 /* screen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = screen.h; sourceTree = "<group>"; };
 		B4D1ECDD1AD93B3600E8AE60 /* UIViewHelp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewHelp.h; sourceTree = "<group>"; };
 		B4D1ECDE1AD93B5C00E8AE60 /* UIViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewHelper.m; sourceTree = "<group>"; };
+		B4EB8A1C1B13246000CD8E97 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
+		B4EB8A1D1B13246000CD8E97 /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
 		B4F5AFB21ADD219C007C2192 /* 10_of_clubs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10_of_clubs.png; sourceTree = "<group>"; };
 		B4F5AFB31ADD219C007C2192 /* 10_of_diamonds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10_of_diamonds.png; sourceTree = "<group>"; };
 		B4F5AFB41ADD219C007C2192 /* 10_of_hearts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10_of_hearts.png; sourceTree = "<group>"; };
@@ -277,8 +280,10 @@
 				A62413DA1AC09BC500364556 /* AppDelegate.h */,
 				A62413DB1AC09BC500364556 /* AppDelegate.m */,
 				A62413DD1AC09BC600364556 /* Main_iPhone.storyboard */,
-				A62414031AC0A3F300364556 /* cards.h */,
-				A62414041AC0A3F300364556 /* cards.m */,
+				A62414031AC0A3F300364556 /* Cards.h */,
+				A62414041AC0A3F300364556 /* Cards.m */,
+				B4EB8A1C1B13246000CD8E97 /* Deck.h */,
+				B4EB8A1D1B13246000CD8E97 /* Deck.m */,
 				A62413E01AC09BC600364556 /* Main_iPad.storyboard */,
 				A62413E31AC09BC600364556 /* ViewController.h */,
 				A62413E41AC09BC600364556 /* ViewController.m */,
@@ -586,7 +591,8 @@
 				A62413DC1AC09BC500364556 /* AppDelegate.m in Sources */,
 				A62413D81AC09BC500364556 /* main.m in Sources */,
 				B4D1ECDF1AD93B5D00E8AE60 /* UIViewHelper.m in Sources */,
-				A62414051AC0A3F300364556 /* cards.m in Sources */,
+				B4EB8A1E1B13246000CD8E97 /* Deck.m in Sources */,
+				A62414051AC0A3F300364556 /* Cards.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

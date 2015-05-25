@@ -1,5 +1,5 @@
 //
-//  cards.h
+//  Cards.h
 //  sol1
 //
 //  Created by Fergal Tobin on 23/03/2015.
