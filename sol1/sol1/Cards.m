@@ -8,7 +8,7 @@
 
 #import "cards.h"
 
-@interface Card : NSObject
+@interface Card  (NSObject)
 
 @property (nonatomic) int          cardSuit;
 
@@ -23,7 +23,10 @@
 
 @end
 
-@implementation Card : NSObject
+
+
+
+@implementation Card
 
 #define Hearts      0
 #define Spades      1
@@ -32,20 +35,7 @@
 
 {
     
-  //  NSArray *suitChoice = [NSArray arrayWithObjects: @"clubs", @"diamonds", @"heart", @"spade",nil];
-    
-//enum  suitEnum{ hearts, clubs, spades,diamonds }suitEnum ;
-    
-int               cardVal;
-
-int                cardSuit;
-
-NSString          *cardPic;
-
-bool               cardFaceUp;
-
-CGRect              cardRect;
-}
+      }
 
 
 

@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface cards : NSObject
+@interface Card : NSObject
+@property (nonatomic) int          cardSuit;
+
+@property (nonatomic)   int        cardVal;
+
+@property (nonatomic)   NSString  *cardPic;
+
+@property (nonatomic)   bool      cardFaceUp;
+
+@property (nonatomic)   CGRect    cardRect;
 
 @end

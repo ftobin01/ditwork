@@ -60,16 +60,15 @@
 
 // -(void) make_card:(float), (float), (float),  (float);
 
-@property NSMutableArray* rectArray;
+//@property NSMutableArray  *rectArray;
 @property NSMutableArray *dropAreas;
 @property NSArray *subviews;
 @property UIImage *globalCardImage;
 
 
 -(void)  showDeck;
--(BOOL) inSubViewList ;
-
-
+-(BOOL) inSubViewList : ( CGPoint ) locationInView;
+-( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
 @end
 
 
@@ -83,12 +82,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    // view1 will be positioned at x = 30, y = 20 starting the top left corner of [self view]
-    // [self view] could be the view managed by a UIViewController
-    
-    
-    // makeFullCard()
     int i=0;
     int cardColumn=0;
     float j=15;
@@ -98,31 +91,14 @@
     _dropAreas=[NSMutableArray array];
     
     CGRect aRect;
-    NSMutableArray *rectArray = [NSMutableArray array];
+   //NSMutableArray *rectArray = [NSMutableArray array];
     NSArray *subviews = [NSArray array];
-    
-    
-    
-    // CGRect someRect = [[array objectAtIndex:0] CGRectValue];
-    
-    
-    
-    //    CGPoint lastLocation;
     
     UIView *view1;
     
     UIColor *rndColor= RANDOM_COLOR;
-    /*
-     UILabel *_lbl_title5 = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 288, 25)];
-     _lbl_title5.text = @"http://sugartin.info";
-     UITapGestureRecognizer *tapGesture =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openWebURL:)];
-     [_lbl_title5 addGestureRecognizer:tapGesture];
-     [_srl addSubview:_lbl_title5];
-     
-     */
+   
     self.view.userInteractionEnabled = YES;
-    
-    
     
     UIPanGestureRecognizer *panGesture =[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragDetected:)];
     panGesture.minimumNumberOfTouches = 1;
@@ -138,36 +114,13 @@
         
         for ( i=0; i<= cardColumn ; i++)
         {
-            
-            // UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
-            
-            //customView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"YourImage.png"]];
-            
-            //[self.view addSubview:customView];
-            
-            //           make_card(j, k, l,  m);
-         
             aRect = CGRectMake( j, k, CARDWIDTH, CARDLENGTH);
-            
-            [rectArray addObject:[NSValue valueWithCGRect:aRect]];
-            MYLOG(@"rect_Array count = %lu", [rectArray count]);
+           // [rectArray addObject:[NSValue valueWithCGRect:aRect]];
+            //MYLOG(@"rect_Array count = %lu", [rectArray count]);
             
             view1 = [[UIView alloc] initWithFrame:aRect];
-            
-           //view1.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"3_of_clubs.png"]];
-            
-            
-            UIGraphicsBeginImageContext(view1.frame.size);
-            [[UIImage imageNamed:@"3_of_clubs.png"] drawInRect:view1.bounds];
-            _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-
-            
-            
-            
-            
-            //UIImage* img = [UIImage imageNamed:@"3_of_clubs.png"];
-            view1.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage];
+           
+            [self drawCardPicture: view1 : @"card reverse 2.jpeg"];
     
             // view1.backgroundColor = cardColor;
             [[self view] addSubview:view1];
@@ -190,27 +143,26 @@
         [_dropAreas addObject: view1];//Add last Cartd which will be face up as A droppable Area - ACE's area will also need to be added.
         NSLog(@"Just After A~dding  dropArea count =  %d",(int)[_dropAreas count]);
     }
-    /*
-     -(void)make_card: (float)j, (float)k, (float)l, (float) m
-     {
-     view1 = [[UIView alloc] initWithFrame:CGRectMake( j, k, l, m)];
-     
-     view1.backgroundColor = rndColor;
-     [[self view] addSubview:view1];
-     
-     }
-     */
+    
     
    subviews = [self.view subviews] ;
     NSLog(@"subview count 1 %lu",(unsigned long)[subviews count]);
     
     // Create Aces Area
+    [self createAcesArea];
     
+    // Create Deck Area
+    [self createDeckArea];
+    
+    NSLog(@"Leaving Didload  dropArea count =  %d",(int )[_dropAreas count]);
+}
+
+- (void) createAcesArea
+{
     int acesArea_YPos = (6 * CARDLENGTH );
     int acesArea_XPos = self.view.bounds.size.width - (4*(CARDWIDTH) + 6*(GAPBETWEENACECARDS));
     for (int i=0; i<(CARDWIDTH+GAPBETWEENACECARDS)*4; i+=CARDWIDTH+GAPBETWEENACECARDS)
     {
-        
         CGRect cardRect = CGRectMake(acesArea_XPos+i, acesArea_YPos, CARDWIDTH,CARDLENGTH);
         NSLog(@"Frame cardRect f = %@", NSStringFromCGRect(cardRect));
         
@@ -219,13 +171,11 @@
         [[self view] addSubview:aceView];
         [_dropAreas addObject: aceView];
     }
-    
-    
-    // Create Deck Area
-    int deckArea_YPos = (6 * CARDLENGTH );
-    int deckArea_XPos = self.view.bounds.size.width;
-    
-   
+}
+
+
+- (void) createDeckArea
+{
     
     CGRect cardRect = CGRectMake(DECKCARD_XPOS, DECKCARD_YPOS, CARDWIDTH,CARDLENGTH);
     UIView *deckView = [[UIView alloc] initWithFrame:cardRect];
@@ -235,18 +185,26 @@
     [[self view] addSubview:deckView];
     
     UITapGestureRecognizer *tapGesture =[[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(tapDetected:)];
-   // tapGesture.delegate = self;
+  
     [self.view addGestureRecognizer:tapGesture];
     
-    
-   // [self showDeck ];
-    
-    
-    
-    
-    NSLog(@"Leaving Didload  dropArea count =  %d",(int )[_dropAreas count]);
-    
 }
+
+
+-( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName
+{
+        
+    
+        UIGraphicsBeginImageContext(view1.frame.size);
+        [[UIImage imageNamed: cardPicName] drawInRect:view1.bounds];
+        _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+          view1.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage];
+    }
+
+
+
 
 
 - (void)tapDetected: (UIGestureRecognizer *)tapGestureRecognizer
@@ -272,6 +230,7 @@
         case UIGestureRecognizerStateChanged:
             NSLog(@"Tap |Recognised 2");
             break;
+            
         case UIGestureRecognizerStateEnded:
             NSLog(@"Tap |Recognised 3");
             
@@ -288,7 +247,7 @@
 #define SHOWDECK_XPOS    60
 -(void) showDeck
 {
-    static BOOL SHOW_3_CARDS= TRUE;
+    static BOOL SHOW_3_CARDS= FALSE;
     static BOOL DECK_SHOWN=FALSE;
     
     if (!DECK_SHOWN)
@@ -299,8 +258,7 @@
             UIView *showCard1 = [[UIView alloc] initWithFrame:cardRect1];
             showCard1.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage];
             [self.view addSubview: showCard1];
-      
-
+            [_dropAreas addObject: showCard1];
  
     if (SHOW_3_CARDS==TRUE)
             {
@@ -313,6 +271,11 @@
             NSLog(@"Adding ShowDEcdk Card  2 and ShowDeck Card 3");
                 [self.view addSubview: showCard2];
                 [self.view addSubview: showCard3];
+                
+                // change Draggable Area from 1 card to 3rd Card
+                [_dropAreas removeLastObject];
+                [_dropAreas addObject: showCard3];
+                
             }
 
              DECK_SHOWN=TRUE;
@@ -639,25 +602,9 @@
      
      // }
      */
+
     
-    // landmine touched?
-    //   CGRect playerRect = CCRectMake(200, 300, 10, 10);
-    ///    CGRect mineRect = CGRectMake(10, 10, 20, 20);
-    
-    
-    
-    
-    
-    /*
-     
-     
-     UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake( x, y, 33.0f, 60.0f)];
-     view2.backgroundColor = RANDOM_COLOR;
-     [[self view] addSubview:view2];
-     [self.view setNeedsDisplay];
-     }
-     */
-    
+
     /*
      
      - (void)listSubviewsOfView:(UIView *)view {
@@ -703,17 +650,6 @@
      
      
      */
-    
-    // Make Screen.h
-    // Function to Make a 2 D array of 7 SCreen Columns
-    // and 13 screen rows Pos and to create a card size and half card pos.
-    
-
-
-
-
-
-
 
     
     

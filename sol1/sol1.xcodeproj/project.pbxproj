@@ -23,6 +23,7 @@
 		A62413F81AC09BC600364556 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A62413F61AC09BC600364556 /* InfoPlist.strings */; };
 		A62413FA1AC09BC600364556 /* sol1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A62413F91AC09BC600364556 /* sol1Tests.m */; };
 		A62414051AC0A3F300364556 /* Cards.m in Sources */ = {isa = PBXBuildFile; fileRef = A62414041AC0A3F300364556 /* Cards.m */; };
+		B45C97901B13D6AF00A84005 /* card reverse 2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B45C978F1B13D6AF00A84005 /* card reverse 2.jpeg */; };
 		B4D1ECDF1AD93B5D00E8AE60 /* UIViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D1ECDE1AD93B5C00E8AE60 /* UIViewHelper.m */; };
 		B4EB8A1E1B13246000CD8E97 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = B4EB8A1D1B13246000CD8E97 /* Deck.m */; };
 		B4F5AFF51ADD219C007C2192 /* 10_of_clubs.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F5AFB21ADD219C007C2192 /* 10_of_clubs.png */; };
@@ -136,6 +137,7 @@
 		A62414031AC0A3F300364556 /* Cards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cards.h; sourceTree = "<group>"; };
 		A62414041AC0A3F300364556 /* Cards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cards.m; sourceTree = "<group>"; };
 		B402E8621AD5792300B55A30 /* screen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = screen.h; sourceTree = "<group>"; };
+		B45C978F1B13D6AF00A84005 /* card reverse 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "card reverse 2.jpeg"; path = "PNG-cards-1.3/card reverse 2.jpeg"; sourceTree = "<group>"; };
 		B4D1ECDD1AD93B3600E8AE60 /* UIViewHelp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewHelp.h; sourceTree = "<group>"; };
 		B4D1ECDE1AD93B5C00E8AE60 /* UIViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewHelper.m; sourceTree = "<group>"; };
 		B4EB8A1C1B13246000CD8E97 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				A62413E31AC09BC600364556 /* ViewController.h */,
 				A62413E41AC09BC600364556 /* ViewController.m */,
 				A62413E61AC09BC600364556 /* Images.xcassets */,
+				B45C978F1B13D6AF00A84005 /* card reverse 2.jpeg */,
 				B4F5B0481ADD274C007C2192 /* cardBacks */,
 				B4F5AFB11ADD219C007C2192 /* cardImages */,
 				A62413D21AC09BC500364556 /* Supporting Files */,
@@ -505,6 +508,7 @@
 				B4F5B02E1ADD219C007C2192 /* king_of_spades2.png in Resources */,
 				B4F5B0271ADD219C007C2192 /* king_of_clubs.png in Resources */,
 				B4F5B02C1ADD219C007C2192 /* king_of_hearts2.png in Resources */,
+				B45C97901B13D6AF00A84005 /* card reverse 2.jpeg in Resources */,
 				B4F5B01C1ADD219C007C2192 /* ace_of_spades.png in Resources */,
 				B4F5AFF71ADD219C007C2192 /* 10_of_hearts.png in Resources */,
 				B4F5B0241ADD219C007C2192 /* jack_of_hearts2.png in Resources */,

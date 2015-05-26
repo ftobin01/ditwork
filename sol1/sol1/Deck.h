@@ -6,8 +6,11 @@
 //  Copyright (c) 2015 F T. All rights reserved.
 //
 
-#import "cards.m"
+#import "Cards.h"
 
 @interface Deck : Card
+
+@property (nonatomic)  int deckTop;
+@property (nonatomic) NSMutableSet *deck;
 
 @end

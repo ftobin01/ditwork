@@ -11,28 +11,43 @@
 #import "Deck.h"
 
 
+@interface Deck (Card)
+
+@property (nonatomic)  int deckTop;
+@property (nonatomic) NSMutableSet *deck;
 
 
-@implementation Deck
+@end
 
-int deckTop=52;
 
-NSMutableSet *deck = [NSMutableSet setWithCapacity:52];
+@implementation Deck 
+
 
 
 -(void) initDeck
 {
+if (!self)
+    [self makeDeck];
+}
+
+
+-(void) makeDeck
+{
+    
+    Deck *solDeck = [[Deck alloc] init];
+    
+    self.deck = [NSMutableSet setWithCapacity:52];
     
     
     NSMutableArray *cardsArray = [[NSMutableArray alloc] initWithCapacity:52];
-    
+  
     Card *tmpCard= [[Card alloc] init];
     
     // Create Deck
     for (int suitNum=0; suitNum<4; suitNum++)
         {
             tmpCard.cardSuit=  suitNum;
-            
+ 
             for (int  cardNumVal=0;cardNumVal<13; cardNumVal++)
                 {
                     tmpCard.cardVal = cardNumVal;
@@ -41,7 +56,7 @@ NSMutableSet *deck = [NSMutableSet setWithCapacity:52];
                     tmpCard.cardFaceUp= FALSE;
                     [cardsArray addObject: tmpCard];
                 }
-                
+   
             
         }
     
@@ -57,7 +72,7 @@ NSMutableSet *deck = [NSMutableSet setWithCapacity:52];
     // Using A Set to maintain Integrity of Deck
     // Not Essential for Solitaire - but gives 'Clean Deck'
     
-    [deck addObjectsFromArray: cardsArray];
+    [self.deck  addObjectsFromArray: cardsArray];
 }
 
 
@@ -65,6 +80,6 @@ NSMutableSet *deck = [NSMutableSet setWithCapacity:52];
 -(void) dealCard
     {
 // returns one card from Deck
-        // updates top of DEck Count
+// updates top of DEck Count
     }
 @end
