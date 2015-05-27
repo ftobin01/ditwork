@@ -51,20 +51,18 @@
 
 
 #import "ViewController.h"
-
+#import "Deck.h"
 
 
 @interface ViewController ()
 
 
 
-// -(void) make_card:(float), (float), (float),  (float);
 
-//@property NSMutableArray  *rectArray;
 @property NSMutableArray *dropAreas;
 @property NSArray *subviews;
 @property UIImage *globalCardImage;
-
+@property (nonatomic,strong) DeckObj *Deck;
 
 -(void)  showDeck;
 -(BOOL) inSubViewList : ( CGPoint ) locationInView;
@@ -83,64 +81,79 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     int i=0;
-    int cardColumn=0;
     float j=15;
-    float k=CARDSTARTPOS;
+    float cardRow=CARDSTARTPOS;
     
     
     _dropAreas=[NSMutableArray array];
     
     CGRect aRect;
-   //NSMutableArray *rectArray = [NSMutableArray array];
     NSArray *subviews = [NSArray array];
-    
     UIView *view1;
     
     UIColor *rndColor= RANDOM_COLOR;
    
     self.view.userInteractionEnabled = YES;
-    
+    // Linking Pan Gesture Recogniser to entire view - as need to make it easier once item is dragged.
     UIPanGestureRecognizer *panGesture =[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragDetected:)];
     panGesture.minimumNumberOfTouches = 1;
-   //  panGesture.delegate = self; // Very important
+ //   panGesture.delegate = self; // Very important
     [self.view addGestureRecognizer:panGesture];
     
-    int column_num =0;
-    UIColor *cardColor = RANDOM_COLOR;
     
-    for (cardColumn=0; cardColumn<MAXCARDCOLUMNS; cardColumn++)
-    {
-        // view1.backgroundColor = redColor;
-        
-        for ( i=0; i<= cardColumn ; i++)
+    //
+     static bool done=FALSE;
+    if(done==FALSE)
         {
-            aRect = CGRectMake( j, k, CARDWIDTH, CARDLENGTH);
-           // [rectArray addObject:[NSValue valueWithCGRect:aRect]];
-            //MYLOG(@"rect_Array count = %lu", [rectArray count]);
-            
-            view1 = [[UIView alloc] initWithFrame:aRect];
-           
-            [self drawCardPicture: view1 : @"card reverse 2.jpeg"];
+        _Deck = [[DeckObj alloc] init];
+        [_Deck  initDeck];
+        done=TRUE;
+        }
+    Card *dealtCard;
     
-            // view1.backgroundColor = cardColor;
+    for (int cardColumnIndex=0; cardColumnIndex<MAXCARDCOLUMNS; cardColumnIndex++)
+        {
+        for ( i=0; i<= cardColumnIndex; i++)
+        {
+            dealtCard = [[Card alloc] init];
+            dealtCard = [_Deck dealCard];
+            NSLog(@" Deck dealcard.cardval %d",dealtCard.cardVal);
+
+            aRect = CGRectMake( j, cardRow, CARDWIDTH, CARDLENGTH);
+            view1 = [[UIView alloc] initWithFrame:aRect];
+            
+            _Deck.cardRect = aRect;  // assign View made to card
+            
+            NSString *cardFace =dealtCard.cardPic;
+            NSLog(@"cardFace = %@", cardFace);
+            
+            [self drawCardPicture: view1 : cardFace];
             [[self view] addSubview:view1];
             
-           // cardColor= RANDOM_COLOR;
-            k+=CARDLENGTH/2;
-            // Linking Pan Gesture Recogniser to entire view - as need to make it easier once item is dragged.
+            cardRow+=CARDLENGTH/2;
+            
             
         }
         
         // [view setNeedsDisplay];
         j+=CARDWIDTH + GAPBETWEENCARDS;
-        k=CARDSTARTPOS;
+        cardRow=CARDSTARTPOS;
         
         // cardColor= RANDOM_COLOR;
         // Adding last card area in Each column as a draggable area.
         NSLog(@"Adding Drop Area ");
         NSLog(@"Frame f = %@", NSStringFromCGRect(aRect));
         // [_dropAreas addObject:[NSValue valueWithCGRect:aRect]];//Add last Cartd which will be face up as A droppable Area - ACE's area will also need to be added.
-        [_dropAreas addObject: view1];//Add last Cartd which will be face up as A droppable Area - ACE's area will also need to be added.
+        [_dropAreas addObject: view1];
+            
+            
+            
+            [self drawCardPicture: view1 :[_Deck getPicFileName : dealtCard] ];
+            
+            // find cars
+            
+            
+            //Add last Cartd which will be face up as A droppable Area - ACE's area will also need to be added.
         NSLog(@"Just After A~dding  dropArea count =  %d",(int)[_dropAreas count]);
     }
     

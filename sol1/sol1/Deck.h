@@ -8,9 +8,23 @@
 
 #import "Cards.h"
 
-@interface Deck : Card
+#define HEARTS      0
+#define SPADES      1
+#define CLUBS       2
+#define DIAMONDS    3
 
+
+
+@interface DeckObj : Card
 @property (nonatomic)  int deckTop;
 @property (nonatomic) NSMutableSet *deck;
+@property (nonatomic,strong) NSMutableArray *cardsArray;
+@property NSArray *suitWords;
+@property NSArray *cardWords;
+
+
+-(NSString *) getPicFileName : (Card *) acard;
+-(Card *) dealCard;
+ -(void) initDeck;
 
 @end

@@ -28,11 +28,6 @@
 
 @implementation Card
 
-#define Hearts      0
-#define Spades      1
-#define Clubs       2
-#define Diamonds    3
-
 {
     
       }
