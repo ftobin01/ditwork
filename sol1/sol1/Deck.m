@@ -16,6 +16,7 @@
 
 @property (nonatomic)  int deckTop;
 @property (nonatomic) NSMutableSet *deck;
+@property (nonatomic ) Card *cardInPlay;
 @property (nonatomic,strong) NSMutableArray *cardsArray;
 @property NSArray *suitWords;
 @property NSArray *cardWords;
@@ -40,7 +41,8 @@
     
     _cardWords = @[ @"jack",@"queen",@"king",@"ace"];
     
-    [self makeDeck];}
+    [self makeDeck];
+}
 
 
 -(void) makeDeck
@@ -56,7 +58,7 @@
     //NSMutableArray *_cardsArray = [NSMutableArray array];
     
     _cardsArray= [[NSMutableArray  alloc] initWithCapacity:52];
-    
+    _cardInPlay = [[Card alloc] init];
    // NSMutableArray *_cardsArray = [[NSMutableArray alloc] initWithCapacity:52];
   
     
@@ -76,14 +78,16 @@
                     // [Card copy];
                     [_cardsArray addObject: tmpCard];
                     
-                    Card *p = [_cardsArray objectAtIndex:cardNumVal];
+                
+                   // Card *p = [_cardsArray objectAtIndex:cardNumVal];
                     
-                    
+                    /*
                     NSLog(@"InMakeDeck - tmpCard.cardVal= >> %d",tmpCard.cardVal);
                     NSLog(@"InMakeDeck - tmpCard.cardSuit= >> %d",tmpCard.cardSuit);
                     NSLog(@"InMakeDeck - p.cardVal= >> %d",p.cardVal);
                     NSLog(@"InMakeDeck - p.cardSuit= >> %d",p.cardSuit);
                       NSLog(@"InMakeDeck - _cardsArray.count = >> %lu",(unsigned long)[_cardsArray count]);
+                     */
                 }
    
             
@@ -102,12 +106,13 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
         NSLog(@"%@", [[myDictionary valueForKey:aKey] string]); //made up method
     }
     */
-    
+    /*
     for (int i=(int)[_cardsArray count]-1; i>=0; i--)
     {
         Card *p =[_cardsArray objectAtIndex:i];
         NSLog(@"In MakeDeck card [%d] p.cardSuit %d p.cardVal = %d",i,p.cardSuit,p.cardVal);
     }
+     */
     /*
     NSArray  *p = _cardsArray;
     

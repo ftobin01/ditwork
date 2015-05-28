@@ -62,7 +62,9 @@
 @property NSMutableArray *dropAreas;
 @property NSArray *subviews;
 @property UIImage *globalCardImage;
+@property Card    *cardInPlay;
 @property (nonatomic,strong) DeckObj *Deck;
+
 
 -(void)  showDeck;
 -(BOOL) inSubViewList : ( CGPoint ) locationInView;
@@ -143,33 +145,37 @@
         // Adding last card area in Each column as a draggable area.
         NSLog(@"Adding Drop Area ");
         NSLog(@"Frame f = %@", NSStringFromCGRect(aRect));
+            
         // [_dropAreas addObject:[NSValue valueWithCGRect:aRect]];//Add last Cartd which will be face up as A droppable Area - ACE's area will also need to be added.
+            
+            NSLog(@"viewDidLoad 1");
         [_dropAreas addObject: view1];
             
-            
-            
-            [self drawCardPicture: view1 :[_Deck getPicFileName : dealtCard] ];
-            
-            // find cars
+             NSLog(@"viewDidLoad 2");
+            NSString *picFile =[_Deck getPicFileName :dealtCard];
+            NSLog(@"viewDidLoad 2.5");
+            [self drawCardPicture : view1 : picFile ];
+             NSLog(@"viewDidLoad 3");            // find cars
             
             
             //Add last Cartd which will be face up as A droppable Area - ACE's area will also need to be added.
-        NSLog(@"Just After A~dding  dropArea count =  %d",(int)[_dropAreas count]);
-    }
+        NSLog(@"Just After Adding  dropArea count =  %d",(int)[_dropAreas count]);
+             NSLog(@"viewDidLoad 4");
+        }
     
     
    subviews = [self.view subviews] ;
     NSLog(@"subview count 1 %lu",(unsigned long)[subviews count]);
     
-    // Create Aces Area
-    [self createAcesArea];
-    
-    // Create Deck Area
-    [self createDeckArea];
-    
-    NSLog(@"Leaving Didload  dropArea count =  %d",(int )[_dropAreas count]);
+     NSLog(@"viewDidLoad 5");    // Create Aces Area
+     [self createAcesArea];
+     NSLog(@"viewDidLoad 6");
+     //Create Deck Area
+     [self createDeckArea];
+     NSLog(@"viewDidLoad 7");
+   
+    NSLog(@"Leaving ViewDidload  8 dropArea count =  %d",(int ) [_dropAreas count]);
 }
-
 - (void) createAcesArea
 {
     int acesArea_YPos = (6 * CARDLENGTH );
@@ -206,15 +212,17 @@
 
 -( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName
 {
-        
+    NSLog(@"drawCardPicture 1. PicName=%@",cardPicName);
     
         UIGraphicsBeginImageContext(view1.frame.size);
         [[UIImage imageNamed: cardPicName] drawInRect:view1.bounds];
-        _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
+    NSLog(@"drawCardPicture 2. PicName=%@",cardPicName);
+_globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        
+       NSLog(@"drawCardPicture 3. PicName=%@",cardPicName);
           view1.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage];
-    }
+       NSLog(@"Leaving drawCardPicture 4. PicName=%@",cardPicName);
+}
 
 
 
@@ -301,30 +309,45 @@
 - (void)dragDetected: (UIPanGestureRecognizer *)panGestureRecognizer
 {
     
+    NSLog(@"Drag Dectected 0 %@");
+    
+
+    
     // CGFloat width = CGRectGetWidth(self.view.bounds);
     //CGFloat height = CGRectGetHeight(self.view.bounds);}
     // Check if a card t this location.
     // if so ..
     // show card at finger location.
     // card should movde at this location
-    
-    //UIPanGestureRecognizer *panGestureRecognizer = (UIPanGestureRecognizer *) sender;
-   /*
-    CGPoint t = [panGestureRecognizer translationInView:panGestureRecognizer.view];
-    [panGestureRecognizer setTranslation:CGPointZero inView:panGestureRecognizer.view];
-    
-    // TODO: Here, you should translate your target view using this translation
-    UIView *someView.center = CGPointMake(someView.center.x + t.x, someView.center.y + t.y);
-    */
+    /*
+     CGPoint locationInView= [panGestureRecognizer translationInView:panGestureRecognizer.view];
+     
+     [panGestureRecognizer setTranslation:CGPointZero inView:panGestureRecognizer.view];
+     
+     // TODO: Here, you should translate your target view using this translation
+     UIView *someView.center = CGPointMake(someView.center.x + t.x, someView.center.y + t.y);
+     */
     
     
     
     
     NSArray *subviews = [self.view subviews];
-    NSArray *dragviews;
     
     
-    CGPoint locationInView = [panGestureRecognizer locationInView:self.view];
+     CGPoint locationInView = [panGestureRecognizer locationInView:self.view];
+    
+    // CGPoint locationInView= [panGestureRecognizer translationInView:panGestureRecognizer.view];
+    
+    // [panGestureRecognizer setTranslation:CGPointZero inView:panGestureRecognizer.view];
+     
+     // TODO: Here, you should translate your target view using this translation
+    
+    /*
+    UIView *tmpView2;
+    tmpView2.center = CGPointMake(tmpView2.center.x + locationInView.x, tmpView2.center.y + locationInView.y);
+    
+    */
+    
     float x = locationInView.x;
     float y = locationInView.y;
     static float   dragCardOriginX;
@@ -334,16 +357,17 @@
     
     
     
-    NSLog(@"Drag Dectected %@", NSStringFromCGPoint(locationInView));
-    
-    
-    
-    if ( ![self inSubViewList: locationInView] )
+ /*
+  
+    if ( [self inSubViewList: locationInView]==FALSE )
+    {
+        NSLog(@"returning as Not in SubviewList- maybe check higher up");
         return;
-    
-    
-     dragCardOriginX=-5; // viewRect.origin.x;
-        dragCardOriginY=-5; //  viewRect.origin.y;
+    }
+*/
+
+   dragCardOriginX=0; // viewRect.origin.x;
+        dragCardOriginY=0; //  viewRect.origin.y;
         // YES! Found Card to Dra
         //NSLog(@"Found REct  i=%d",i);
         //NSLog("@")
@@ -382,38 +406,41 @@
             
             
             // -(UIView *)findTopMostViewForPoint : (CGPoint) point
-          
+//*** Need better way
+            dragCardOriginX = x -10;//+  ((dragCardOriginX >10) ? -10 : 0);
+            dragCardOriginY = y -11; //+  ((dragCardOriginY >10) ? -10 : 0);
+            //dragCardOriginX=0;
+            //var greeting = "Good" + ((now.getHours() > 17) ? " evening." : " day.");
             
+            CGRect tmpRect=CGRectMake( dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
             
+            UIView *tmpView = [[UIView alloc] initWithFrame: tmpRect];
          
         }
             
         break;
         case UIGestureRecognizerStateChanged:  //While Dragging
         {
-           /*
-            static int first=1;
-            if (first==1)
-            {
-                [self.view sendSubviewToBack :subviewFound];
-            
-                first=1;
-            }
-            */
-            UIColor *rndColor= RANDOM_COLOR;
             unsigned long dropAreaCount = [_dropAreas count];
             
-            NSLog(@"Dragging ... UIGestureRecogniserChanged %@", NSStringFromCGPoint(locationInView));
+            dragCardOriginX = x -10;//+  ((dragCardOriginX >10) ? -10 : 0);
+            dragCardOriginY = y -11; //+  ((dragCardOriginY >10) ? -10 : 0);
+            //dragCardOriginX=0;
+            //var greeting = "Good" + ((now.getHours() > 17) ? " evening." : " day.");
             
-            //view1 = [[UIView alloc] initWithFrame:aRect];
-            
-            //view1.backgroundColor = rndColor;
-            
-            dragCardOriginX =x-10;  //To allow for Pan Delay
-            dragCardOriginY=y-11;   // Works fine in Simulator
-            ;
             CGRect tmpRect=CGRectMake( dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
+            
             UIView *tmpView = [[UIView alloc] initWithFrame: tmpRect];
+            
+            //tmpView.center = CGPointMake(tmpView.center.x +locationInView.x,tmpView.center.y + locationInView.y);  //To allow for Pan Delay
+              // Works fine in Simulator
+            
+            
+            //[panGestureRecognizer setTranslation:CGPointZero inView:self.view];
+            
+            //tmpView.center = CGPointMake(tmpView.center.x + locationInView.x, tmpView.center.y + locationInView.y);
+            
+            
             tmpView.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage];
            // tmpView.backgroundColor = [UIColor redColor];
             [self.view addSubview: tmpView];
@@ -439,7 +466,7 @@
              }
              */
             // MAKE SUBVIEW RED
-            NSLog(@"Leaving in Drag Detected dropArea count =  %lu",(unsigned long)[_dropAreas count]);
+            NSLog(@"Leaving Drag Detected : dropArea count =  %lu",(unsigned long)[_dropAreas count]);
             NSLog(@"DropAreaCounbt = %lu",dropAreaCount);
             UIColor *colorSave = Nil;
             for (int j=0; j<(int) dropAreaCount; j++)
@@ -543,18 +570,17 @@
     }
     
 - (BOOL) inSubViewList: ( CGPoint ) locationInView
-{
+    {
      NSArray *subviews = [self.view subviews];
      int CurrentSubviewCount =(int)  [subviews count];
     
+        NSLog(@"InSubViewList...");
     
-    
-    for (int  subview_index = CurrentSubviewCount
-         - 1; subview_index >=0; subview_index--)
-{
+    for (int  subview_index = CurrentSubviewCount - 1; subview_index >=0; subview_index--)
+        {
     
     // [_dropAreas addObject:[NSValue valueWithCGRect:aRect]];//Add last Cartd which will be face up as A droppable Area - ACE's area will also need to be added.
-    UIView *subview = [subviews objectAtIndex:subview_index];
+            UIView *subview = [subviews objectAtIndex:subview_index];
     //    if(!subview.hidden && CGRectContainsPoint(subview.frame, point))
     //CGPoint pointConverted = [self.view convertPoint:point toView:subview];
     //for (UIView *subview in self.view.subviews)
@@ -565,10 +591,12 @@
     
     if (CGRectContainsPoint(viewRect, locationInView))
     {
+        NSLog(@"InSubViewList...return TRUE");
         return(TRUE);
         
     }
 }
+        NSLog(@"InSubViewList...return FALSE");
     return (FALSE);
     }
 

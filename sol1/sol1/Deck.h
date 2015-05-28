@@ -16,7 +16,9 @@
 
 
 @interface DeckObj : Card
+
 @property (nonatomic)  int deckTop;
+@property (nonatomic ) Card *cardInPlay;
 @property (nonatomic) NSMutableSet *deck;
 @property (nonatomic,strong) NSMutableArray *cardsArray;
 @property NSArray *suitWords;
@@ -26,5 +28,5 @@
 -(NSString *) getPicFileName : (Card *) acard;
 -(Card *) dealCard;
  -(void) initDeck;
-
+-( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
 @end
