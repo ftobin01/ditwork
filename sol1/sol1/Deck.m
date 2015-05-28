@@ -65,7 +65,7 @@
     // Create Deck
     for (int suitNum=0; suitNum<4; suitNum++)
         {
-            for (int  cardNumVal=0;cardNumVal<13; cardNumVal++)
+            for (int  cardNumVal=1;cardNumVal<=13; cardNumVal++)
                 {
                     Card *tmpCard= [[Card alloc] init];
                     
@@ -189,7 +189,7 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
 {
   //  get card val from acard
   //  construct filename from it
-    
+    NSLog(@"getPicFileName 1 cardVal = %d",aCard.cardVal);
     int wordIndex;
     NSString *tmpString;
     if ((aCard.cardVal <= 10) && (aCard.cardVal >1))
@@ -199,11 +199,14 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
     else
         {
         if (aCard.cardVal==1)
-            wordIndex=3;
+            wordIndex=4;
         else
-            wordIndex = aCard.cardVal -10;
+            {
+            wordIndex = aCard.cardVal -11; // 11,12,13,14
             tmpString = [NSString stringWithFormat:@"%@_of_%@.png", [_cardWords objectAtIndex : wordIndex], _suitWords[aCard.cardSuit]];
+            }
         }
+     NSLog(@"getPicFileName 2 cardVal = %d",aCard.cardVal);
     return tmpString;
 }
 

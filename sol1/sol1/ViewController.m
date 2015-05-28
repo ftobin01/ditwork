@@ -99,7 +99,13 @@
     // Linking Pan Gesture Recogniser to entire view - as need to make it easier once item is dragged.
     UIPanGestureRecognizer *panGesture =[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragDetected:)];
     panGesture.minimumNumberOfTouches = 1;
- //   panGesture.delegate = self; // Very important
+    panGesture.enabled = YES;
+    //[self addGesture:PAN name:@"pan" action:@"bbb:"];
+   // panGesture.delaysTouchesBegan = NO;
+   // panGesture.delaysTouchesEnded = NO;
+    
+    
+    //   panGesture.delegate = self; // Very important
     [self.view addGestureRecognizer:panGesture];
     
     
@@ -309,16 +315,13 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
 - (void)dragDetected: (UIPanGestureRecognizer *)panGestureRecognizer
 {
     
-    NSLog(@"Drag Dectected 0 %@");
+    NSLog(@"Drag Dectected 0 ");
     
 
     
     // CGFloat width = CGRectGetWidth(self.view.bounds);
     //CGFloat height = CGRectGetHeight(self.view.bounds);}
-    // Check if a card t this location.
-    // if so ..
-    // show card at finger location.
-    // card should movde at this location
+   
     /*
      CGPoint locationInView= [panGestureRecognizer translationInView:panGestureRecognizer.view];
      
@@ -357,14 +360,20 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
     
     
     
- /*
+ 
   
-    if ( [self inSubViewList: locationInView]==FALSE )
+    if ( ([self inSubViewList: locationInView])==FALSE )
     {
         NSLog(@"returning as Not in SubviewList- maybe check higher up");
-        return;
+        
+        panGestureRecognizer.cancelsTouchesInView=YES;
+        panGestureRecognizer.delaysTouchesBegan=YES;
+       // panGestureRecognizer.delaysTouchesEnded=YES;        return;
     }
-*/
+
+//NB if subview dragged is not in draggable list return;
+    // means al;l face up cards are added to draggable list
+    
 
    dragCardOriginX=0; // viewRect.origin.x;
         dragCardOriginY=0; //  viewRect.origin.y;
@@ -572,31 +581,35 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
 - (BOOL) inSubViewList: ( CGPoint ) locationInView
     {
      NSArray *subviews = [self.view subviews];
-     int CurrentSubviewCount =(int)  [subviews count];
+     
+        
+        int CurrentSubviewCount =(int)  [subviews count];
     
         NSLog(@"InSubViewList...");
     
-    for (int  subview_index = CurrentSubviewCount - 1; subview_index >=0; subview_index--)
+    for (int  subview_index = CurrentSubviewCount-1; subview_index >=0; subview_index--)
         {
-    
+            ;
     // [_dropAreas addObject:[NSValue valueWithCGRect:aRect]];//Add last Cartd which will be face up as A droppable Area - ACE's area will also need to be added.
             UIView *subview = [subviews objectAtIndex:subview_index];
     //    if(!subview.hidden && CGRectContainsPoint(subview.frame, point))
     //CGPoint pointConverted = [self.view convertPoint:point toView:subview];
     //for (UIView *subview in self.view.subviews)
     
-    NSLog(@"==>subview  i = %lu ",(unsigned long) subview_index);
+   // NSLog(@"==>subview  i = %lu ",(unsigned long) subview_index);
        // we want locations thtat are in top view except the last view.
-    CGRect viewRect =  [subview frame];
+            CGRect viewRect =  [subview frame];
+
+            if (CGRectContainsPoint(viewRect, locationInView))
+            {
+                NSLog(@"InSubViewList...return TRUE");
+                return(TRUE);
+         
+            }
     
-    if (CGRectContainsPoint(viewRect, locationInView))
-    {
-        NSLog(@"InSubViewList...return TRUE");
-        return(TRUE);
-        
-    }
-}
+        }
         NSLog(@"InSubViewList...return FALSE");
+ 
     return (FALSE);
     }
 
