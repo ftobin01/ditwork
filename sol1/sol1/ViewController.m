@@ -362,15 +362,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
     
  
   
-    if ( ([self inSubViewList: locationInView])==FALSE )
-    {
-        NSLog(@"returning as Not in SubviewList- maybe check higher up");
-        
-        panGestureRecognizer.cancelsTouchesInView=YES;
-        panGestureRecognizer.delaysTouchesBegan=YES;
-       // panGestureRecognizer.delaysTouchesEnded=YES;        return;
-    }
-
+   
 //NB if subview dragged is not in draggable list return;
     // means al;l face up cards are added to draggable list
     
@@ -400,7 +392,21 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
             
         case UIGestureRecognizerStateBegan:   //Drag Started
         {
-            
+            if ( ([self inSubViewList: locationInView])==FALSE )
+            {
+                NSLog(@"in SubviewList FALSE- maybe check higher up");
+                
+               //panGestureRecognizer.cancelsTouchesInView=YES;
+               // panGestureRecognizer.delaysTouchesBegan=YES;
+                //panGestureRecognizer.RequiredToFailByGestureRecognize=YES;
+                panGestureRecognizer.enabled = NO;                //   [panrequire.requireGestureRecognizerToFail:(UIGestureRecognizer *)otherGestureRecognizer;
+                
+                
+                //panGestureRecognizer.delaysTouchesEnded=YES;
+                break;
+            }
+            else
+            {
             // Need to Check if Pan has occorred in Rects Bounded by CArds Out on Table
             
             CountOfStartingSubviews=[subviews count];
@@ -425,7 +431,10 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
             
             UIView *tmpView = [[UIView alloc] initWithFrame: tmpRect];
          
-        }
+            }
+            
+            
+            }
             
         break;
         case UIGestureRecognizerStateChanged:  //While Dragging
@@ -574,39 +583,45 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
             NSLog(@"Error - Gesture State Not Recognised ");
             break;
         }
-     [self.view setNeedsDisplay];
+    if (panGestureRecognizer.state ==UIGestureRecognizerStateCancelled)
+        panGestureRecognizer.enabled = YES;
+        
+        [self.view setNeedsDisplay];
             
     }
     
-- (BOOL) inSubViewList: ( CGPoint ) locationInView
+- (bool) inSubViewList: ( CGPoint ) locationInView
     {
-     NSArray *subviews = [self.view subviews];
+   //  NSArray *subviews = _dropAreas;
      
         
-        int CurrentSubviewCount =(int)  [subviews count];
+        int CurrentSubviewCount =(int)  [_dropAreas count];
     
         NSLog(@"InSubViewList...");
-    
-    for (int  subview_index = CurrentSubviewCount-1; subview_index >=0; subview_index--)
+        UIView *subview = [[UIView alloc] init];
+        
+        for (int  subview_index = CurrentSubviewCount-1; subview_index >=0; subview_index--)
         {
             ;
     // [_dropAreas addObject:[NSValue valueWithCGRect:aRect]];//Add last Cartd which will be face up as A droppable Area - ACE's area will also need to be added.
-            UIView *subview = [subviews objectAtIndex:subview_index];
+            subview = [_dropAreas objectAtIndex:subview_index];
     //    if(!subview.hidden && CGRectContainsPoint(subview.frame, point))
     //CGPoint pointConverted = [self.view convertPoint:point toView:subview];
     //for (UIView *subview in self.view.subviews)
     
-   // NSLog(@"==>subview  i = %lu ",(unsigned long) subview_index);
+   // NSLog(@"==>subview [i] = %lu ",(unsigned long) subview_index);
        // we want locations thtat are in top view except the last view.
             CGRect viewRect =  [subview frame];
 
-            if (CGRectContainsPoint(viewRect, locationInView))
+            
+            if (CGRectContainsPoint(viewRect, locationInView)==TRUE)
             {
                 NSLog(@"InSubViewList...return TRUE");
                 return(TRUE);
-         
+
             }
-    
+ 
+            
         }
         NSLog(@"InSubViewList...return FALSE");
  
