@@ -11,4 +11,7 @@
 @interface ViewController : UIViewController
 -(void)  showDeck;
 
+-(CGRect ) inSubViewList : ( CGPoint ) locationInView;
+-( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
+
 @end

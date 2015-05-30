@@ -21,11 +21,13 @@
 @property NSArray *suitWords;
 @property NSArray *cardWords;
 
-//@property (nonatomic) DeckObj *SolDeck;
+- (Card *)      getCardFromSubView : (CGRect) aSubview;
+- (void)        initDeck;
+- (Card *)      dealCard;
+-(NSString *)   getPicFileName : (Card *) acard;
+-(Card *) initCard : (int ) suitNum :( int ) cardNumVal : (NSString *) cardPicName : CGRect cardRect : (BOOL ) cardFaceUp;
 
--(void) initDeck;
-- (Card *) dealCard;
--(NSString *) getPicFileName : (Card *) acard;
+
 
 @end
 
@@ -38,7 +40,6 @@
 -(void) initDeck
 {
     _suitWords = @[ @"hearts", @"spades", @"clubs", @"diamonds"];
-    
     _cardWords = @[ @"jack",@"queen",@"king",@"ace"];
     
     [self makeDeck];
@@ -63,10 +64,15 @@
   
     
     // Create Deck
+    Card *tmpCard;
     for (int suitNum=0; suitNum<4; suitNum++)
         {
-            for (int  cardNumVal=1;cardNumVal<=13; cardNumVal++)
+            for (int  cardNumVal=1;cardNumVal<= 13; cardNumVal++)
                 {
+                    
+                    tmpCard = [[Card alloc ] initCardWithData : suitNum : cardNumVal :  CARDREVERSE: CGRectMake(0,0,0,0) :FALSE];
+                    
+    /*
                     Card *tmpCard= [[Card alloc] init];
                     
                     tmpCard.cardSuit=  suitNum;
@@ -74,7 +80,8 @@
                     tmpCard.cardPic = CARDREVERSE;
                     tmpCard.cardRect = CGRectMake(0,0,0,0);
                     tmpCard.cardFaceUp= FALSE;
-                    
+     */
+                    tmpCard.cardPic =[self getPicFileName : tmpCard];
                     // [Card copy];
                     [_cardsArray addObject: tmpCard];
                     
@@ -179,7 +186,6 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
         
         if (dealCard)
             [_deck removeObject: dealCard];
-        
         return (dealCard);      //returns nil if empty
     }
 
@@ -198,16 +204,49 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
         }
     else
         {
-        if (aCard.cardVal==1)
-            wordIndex=4;
-        else
-            {
-            wordIndex = aCard.cardVal -11; // 11,12,13,14
-            tmpString = [NSString stringWithFormat:@"%@_of_%@.png", [_cardWords objectAtIndex : wordIndex], _suitWords[aCard.cardSuit]];
-            }
+        if (aCard.cardVal==1)  // ace
+            aCard.cardVal=14;
+        wordIndex = aCard.cardVal -11; // 11,12,13,14
+        tmpString = [NSString stringWithFormat:@"%@_of_%@.png", [_cardWords objectAtIndex : wordIndex], _suitWords[aCard.cardSuit]];
+            
         }
-     NSLog(@"getPicFileName 2 cardVal = %d",aCard.cardVal);
-    return tmpString;
+    NSLog(@"getPicFileName  2 cardVal = %d",aCard.cardVal);
+    
+    NSLog(@"getPicFileName  3 cardVal = %@",aCard.cardPic);
+    
+    aCard.cardPic = [tmpString copy] ;
+    aCard.cardFaceUp = TRUE;
+    
+    NSLog(@"getPicFileName  4 cardVal = %@",aCard.cardPic);  return tmpString;
+}
+
+
+-(Card *) getCardFromSubView : (CGRect) aRect
+{
+    NSLog(@"getCardFomSubView aSubview.frame = %@  ",NSStringFromCGRect(aRect));
+    
+    NSLog(@"getCardFromSubView count of deck = %lu", (unsigned long)[_deck count]);
+    Card *c = [[Card alloc] init];
+    
+    for ( c in _deck)
+    {
+         NSLog(@"getCardFromSubview c.cardVal =%d aRect = %@ cardRect =%@",c.cardVal,NSStringFromCGRect(aRect),NSStringFromCGRect(c.cardRect));
+        
+        if ( CGRectEqualToRect(aRect, c.cardRect))
+        {
+            NSLog(@"getCardFomSubView Found Card : %d %@", c.cardVal, c.cardPic);
+            
+            return (c);
+        }
+        
+    }
+    NSLog(@"getCardFomSubView Returning Nil ");
+    return (nil);
+  /*
+    Frame A view's frame (CGRect) is the position of its rectangle in the superview's coordinate system. By default it starts at the top left.
+    
+    Bounds A view's bounds (CGRect) expresses a view rectangle in its own coordinate system.
+    */
 }
 
 

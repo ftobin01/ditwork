@@ -10,13 +10,14 @@
 
 @interface Card : NSObject
 @property (nonatomic) int          cardSuit;
-
 @property (nonatomic)   int        cardVal;
-
 @property (nonatomic)   NSString  *cardPic;
-
 @property (nonatomic)   bool      cardFaceUp;
-
 @property (nonatomic)   CGRect    cardRect;
+
+
+-(Card *) initCardWithData : (int ) suitNum :( int ) cardNumVal : (NSString *) cardPicName : (CGRect) cardRect : (BOOL ) cardFaceUp;
+
+
 
 @end

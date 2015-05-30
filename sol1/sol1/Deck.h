@@ -13,6 +13,7 @@
 #define CLUBS       2
 #define DIAMONDS    3
 
+#define CARDREVERSE     @"card reverse 2.jpeg"
 
 
 @interface DeckObj : Card
@@ -23,6 +24,12 @@
 @property (nonatomic,strong) NSMutableArray *cardsArray;
 @property NSArray *suitWords;
 @property NSArray *cardWords;
+
+
+-(Card *) initCard : (int ) suitNum :( int ) cardNumVal : (NSString *) cardPicName : CGRect cardRect : (BOOL ) cardFaceUp;
+
+
+-(Card *) getCardFromSubView : (CGRect ) aSubview;
 
 
 -(NSString *) getPicFileName : (Card *) acard;
