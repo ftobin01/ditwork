@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#include "constants.h"
 
 @interface Card : NSObject
 @property (nonatomic) int          cardSuit;
@@ -18,6 +19,9 @@
 
 -(Card *) initCardWithData : (int ) suitNum :( int ) cardNumVal : (NSString *) cardPicName : (CGRect) cardRect : (BOOL ) cardFaceUp;
 
+- (BOOL)  sameSuit   : (Card *) card1 : (Card *) card2;
+- (BOOL) redAndBlack : (Card *) card1 : (Card *) card2;
+- (BOOL) cardIsLower : (Card *) card1 : (Card *) card2;
 
 
 @end

@@ -22,19 +22,12 @@
 
 // Sinks for Cards
 @property (nonatomic,strong) DeckObj *Deck;
-@property(nonatomic,strong) DeckObj  *CardsMainArea;     // Cards in Solitaire Screen
-@property (nonatomic,strong) DeckObj  *CardsClubsArea;
-@property (nonatomic,strong) DeckObj  *CardsHeartsArea;
-@property(nonatomic,strong) DeckObj  *CardsDiamondsArea;
-@property (nonatomic,strong) DeckObj  *CardsSpadesArea;
-
-
 
 -(void)  showDeck;
 -(CGRect ) inSubViewList : ( CGPoint ) locationInView;
 -( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
 -(Card *) getCardFromSubView : (CGRect *) aRect;
-
+-(id) compareColumns;
 @end
 
 
@@ -142,7 +135,9 @@
         for ( int i=0; i<= cardColumnIndex; i++)
         {
             //       dealtCard = [[Card alloc] init];
-            dealtCard = [_Deck dealCard];               // Deal a Card
+            dealtCard = [_Deck dealCard];  // Deal a Card
+            [_Deck.cardsMainArea addObject: dealtCard]; // add to Main Area
+            
             NSLog(@" Deck dealcard.cardval %d",dealtCard.cardVal);
             
             aRect = CGRectMake( j, cardRow, CARDWIDTH, CARDLENGTH);
@@ -287,29 +282,43 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
         {
             NSLog(@"calling showDeck");
             CGRect cardRect1 = CGRectMake( SHOWDECK_XPOS, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
-            showCard1 = [[UIView alloc] initWithFrame:cardRect1];
-            showCard1.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage];
-            [self.view addSubview: showCard1];
-            [_dropAreas addObject: showCard1];
- 
+            
+            Card *dealtCard1= [_Deck dealCard];            showCard1 = [[UIView alloc] initWithFrame:cardRect1];
+            [self drawCardPicture : showCard1  : dealtCard1.cardPic];        [self.view addSubview: showCard1];
+            
             if (SHOW_3_CARDS==TRUE)
                 {
-
-                CGRect cardRect2 = CGRectMake( SHOWDECK_XPOS+10, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
-                showCard2=[[UIView alloc] initWithFrame:cardRect2];
-            showCard2.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage];                CGRect cardRect3 = CGRectMake( SHOWDECK_XPOS+20, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
-                showCard3=[[UIView alloc] initWithFrame:cardRect3];
-            showCard3.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage];                //  if not Created  add subview
-            NSLog(@"Adding ShowDEcdk Card  2 and ShowDeck Card 3");
-                [self.view addSubview: showCard2];
-                [self.view addSubview: showCard3];
-                
-                // change Draggable Area from 1 card to 3rd Card
-                [_dropAreas removeLastObject];
-                [_dropAreas addObject: showCard3];
-                
+                    
+                    CGRect cardRect2 = CGRectMake( SHOWDECK_XPOS+10, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
+                    showCard2=[[UIView alloc] initWithFrame:cardRect2];
+                  //  [_dropAreas addObject: showCard2];
+                    [self.view addSubview: showCard2];
+                    
+                    Card *dealtCard2= [_Deck dealCard];
+                    if ( dealtCard2  !=nil)
+                        {
+                            
+                            CGRect cardRect2 = CGRectMake( SHOWDECK_XPOS+10, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
+                            showCard2=[[UIView alloc] initWithFrame:cardRect2];
+                            //  [_dropAreas addObject: showCard2];
+                            [self.view addSubview: showCard2];                            [self drawCardPicture : showCard2  : dealtCard2.cardPic];
+                            [_dropAreas removeLastObject];
+                            [_dropAreas addObject: showCard2];
+                            Card *dealtCard3= [_Deck dealCard];
+                            if ( dealtCard3  !=nil)
+                                {
+                                CGRect cardRect3 = CGRectMake( SHOWDECK_XPOS+20, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
+                                showCard3=[[UIView alloc] initWithFrame:cardRect3];
+                                    [self drawCardPicture : showCard3  : dealtCard3.cardPic];
+                                    [_dropAreas removeLastObject];
+                                    [_dropAreas addObject: showCard3];
+                                    [self.view addSubview: showCard3];
+                                    
+                                }
+                        }
+            else
+                [_dropAreas addObject: showCard1];
                 }
-
              DECK_SHOWN=TRUE;
              }
     else
@@ -544,26 +553,25 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                 
                 cardInView.frame=tmpRect;
             }
-            
         }
-            
             break;
         case UIGestureRecognizerStateChanged:  //While Dragging
         {
-            
-            
             unsigned long dropAreaCount = [_dropAreas count];
-            
             dragCardOriginX = x -10;//+  ((dragCardOriginX >10) ? -10 : 0);
             dragCardOriginY = y -11; //+  ((dragCardOriginY >10) ? -10 : 0);
-            //dragCardOriginX=0;
-            //var greeting = "Good" + ((now.getHours() > 17) ? " evening." : " day.");
+       
             NSLog(@"drag detected ==> aSubview.frame = %@  ",NSStringFromCGRect(cardInView.frame));
             
-            if ((_cardInPlay =[_Deck  getCardFromSubView : cardInView.frame])==nil)
+            if ((_cardInPlay =[_Deck  getCardFromSubViewRect : cardInView.frame])==nil)
+                {
                 NSLog(@"Error - NO Card found from Subview");
-            else
-                NSLog(@"Card found from Subview = %@" , _cardInPlay.cardPic);
+                panGestureRecognizer.enabled = NO;
+                    break;
+                }
+            
+            
+            NSLog(@"Card found from Subview = %@" , _cardInPlay.cardPic);
             
             CGRect tmpRect=CGRectMake( dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
             //C dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
@@ -774,8 +782,55 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
     
 }
 
+NSComparisonResult compare(UIView *firstView, UIView *secondView, void *context)
+{
+    if ( firstView.frame.origin.y < secondView.frame.origin.y)
+        return NSOrderedAscending;
+    else if (firstView.frame.origin.y > secondView.frame.origin.y)
+        return NSOrderedDescending;
+    else
+        return NSOrderedSame;
+}
 
-
+-(void) moveColViewByRect : (CGRect ) origRect : (CGRect ) dropRect
+{
+    CGRect *testRect;
+    
+    // Copy Subview Array
+    UIView *v1;
+    UIView *v2;
+    void *f;
+    NSMutableArray *subviewCopy= [NSMutableArray arrayWithArray :_view.subviews];
+   // NSMutableArray *sortedCopy =[subviewCopy sortUsingSelector:(compare:) ];
+    
+    
+    NSArray *sortedCopy = [subviewCopy sortedArrayUsingComparator:
+                        ^NSComparisonResult(UIView *obj1, UIView *obj2) {
+                            if (obj1.frame.origin.y < obj2.frame.origin.y) {
+                                return NSOrderedAscending;
+                            } else if ([obj1.frame.origin.y  > [obj2.frame.origin.y) {
+                                return NSOrderedDescending;
+                            } else {
+                                return NSOrderedSame;
+                            }
+    
+    
+     // get droprect pos - yvalue
+    // update dropRect Pos by card gap // will need to global variable or global object variable
+    int dropPos = dropRect.origin.y;  // Column
+    
+    for (UIView * view1 in [self subviews]) // find all subviews in column
+    {
+        if (origRect.origin.y == view1.frame.origin.y)
+            ;
+                // add gap to Ypos
+                // assingn subview Col to drop col
+            
+    }
+    
+    
+    
+}
 
 
     

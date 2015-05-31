@@ -37,27 +37,34 @@
 #define             MYLONGLOG     NSLog(@"%_func %s, _line %d, _file %s, calling _func %s", __func__, __Line__, __File__, __PRETTY_FUNCTION__);
 #endif
 
-#define     MAXCARDROWS        8
-#define     MAXCARDCOLUMNS     7
 
 #define     CARDWIDTH           33.0
 #define     CARDLENGTH          60.0
 
 #define     GAPBETWEENCARDS     8
-#define     GAPBETWEENACECARDS     5
+#define     GAPBETWEENACECARDS  5
+
+#define     MAXCARDROWS         8
+#define     MAXCARDCOLUMNS      7
+
+#define     CARDOVERLAYGAP     CARDLENGTH/2
 
 #define     CARDSTARTPOS        40
 #define     CARDSTARTROW        GAPBETWEENCARDS
 
 #define     ACECARDSTARTPOS     xx
 
-#define     DECKCARD_XPOS     14
+#define     DECKCARD_XPOS       14
 #define     DECKCARD_YPOS    ( (MAXCARDROWS-2) * CARDLENGTH )
 
 
 
+#define     HEARTS      0
+#define     SPADES      1
+#define     CLUBS       2
+#define     DIAMONDS    3
 
-
+#define     CARDREVERSE     @"card reverse 2.jpeg"
 
 
 

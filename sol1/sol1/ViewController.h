@@ -13,5 +13,6 @@
 
 -(CGRect ) inSubViewList : ( CGPoint ) locationInView;
 -( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
+-(id) compareColumns;
 
 @end

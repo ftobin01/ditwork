@@ -10,31 +10,41 @@
 
 #import "Deck.h"
 
-#define CARDREVERSE     @"card reverse 2.jpeg"
+//#define CARDREVERSE     @"card reverse 2.jpeg"
 
 @interface DeckObj (Card)
 
-@property (nonatomic)  int deckTop;
-@property (nonatomic) NSMutableSet *deck;
+
+@property (nonatomic,strong) NSMutableSet *deck;
+
+@property (nonatomic,strong) NSMutableSet    *cardsMainArea; // Cards in Solitaire Screen
+@property (nonatomic,strong) NSMutableSet   *cardsClubsArea;
+@property (nonatomic,strong) NSMutableSet   *cardsHeartsArea;
+@property (nonatomic,strong)  NSMutableSet   *cardsDiamondsArea;
+@property (nonatomic,strong) NSMutableSet   *cardsSpadesArea;
+
+
 @property (nonatomic ) Card *cardInPlay;
 @property (nonatomic,strong) NSMutableArray *cardsArray;
 @property NSArray *suitWords;
 @property NSArray *cardWords;
 
-- (Card *)      getCardFromSubView : (CGRect) aSubview;
+- (Card *)      getCardFromSubViewRect : (CGRect) aSubview;
+- (Card *)      getCardFromRect : (NSMutableSet *) cardArray : (CGRect) aRect;
+
 - (void)        initDeck;
 - (Card *)      dealCard;
--(NSString *)   getPicFileName : (Card *) acard;
--(Card *) initCard : (int ) suitNum :( int ) cardNumVal : (NSString *) cardPicName : CGRect cardRect : (BOOL ) cardFaceUp;
+- (NSString *)  getPicFileName : (Card *) acard;
 
+//- (Card *)       initCardWithData : (int ) suitNum :( int ) cardNumVal : (NSString *) cardPicName : (CGRect) cardRect : (BOOL ) cardFaceUp;
 
+-(BOOL) aceCardLogic : (Card *) dropCard :(Card *) dragCard;
+-(BOOL) mainCardLogic :(Card *) dropCard :(Card *) dragCard;
 
 @end
 
 
 @implementation DeckObj
-
-
 
 
 -(void) initDeck
@@ -53,6 +63,17 @@
     NSLog(@"InMakeDeck");
     NSLog(@"InMakeDeck CARDREVERSE= %@",CARDREVERSE);
     _deck = [[NSMutableSet  alloc] initWithCapacity:52];
+     _cardsMainArea = [[NSMutableSet  alloc] initWithCapacity:52]; // Cards in Solitaire Screen
+     _cardsClubsArea = [[NSMutableSet  alloc] initWithCapacity:52];;
+      _cardsHeartsArea = [[NSMutableSet  alloc] initWithCapacity:52];;
+    _cardsDiamondsArea = [[NSMutableSet  alloc] initWithCapacity:52];;
+     _cardsSpadesArea = [[NSMutableSet  alloc] initWithCapacity:52];;
+    
+  
+    
+    
+    
+    
     
    // NSMutableArray *_cardsArray;
    // _cardsArray=[NSMutableArray   arrayWithCapacity:52];
@@ -186,6 +207,8 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
         
         if (dealCard)
             [_deck removeObject: dealCard];
+        
+        NSLog(@"In dealCard : dealCard.cardVal 1.1 = %@",dealCard);
         return (dealCard);      //returns nil if empty
     }
 
@@ -221,13 +244,11 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
 }
 
 
--(Card *) getCardFromSubView : (CGRect) aRect
+-(Card *) getCardFromSubViewRect : (CGRect) aRect
 {
     NSLog(@"getCardFomSubView aSubview.frame = %@  ",NSStringFromCGRect(aRect));
-    
     NSLog(@"getCardFromSubView count of deck = %lu", (unsigned long)[_deck count]);
     Card *c = [[Card alloc] init];
-    
     for ( c in _deck)
     {
          NSLog(@"getCardFromSubview c.cardVal =%d aRect = %@ cardRect =%@",c.cardVal,NSStringFromCGRect(aRect),NSStringFromCGRect(c.cardRect));
@@ -235,7 +256,6 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
         if ( CGRectEqualToRect(aRect, c.cardRect))
         {
             NSLog(@"getCardFomSubView Found Card : %d %@", c.cardVal, c.cardPic);
-            
             return (c);
         }
         
@@ -250,4 +270,54 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
 }
 
 
+-(Card *) getCardFromRect : (NSMutableSet *) cardArray : (CGRect) aRect
+{
+    NSLog(@"getCardFronRect arect.frame = %@  ",NSStringFromCGRect(aRect));
+    NSLog(@"getCardFromSubView count of deck = %lu", (unsigned long)[_deck count]);
+    Card *c = [[Card alloc] init];
+    for ( c in cardArray)
+    {
+        NSLog(@"getCardFromSubview c.cardVal =%d aRect = %@ cardRect =%@",c.cardVal,NSStringFromCGRect(aRect),NSStringFromCGRect(c.cardRect));
+        
+        if ( CGRectEqualToRect(aRect, c.cardRect))
+        {
+            NSLog(@"getCardFomSubView Found Card : %d %@", c.cardVal, c.cardPic);
+            return (c);
+        }
+        
+    }
+    NSLog(@"getCardFomSubView Returning Nil ");
+    return (nil);
+    /*
+     Frame A view's frame (CGRect) is the position of its rectangle in the superview's coordinate system. By default it starts at the top left.
+     
+     Bounds A view's bounds (CGRect) expresses a view rectangle in its own coordinate system.
+     */
+}
+
+
+
+
+-(BOOL) aceCardLogic : (Card *) dropCard :(Card *) dragCard
+{
+    if (![_cardInPlay sameSuit :dropCard : dragCard] )
+        return (FALSE);
+    if (![_cardInPlay cardIsLower : dropCard : dragCard])
+        return(FALSE);
+    
+    return (TRUE);
+}
+
+
+
+
+-(BOOL) mainCardLogic :(Card *) dropCard :(Card *) dragCard
+{
+    if (![_cardInPlay redAndBlack: dropCard :dragCard])
+        return (FALSE);
+    if (![_cardInPlay cardIsLower:dragCard :dropCard])
+        return (FALSE);
+    
+    return (TRUE);
+}
 @end

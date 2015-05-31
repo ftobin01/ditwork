@@ -8,32 +8,33 @@
 
 #import "Cards.h"
 
-#define HEARTS      0
-#define SPADES      1
-#define CLUBS       2
-#define DIAMONDS    3
 
-#define CARDREVERSE     @"card reverse 2.jpeg"
 
 
 @interface DeckObj : Card
 
-@property (nonatomic)  int deckTop;
-@property (nonatomic ) Card *cardInPlay;
-@property (nonatomic) NSMutableSet *deck;
+@property (nonatomic,strong ) Card *cardInPlay;
+@property (nonatomic,strong) NSMutableSet   *deck;
+@property(nonatomic,strong)  NSMutableSet   *cardsMainArea; // Cards in Solitaire Screen
+@property (nonatomic,strong) NSMutableSet   *cardsClubsArea;
+@property (nonatomic,strong) NSMutableSet   *cardsHeartsArea;
+@property(nonatomic,strong)  NSMutableSet   *cardsDiamondsArea;
+@property (nonatomic,strong) NSMutableSet   *cardsSpadesArea;
+
+
 @property (nonatomic,strong) NSMutableArray *cardsArray;
 @property NSArray *suitWords;
 @property NSArray *cardWords;
 
 
--(Card *) initCard : (int ) suitNum :( int ) cardNumVal : (NSString *) cardPicName : CGRect cardRect : (BOOL ) cardFaceUp;
+//-(Card *)initCardWithData : (int ) suitNum :( int ) cardNumVal : (NSString *) cardPicName : (CGRect) cardRect : (BOOL ) cardFaceUp;
 
-
--(Card *) getCardFromSubView : (CGRect ) aSubview;
-
+-(Card *) getCardFromSubViewRect : (CGRect ) aRect;
+-(Card *) getCardFromRect : (NSMutableSet *) cardArray : (CGRect) aRect;
 
 -(NSString *) getPicFileName : (Card *) acard;
 -(Card *) dealCard;
  -(void) initDeck;
--( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
+-(void) compareColumns;
+// -( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
 @end

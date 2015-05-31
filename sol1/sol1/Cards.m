@@ -7,6 +7,7 @@
 //
 
 #import "cards.h"
+#include "constants.h"
 
 @interface Card  (NSObject)
 
@@ -19,6 +20,10 @@
 
 -(Card *) initCardWithData: (int ) suitNum :( int ) cardNumVal : (NSString *) cardPicName : (CGRect) cardRect : (BOOL ) cardFaceUp;
 
+
+- (BOOL)  sameSuit   : (Card *) card1 : (Card *) card2;
+- (BOOL) redAndBlack : (Card *) card1 : (Card *) card2;
+- (BOOL) cardIsLower : (Card *) card1 : (Card *) card2;
 
 @end
 
@@ -37,6 +42,37 @@
     
     return self;
 }
+
+
+
+- (BOOL)  cardIsLower : (Card *) card1 : (Card *) card2
+{
+    if ( card1.cardVal < card2.cardVal)
+        return(TRUE);
+    return (FALSE);
+}
+
+
+
+
+- (BOOL)  sameSuit : (Card *) card1 : (Card *) card2
+{
+    if ( card1.cardSuit == card2.cardSuit )
+        return (TRUE);
+    return(FALSE);
+}
+
+
+- (BOOL) redAndBlack : (Card *) card1 : (Card *) card2
+{
+    if (( (card1.cardSuit == HEARTS) || (card1.cardSuit == DIAMONDS )) && ((card2.cardSuit ==CLUBS)  || (card2.cardSuit == SPADES )))
+        return (TRUE);
+    
+    if (((card1.cardSuit == SPADES ) || (card1.cardSuit == CLUBS )) && ((card2.cardSuit == HEARTS ) || (card2.cardSuit == SPADES )))
+        return (TRUE);
+
+    return (FALSE);
+        }
 
 /*
 NSDictionary* defaults = @{kUserNameKey:@"GreatUser", kLevel1ScoreKey:@0, kLevel1CompletedKey:@NO};
