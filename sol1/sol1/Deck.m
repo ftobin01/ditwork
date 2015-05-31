@@ -17,7 +17,9 @@
 
 @property (nonatomic,strong) NSMutableSet *deck;
 
-@property (nonatomic,strong) NSMutableSet    *cardsMainArea; // Cards in Solitaire Screen
+@property (nonatomic,strong) NSMutableSet    *cardsMainArea; //
+@property(nonatomic,strong)  NSMutableSet   *cardsAceArea; //not sure i wil use this in Solitaire Screen
+
 @property (nonatomic,strong) NSMutableSet   *cardsClubsArea;
 @property (nonatomic,strong) NSMutableSet   *cardsHeartsArea;
 @property (nonatomic,strong)  NSMutableSet   *cardsDiamondsArea;

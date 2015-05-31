@@ -26,8 +26,8 @@
 -(void)  showDeck;
 -(CGRect ) inSubViewList : ( CGPoint ) locationInView;
 -( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
--(Card *) getCardFromSubView : (CGRect *) aRect;
--(id) compareColumns;
+//-(Card *) getCardFromSubView : (CGRect *) aRect;
+//- (void) deleteSubViewByRect : (CGRect ) aRect;
 @end
 
 
@@ -83,6 +83,7 @@
    
     NSLog(@"Leaving ViewDidload  8 dropArea count =  %d",(int ) [_dropAreas count]);
 }
+
 - (void) createAcesArea
 {
     int acesArea_YPos = (6 * CARDLENGTH );
@@ -345,14 +346,12 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                     else
                         return;
                 }
-                }
-           else
-               
-               return;
             }
+           else
+               return;
+    }
             // update Deck shown with new card from Deck
-    
-    
+
 }
 
 
@@ -360,35 +359,18 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
 - (CGRect ) inSubViewList: ( CGPoint ) locationInView
     {
    //  NSArray *subviews = _dropAreas;
-     
-        
         int CurrentSubviewCount =(int)  [_dropAreas count];
-    
         NSLog(@"InSubViewList...");
         UIView *subview = [[UIView alloc] init];
-        
         for (int  subview_index = CurrentSubviewCount-1; subview_index >=0; subview_index--)
         {
-            ;
-    // [_dropAreas addObject:[NSValue valueWithCGRect:aRect]];//Add last Cartd which will be face up as A droppable Area - ACE's area will also need to be added.
             subview = [_dropAreas objectAtIndex:subview_index];
-    //    if(!subview.hidden && CGRectContainsPoint(subview.frame, point))
-    //CGPoint pointConverted = [self.view convertPoint:point toView:subview];
-    //for (UIView *subview in self.view.subviews)
-    
-   // NSLog(@"==>subview [i] = %lu ",(unsigned long) subview_index);
-       // we want locations thtat are in top view except the last view.
             CGRect viewRect =  [subview frame];
-
-            
             if (CGRectContainsPoint(viewRect, locationInView)==TRUE)
             {
                 NSLog(@"InSubViewList...return subview");
                 return(viewRect);
-
             }
- 
-            
         }
         NSLog(@"InSubViewList...return nil");
         //viewRect =;
@@ -398,98 +380,26 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
 
 
 
-    /*
-     
-     CGRect someRect;
-     
-     
-     
-     // enemy hit?
-     //    CGRect enemyRect = CGRectMake(0, 0, 100, 200);
-     // CGPoint hitPoint = CGPointMake(x, y); -- this is already got through locaation popint-
-     // now we just use the array of subviews and find the subview thats a hit!
-     
-     unsigned long i;
-     unsigned long v;
-     NSLog(@"i=%lu, v= %lu",i,v);
-     
-     
-     //listSubviewsOfView: _view;
-     
-     //_subviews = [self.view subviews] ;
-     NSLog(@"In list Subview  2 : subview count %lu",(unsigned long)[self.subviews count]);
-     // Return if there are no subviews
-     //  if ([subviews count] == 0) return;
-     
-     // for (UIView *subview in subviews) {
-     
-     //  NSLog(@"%@", subview);
-     
-     // List the subviews of subview
-     //[self listSubviewsOfView:subview];
-     //   }
-     
-     
-     
-     
-     
-     i = [_rectArray count];
-     //    for (v=0;v<i; v++)
-     //      {
-     someRect = [[_rectArray objectAtIndex:v] CGRectValue];
-     //         NSLog(@"%@",someRect);
-     
-     // }
-     */
-
-    
-
-    /*
-     
-     - (void)listSubviewsOfView:(UIView *)view {
-     
-     // Get the subviews of the view
-     NSArray *subviews = [view subviews];
-     //    NSLog(@"In list Subview : subview count %@",[subviews count]);
-     // Return if there are no subviews
-     if ([subviews count] == 0) return;
-     
-     for (UIView *subview in subviews) {
-     
-     NSLog(@"%@", subview);
-     
-     // List the subviews of subview
-     [self listSubviewsOfView:subview];
-     }
-     
-     
-     }
-     
-     */
-    
-    
-    /*
-     
-     
-     -(UIView *)findTopMostViewForPoint : (CGPoint) point
-     {for (int  i=(int) self.subviews.count -(int) 1; i>=0; i--)
-     {
-     UIView *subview = [self.subviews objectAtIndex:i];
-     if(!subview.hidden && CGRectContainsPoint(subview.frame, point))
-     {
-     //CGPoint pointConverted = [self.view convertPoint:point toView:subview];
-     
-     return subview;
-     }
-     
-     }
-     return self.view;
-     
-     }
-     
-     
-     */
-
+- (CGRect ) chkAreaByPoint : (NSArray *) viewArea : ( CGPoint ) locationInView
+{
+    //  NSArray *subviews = _dropAreas;
+    int viewCount = (int)  [viewArea count];
+    NSLog(@"chkViewByPoint...");
+    UIView *view1 = [[UIView alloc] init];
+    for (int  viewIdx = viewCount-1;  viewIdx >=0; viewIdx--)
+    {
+        view1 = [viewArea objectAtIndex:viewIdx];
+        CGRect viewRect =  [view1 frame];
+        if (CGRectContainsPoint(viewRect, locationInView)==TRUE)
+        {
+            NSLog(@"chkAreaByPoint...returning Rect");
+            return(viewRect);
+        }
+    }
+    NSLog(@"chkAreaByPoint...return nil");
+    //viewRect =;
+    return ( CGRectMake(0,0,0,0));
+}
 
 
 
@@ -503,8 +413,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
     static float   dragCardOriginX;
     static float   dragCardOriginY;
     static unsigned long CountOfStartingSubviews=0;
-    static UIView *subviewFound=nil;
-    
+  
     UIView *cardInView;
     
     //NB if subview dragged is not in draggable list return;
@@ -513,6 +422,8 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
     dragCardOriginX=0; // viewRect.origin.x;
     dragCardOriginY=0; //  viewRect.origin.y;
     CGRect rectInView;
+    NSLog(@"In DragDetected ");
+    
     switch (panGestureRecognizer.state)
     {
         case UIGestureRecognizerStateBegan:   //Drag Started
@@ -521,17 +432,39 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
             
             if (CGRectIsEmpty(rectInView) )
             {
-                NSLog(@"in SubviewList FALSE- maybe check higher up");
+                NSLog(@"Drag Detected - Not Drag Area");
+              
+                panGestureRecognizer.enabled = NO;
                 //panGestureRecognizer.cancelsTouchesInView=YES;
                 // panGestureRecognizer.delaysTouchesBegan=YES;
-                //panGestureRecognizer.RequiredToFailByGestureRecognize=YES;
-                panGestureRecognizer.enabled = NO;                //   [
+                //panGestureRecognizer.RequiredToFailByGestureRecognize=YES;                //   [
                 //panGestureRecognizer.delaysTouchesEnded=YES;
                 break;
             }
             else
             {
+                NSLog(@"Drag Detected - Yes Drag Area");
                 // Need to Check if Pan has occorred in Rects Bounded by CArds Out on Table
+                // find CardArea to get card from
+ /*
+-(Card *) getCardFromRect : (NSMutableSet *) cardArray : (CGRect) aRect
+                
+                @property (nonatomic,strong) NSMutableSet    *cardsMainArea; //
+                @property(nonatomic,strong)  NSMutableSet   *cardsAceArea; //not sure i wil use this in Solitaire Screen
+                @property (nonatomic,strong) NSMutableSet   *deckShownArea // where deck is shown
+  
+                @property (nonatomic,strong) NSMutableSet   clubsArea;
+                @property (nonatomic,strong) NSMutableSet   heartsArea;
+                @property (nonatomic,strong)  NSMutableSet   diamondsArea;
+                @property (nonatomic,strong) NSMutableSet   spadesArea;
+   */
+                // make Aces Area = clubsArea +spadesArea +    eartsArea +diamondsArea;
+                _cardInPlay.cardPic=CARDREVERSE;
+              if (! (_cardInPlay= [_Deck getCardFromRect :[_Deck cardsMainArea] :rectInView]))
+                    if (!(_cardInPlay=[_Deck getCardFromRect: [_Deck deck] :rectInView ]))
+                        //if (!(_cardInPlay=getCardFromRect [_Deck acesArea] : rectInView))
+                    NSLog(@"ERROR - CARD NOTFOUND ANYWHERE");
+                
                 CountOfStartingSubviews=[subviews count];
                 NSLog(@"**** UIGestureRecognizerStateBegan - Drag Started %@", NSStringFromCGPoint(locationInView));
                 // NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.view.frame));
@@ -546,231 +479,44 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                 dragCardOriginY = y -11; //+  ((dragCardOriginY >10) ? -10 : 0);
                 //dragCardOriginX=0;
                 //var greeting = "Good" + ((now.getHours() > 17) ? " evening." : " day.");
-                
+/*
                 CGRect tmpRect=CGRectMake( dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
                 
                 UIView *tmpView = [[UIView alloc] initWithFrame: tmpRect];
                 
+                
+ 
+                
                 cardInView.frame=tmpRect;
+ */
             }
         }
             break;
-        case UIGestureRecognizerStateChanged:  //While Dragging
-        {
-            unsigned long dropAreaCount = [_dropAreas count];
+        case UIGestureRecognizerStateChanged:
+            {//While Dragging
             dragCardOriginX = x -10;//+  ((dragCardOriginX >10) ? -10 : 0);
             dragCardOriginY = y -11; //+  ((dragCardOriginY >10) ? -10 : 0);
-       
-            NSLog(@"drag detected ==> aSubview.frame = %@  ",NSStringFromCGRect(cardInView.frame));
-            
-            if ((_cardInPlay =[_Deck  getCardFromSubViewRect : cardInView.frame])==nil)
-                {
-                NSLog(@"Error - NO Card found from Subview");
-                panGestureRecognizer.enabled = NO;
-                    break;
-                }
-            
-            
-            NSLog(@"Card found from Subview = %@" , _cardInPlay.cardPic);
-            
-            CGRect tmpRect=CGRectMake( dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
-            //C dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
-            
-            UIView *tmpView = [[UIView alloc] initWithFrame: tmpRect];
-            
-            //   tmpView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed: _cardInPlay.cardPic] ];
-            
-            [self drawCardPicture :  tmpView : _cardInPlay.cardPic];
-            
-            [self.view addSubview: tmpView];
-            
-            [self.view setNeedsDisplay];
-            
-            
-            unsigned long topSubviewCount = [subviews count];
-            // UIView *topSubview = [subviews objectAtIndex:(int) topSubviewCount];
-            //  CGRect  topviewRect =  [topSubview frame];
-            // FOUMD
-            
-            /*  NSLog(@"checking intersection..%lu",CountOfStartingSubviews);
-             for (int j= (int) CountOfStartingSubviews-1; j>0; j--)
-             {
-             UIView *subview = [subviews objectAtIndex:j];
-             CGRect checkViewRect=[subview frame];
-             if (CGRectIntersectsRect(tmpRect, checkViewRect))
-             {
-             NSLog(@"Found interection");
-             subview.backgroundColor = [UIColor blueColor];
-             }
-             }
-             */
-            // MAKE SUBVIEW RED
-            NSLog(@"Leaving Drag Detected : dropArea count =  %lu",(unsigned long)[_dropAreas count]);
-            NSLog(@"DropAreaCounbt = %lu",dropAreaCount);
-            UIColor *colorSave = nil;
-            for (int j=0; j<(int) dropAreaCount; j++)
-            {
-                UIView *dropView = [_dropAreas objectAtIndex:j];
-                NSLog(@"Checking dragrect in dropArea %@\nj= %d",dropView,j);
-                
-                CGRect checkViewRect=[dropView frame];
-                NSLog(@"About to compare Intersection of  dropArea j= %d",j);
-                
-                NSLog(@"tmpRect =%@",NSStringFromCGRect(tmpRect));
-                NSLog(@"CheckViewRect =%@",NSStringFromCGRect(checkViewRect));
-                
-                
-                if (CGRectIntersectsRect(tmpRect, checkViewRect))  //they interSect
-                {
-                    
-                    // *** show some animation to show could be dropped...
-                    
-                    // CGRect newFrame = dropView.frame;
-                    CGRect oldFrame = dropView.frame;
-                    
-                    //  newFrame.size.width  = 40.0f;
-                    //  newFrame.size.height = 50.0f;
-                    
-                    // shift right by 500pts
-                    
-                    //(void)applyDefaultStyle {
-                    // curve the corners
-                    
-                    /*
-                     self.view.layer.cornerRadius = 4;
-                     
-                     // apply the border
-                     self.view.layer.borderWidth = 1.0;
-                     self.view.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-                     
-                     // add the drop shadow
-                     self.view.layer.shadowColor = [[UIColor blackColor] CGColor];
-                     self.view.layer.shadowOffset = CGSizeMake(2.0, 2.0);
-                     self.view.layer.shadowOpacity = 0.25;
-                     
-                     */
-                    
-                    //   }
-                    
-                    //      dropView.backgroundColor=[UIColor orangeColor];
-                    // dropView.tintColor=[UIColor orangeColor];
-                    ;
-                    
-                    //   dropView.background = dropView.background + [UIColor colorWithWhite:.5 alpha:.5];
-                    /*
-                     else if you want it to be another color use the general UIColor method: +colorWithRed:green:blue:alpha:
-                     */
-                    
-                    
-                    
-                    
-                    NSLog(@"Found interection....");
-                    //dropView.backgroundColor = [UIColor blueColor];
-                    // tmpView.backgroundColor  = [UIColor blueColor];
-                    /*
-                     [UIView animateWithDuration:1.0
-                     animations:^{
-                     dropView.frame = oldFrame;
-                     dropView.frame=oldFrame;                                    }];
-                     */
-                    // dropView.frame = oldFrame;
-                    float hue=.669;
-                    float saturation=.3;
-                    float brightness=.9;
-                    float alpha= .5;
-                    
-                    //      dropView.backgroundColor=[UIColor colorWithHue: hue
-                    //saturation:saturation
-                    //brightness: brightness
-                    //alpha: alpha];
-                    
-                }
-                /*
-                 else
-                 {
-                 if (dropView.backgroundColor == [UIColor blueColor])
-                 {
-                 dropView.backgroundColor = RANDOM_COLOR;
-                 }
-                 }
-                 */
-                
+                NSLog(@"just before MAkeDragCardView");
+            [self makeDragCardView:dragCardOriginX : dragCardOriginY];
+                NSLog(@"just after MAkeDragCardView");
+                //   [self draggingCard ];
             }
-            
-            
-        }
-            break;
-        case UIGestureRecognizerStateEnded:    //Drop - Dragging Ended
+                                   break;
+        case UIGestureRecognizerStateEnded:    //Dropped!!!!!  - Dragging Ended
         {
             CGPoint dropLocationInView = [panGestureRecognizer locationInView:self.view];
             NSLog(@"DROPPED UIGestureRecogniserStateEnded %@", NSStringFromCGPoint(dropLocationInView));
             
-            //DElete All subviews created since Drag Started
-            // Delete Forward if dropped on target
-            // Delete Backward if nnot found;
-            // Check Array of Dropable Areaqs - Eg Aces location - 7 face up card Rectangles
-            //          for (UIView *subview in DroppableAreas)
-            //          {
-            //              CGRect subRect = subview.frame;
-            
-            
-            //          }
-            //GET LAWST SUBVIEW
-            /*
-             unsigned long topSubviewCount = [subviews count];
-             UIView *topSubview = [subviews objectAtIndex:(int) topSubviewCount];
-             CGRect  topviewRect =  [topSubview frame];
-             // FOUMD
-             for (int j=0; j< CountOfStartingSubviews-1; j++)
-             {
-             UIView *subview = [subviews objectAtIndex:j];
-             CGRect checkViewRect=[subview frame];
-             if (CGRectIntersectsRect(topviewRect, checkViewRect))
-             {
-             subview.backgroundColor = [UIColor blueColor];
-             }
-             }
-             // MAKE SUBVIEW RED
-             
-             */
-            //Not Found
             unsigned long CurrentSubviewCount = [subviews count];
             NSLog(@"CurrentSubviewCount = %lu, Count ofStartingSubviews= %lu", CurrentSubviewCount ,CountOfStartingSubviews);
             for (int  i=(int) CurrentSubviewCount-(int)1 ; i>= (int) CountOfStartingSubviews; i--)
             {
-                
                 UIView *subview = [subviews objectAtIndex:i];
-                
                 [subview removeFromSuperview];
                 //[NSThread sleepForTimeInterval:0.6];
-                
             }
-            // [self.view sendSubviewToBack :subviewFound];
-            
-            //    for (UIView *dropView in _subviews)
-            
-            // if (CGRectIntersectsRect(playerRect, mineRect))
-            // {
-            // OUCH! Found Card to Drag to;
-            // }
-            
-            ;
-            /*
-             
-             [UIView animateWithDuration:.5
-             animations:^{
-             dropView.frame = oldFrame;
-             [self drawCardPicture :  dropView : _cardInPlay.cardPic];
-             
-             
-             }];
-             
-             */
-            
         }
-            
             break;
-            
         default:
             NSLog(@"Error - Gesture State Not Recognised ");
             break;
@@ -792,55 +538,174 @@ NSComparisonResult compare(UIView *firstView, UIView *secondView, void *context)
         return NSOrderedSame;
 }
 
--(void) moveColViewByRect : (CGRect ) origRect : (CGRect ) dropRect
+
+
+
+
+-(void) moveToColumnByRect : (CGRect ) origRect : (CGRect ) dropRect
 {
-    CGRect *testRect;
-    
     // Copy Subview Array
-    UIView *v1;
-    UIView *v2;
-    void *f;
-    NSMutableArray *subviewCopy= [NSMutableArray arrayWithArray :_view.subviews];
-   // NSMutableArray *sortedCopy =[subviewCopy sortUsingSelector:(compare:) ];
-    
-    
-    NSArray *sortedCopy = [subviewCopy sortedArrayUsingComparator:
-                        ^NSComparisonResult(UIView *obj1, UIView *obj2) {
+    NSMutableArray *subviewCopy= [NSMutableArray arrayWithArray :self.view.subviews];
+    // Sort it usingCol Position
+    NSArray *sortedViews = [subviewCopy sortedArrayUsingComparator: ^NSComparisonResult(UIView *obj1, UIView *obj2) {
                             if (obj1.frame.origin.y < obj2.frame.origin.y) {
                                 return NSOrderedAscending;
-                            } else if ([obj1.frame.origin.y  > [obj2.frame.origin.y) {
+                            } else if (obj1.frame.origin.y  > obj2.frame.origin.y) {
                                 return NSOrderedDescending;
                             } else {
                                 return NSOrderedSame;
                             }
-    
-    
-     // get droprect pos - yvalue
+                        }
+                            ];
+
+   
     // update dropRect Pos by card gap // will need to global variable or global object variable
-    int dropPos = dropRect.origin.y;  // Column
-    
-    for (UIView * view1 in [self subviews]) // find all subviews in column
-    {
-        if (origRect.origin.y == view1.frame.origin.y)
-            ;
-                // add gap to Ypos
-                // assingn subview Col to drop col
-            
-    }
-    
-    
-    
+    //for (UIView * view1 in  sortedViews) // find all subviews in column
+        for (int i=0; i<[sortedViews count]; i++)
+        {
+            // subviews ***
+      UIView *view1 = [sortedViews objectAtIndex:i];
+        if (origRect.origin.y == view1.frame.origin.y)  // FindViews with Orig ColSize
+            {
+                ;  // create Copy of origrect
+                CGRect newRect = CGRectMake(dropRect.origin.x, dropRect.origin.x +CARDOVERLAYGAP, origRect.size.height,origRect.size.width );
+                _cardInPlay=[_Deck getCardFromRect :  [_Deck cardsMainArea] :  origRect];
+                 
+                 UIView *newView = [[UIView alloc] initWithFrame: newRect];
+                newView.backgroundColor = [UIColor orangeColor];
+                // need to do Card processing! also
+                [self.view  addSubview: newView];
+                [self drawCardPicture : newView : _cardInPlay.cardPic];
+                [self deleteSubviewByRect : origRect ];
+                
+            }
+        }
+                        
 }
-
-
+                            
+                            
+- (void) deleteSubviewByRect : (CGRect ) aRect
+    {
+    for (int i=0; i<[self.view.subviews count]; i++)
+        {
+        UIView *view1 = [self.view.subviews objectAtIndex:i];
+        if (aRect.origin.y == view1.frame.origin.y)
+            [view1 removeFromSuperview];
+        }
+    
+    }
+                            
+                            
     
 - (void)didReceiveMemoryWarning
         {
             [super didReceiveMemoryWarning];
             // Dispose of any resources that can be recreated.
         }
+
+
+
+-(void) makeDragCardView: (float) dragCardOriginX :(float) dragCardOriginY
+{
     
+    NSLog(@"in makeTmpCardView..\7");
     
+    CGRect tmpRect=CGRectMake( dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
+    //C dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
     
+    UIView *tmpView = [[UIView alloc] initWithFrame: tmpRect];
+    
+    //   tmpView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed: _cardInPlay.cardPic] ];
+    
+    [self drawCardPicture :  tmpView : _cardInPlay.cardPic];
+    [self.view addSubview: tmpView];
+    [self.view setNeedsDisplay];
+
+    
+ //   unsigned long topSubviewCount = [subviews count];
+    // UIView *topSubview = [subviews objectAtIndex:(int) topSubviewCount];
+    //  CGRect  topviewRect =  [topSubview frame];
+    // FOUMD
+    
+    /*  NSLog(@"checking intersection..%lu",CountOfStartingSubviews);
+     for (int j= (int) CountOfStartingSubviews-1; j>0; j--)
+     {
+     UIView *subview = [subviews objectAtIndex:j];
+     CGRect checkViewRect=[subview frame];
+     if (CGRectIntersectsRect(tmpRect, checkViewRect))
+     {
+     NSLog(@"Found interection");
+     subview.backgroundColor = [UIColor blueColor];
+     }
+     } */
+     
+     }
+
+
+-( void )draggingCard
+    {
+     
+       /*
+        if ((_cardInPlay =[_Deck  getCardFromSubViewRect : cardInView.frame])==nil)
+        {
+            NSLog(@"Error - NO Card found from Subview");
+            panGestureRecognizer.enabled = NO;
+            break;
+        }
+        
+        
+        NSLog(@"drag detected ==> aSubview.frame = %@  ",NSStringFromCGRect(cardInView.frame));
+        
+        
+        NSLog(@"Card found from Subview = %@" , _cardInPlay.cardPic);
+        
+        */
+        unsigned long dropAreaCount = [_dropAreas count];
+         /*
+       // NSLog(@"drag detected ==> aSubview.frame = %@  ",NSStringFromCGRect(cardInView.frame));
+        
+        
+        
+        // MAKE SUBVIEW RED
+        NSLog(@"Leaving Drag Detected : dropArea count =  %lu",(unsigned long)[_dropAreas count]);
+        NSLog(@"DropAreaCounbt = %lu",dropAreaCount);
+        UIColor *colorSave = nil;
+        for (int j=0; j<(int) dropAreaCount; j++)
+        {
+            UIView *dropView = [_dropAreas objectAtIndex:j];
+            NSLog(@"Checking dragrect in dropArea %@\nj= %d",dropView,j);
+            
+            CGRect checkViewRect=[dropView frame];
+            NSLog(@"About to compare Intersection of  dropArea j= %d",j);
+            
+            NSLog(@"tmpRect =%@",NSStringFromCGRect(tmpRect));
+            NSLog(@"CheckViewRect =%@",NSStringFromCGRect(checkViewRect));
+            
+ 
+            if (CGRectIntersectsRect(tmpRect, checkViewRect))  //they interSect
+            {
+                
+                // *** show some animation to show could be dropped...
+                
+                // CGRect newFrame = dropView.frame;
+                CGRect oldFrame = dropView.frame;
+                
+                
+                NSLog(@"Found interection....");
+   */
+        
+            /*
+             else
+             {
+             if (dropView.backgroundColor == [UIColor blueColor])
+             {
+             dropView.backgroundColor = RANDOM_COLOR;
+             }
+             }
+             */
+            
+        }
+
+
+
 @end
-    
