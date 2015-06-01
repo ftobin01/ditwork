@@ -274,18 +274,20 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
 {
     static BOOL SHOW_3_CARDS= TRUE;
     static BOOL DECK_SHOWN=FALSE;
-    static UIView *showCard1;
+    static UIView *showCard1;       //change to show card view
     static UIView *showCard2;
     static UIView *showCard3;
-    
     if (!DECK_SHOWN)
     // need at least 1 view
         {
             NSLog(@"calling showDeck");
             CGRect cardRect1 = CGRectMake( SHOWDECK_XPOS, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
             
-            Card *dealtCard1= [_Deck dealCard];            showCard1 = [[UIView alloc] initWithFrame:cardRect1];
-            [self drawCardPicture : showCard1  : dealtCard1.cardPic];        [self.view addSubview: showCard1];
+            Card *dealtCard1= [_Deck dealCard];
+            showCard1 = [[UIView alloc] initWithFrame:cardRect1];
+            [self drawCardPicture : showCard1  : dealtCard1.cardPic];
+            [self.view addSubview: showCard1];
+            [[_Deck deckShownArea] addObject: dealtCard1];
             
             if (SHOW_3_CARDS==TRUE)
                 {
@@ -303,7 +305,8 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                             showCard2=[[UIView alloc] initWithFrame:cardRect2];
                             //  [_dropAreas addObject: showCard2];
                             [self.view addSubview: showCard2];                            [self drawCardPicture : showCard2  : dealtCard2.cardPic];
-                            [_dropAreas removeLastObject];
+                NSLog(@"showDeck: adding dealtCard2.cardPic =%@",dealtCard2.cardPic);
+                            [[_Deck deckShownArea] addObject: dealtCard2];                            [_dropAreas removeLastObject];
                             [_dropAreas addObject: showCard2];
                             Card *dealtCard3= [_Deck dealCard];
                             if ( dealtCard3  !=nil)
@@ -311,9 +314,14 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                                 CGRect cardRect3 = CGRectMake( SHOWDECK_XPOS+20, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
                                 showCard3=[[UIView alloc] initWithFrame:cardRect3];
                                     [self drawCardPicture : showCard3  : dealtCard3.cardPic];
+         NSLog(@"showDeck: adding dealtCard3.cardPic =%@",dealtCard2.cardPic);                                    [[_Deck deckShownArea] addObject: dealtCard3];
+                                    
+                NSLog(@"showDeck: after adding dealtCard2.cardPic =%@",[[_Deck deckShownArea] objectAtIndex: 1] );
+                                                                
                                     [_dropAreas removeLastObject];
                                     [_dropAreas addObject: showCard3];
                                     [self.view addSubview: showCard3];
+                            
                                     
                                 }
                         }
@@ -323,6 +331,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
              DECK_SHOWN=TRUE;
              }
     else
+        
             {
                 Card *dealtCard1= [_Deck dealCard];
                 if ( dealtCard1  !=nil)
@@ -331,18 +340,23 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                 if (SHOW_3_CARDS==FALSE)
                 {
                  //showCard1.backgroundColor = [UIColor colorWithPatternImage:dealtCard1.cardPic];
-                    [self drawCardPicture : showCard1  : dealtCard1.cardPic];
+                [self drawCardPicture : showCard1  : dealtCard1.cardPic];
+                [[_Deck deckShownArea] addObject: dealtCard1];
                 }
                 else
                 {
                     Card *dealtCard2 = [_Deck dealCard];
                     if (dealtCard2!=nil )
-                            [self drawCardPicture : showCard2  : dealtCard2.cardPic ];
+                        {
+                        [self drawCardPicture : showCard2  : dealtCard2.cardPic ];
+                        [[_Deck deckShownArea] addObject: dealtCard2];                        }
                     else
                         return ;
                     Card *dealtCard3 = [_Deck dealCard];
                     if (dealtCard3 !=nil)
+                        {
                         [self drawCardPicture : showCard3  : dealtCard3.cardPic ];
+                        [[_Deck deckShownArea] addObject: dealtCard3];                        }
                     else
                         return;
                 }
@@ -413,8 +427,6 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
     static float   dragCardOriginX;
     static float   dragCardOriginY;
     static unsigned long CountOfStartingSubviews=0;
-  
-    UIView *cardInView;
     
     //NB if subview dragged is not in draggable list return;
     // means al;l face up cards are added to draggable list
@@ -433,7 +445,6 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
             if (CGRectIsEmpty(rectInView) )
             {
                 NSLog(@"Drag Detected - Not Drag Area");
-              
                 panGestureRecognizer.enabled = NO;
                 //panGestureRecognizer.cancelsTouchesInView=YES;
                 // panGestureRecognizer.delaysTouchesBegan=YES;
@@ -447,24 +458,17 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                 // Need to Check if Pan has occorred in Rects Bounded by CArds Out on Table
                 // find CardArea to get card from
  /*
--(Card *) getCardFromRect : (NSMutableSet *) cardArray : (CGRect) aRect
-                
-                @property (nonatomic,strong) NSMutableSet    *cardsMainArea; //
-                @property(nonatomic,strong)  NSMutableSet   *cardsAceArea; //not sure i wil use this in Solitaire Screen
-                @property (nonatomic,strong) NSMutableSet   *deckShownArea // where deck is shown
-  
-                @property (nonatomic,strong) NSMutableSet   clubsArea;
-                @property (nonatomic,strong) NSMutableSet   heartsArea;
-                @property (nonatomic,strong)  NSMutableSet   diamondsArea;
-                @property (nonatomic,strong) NSMutableSet   spadesArea;
-   */
+                  */
                 // make Aces Area = clubsArea +spadesArea +    eartsArea +diamondsArea;
-                _cardInPlay.cardPic=CARDREVERSE;
+               // _cardInPlay.cardPic=CARDREVERSE;
               if (! (_cardInPlay= [_Deck getCardFromRect :[_Deck cardsMainArea] :rectInView]))
-                    if (!(_cardInPlay=[_Deck getCardFromRect: [_Deck deck] :rectInView ]))
+                {
+                    if ((_cardInPlay=[_Deck getCardFromRect: [_Deck deckShownArea] :rectInView ]))
+                        NSLog(@"cardInPlay.cardPic - after deckShownArea -  getCardFromRect = %@",_cardInPlay.cardPic);
                         //if (!(_cardInPlay=getCardFromRect [_Deck acesArea] : rectInView))
+                    else
                     NSLog(@"ERROR - CARD NOTFOUND ANYWHERE");
-                
+                }
                 CountOfStartingSubviews=[subviews count];
                 NSLog(@"**** UIGestureRecognizerStateBegan - Drag Started %@", NSStringFromCGPoint(locationInView));
                 // NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.view.frame));
@@ -483,10 +487,6 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                 CGRect tmpRect=CGRectMake( dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
                 
                 UIView *tmpView = [[UIView alloc] initWithFrame: tmpRect];
-                
-                
- 
-                
                 cardInView.frame=tmpRect;
  */
             }
@@ -494,12 +494,14 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
             break;
         case UIGestureRecognizerStateChanged:
             {//While Dragging
-            dragCardOriginX = x -10;//+  ((dragCardOriginX >10) ? -10 : 0);
-            dragCardOriginY = y -11; //+  ((dragCardOriginY >10) ? -10 : 0);
-                NSLog(@"just before MAkeDragCardView");
-            [self makeDragCardView:dragCardOriginX : dragCardOriginY];
-                NSLog(@"just after MAkeDragCardView");
+                dragCardOriginX = x -5;//+  ((dragCardOriginX >10) ? -10 : 0);
+                dragCardOriginY = y -5; //+  ((dragCardOriginY >10) ? -10 : 0);
+            NSLog(@"just before MAkeDragCardView dragCardOriginX %f, dragCardOriginY %f",dragCardOriginX,dragCardOriginY);
+            [self makeDragCardView : dragCardOriginX : dragCardOriginY];
+                NSLog(@"just after MAkeDragCardView dragCardOriginX %f, dragCardOriginY %f",dragCardOriginX,dragCardOriginY);
+              //  NSLog(@"just after MAkeDragCardView");
                 //   [self draggingCard ];
+               
             }
                                    break;
         case UIGestureRecognizerStateEnded:    //Dropped!!!!!  - Dragging Ended
@@ -608,7 +610,7 @@ NSComparisonResult compare(UIView *firstView, UIView *secondView, void *context)
 -(void) makeDragCardView: (float) dragCardOriginX :(float) dragCardOriginY
 {
     
-    NSLog(@"in makeTmpCardView..\7");
+    NSLog(@"in makeTmpCardView..\7dragCardOriginX %d,dragCardOriginY %d ",dragCardOriginX,dragCardOriginY);
     
     CGRect tmpRect=CGRectMake( dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
     //C dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
@@ -707,5 +709,30 @@ NSComparisonResult compare(UIView *firstView, UIView *secondView, void *context)
         }
 
 
+
+
+-(int ) maxVolIntersection : (NSMutableArray *)ViewsToCheck : (CGRect) rectToChk
+{
+    int maxVol;
+    CGRect intVol;
+    int maxVolIndex=0;
+    
+    for (int i=0; i<[ViewsToCheck count]; i++)
+        {
+            UIView   *checkView =(UIView *) [ViewsToCheck objectAtIndex : i];
+            CGRect viewRect = checkView.frame;
+            CGRect intersectVolRect=CGRectIntersection(rectToChk,viewRect);
+                if (!CGRectIsNull(intVol)) // ! CGRectNull - they Intersect volume returned
+                    {
+                        int intersectVol = intersectVolRect.size.height * intersectVolRect.size.width;
+                        if (intersectVol > maxVol)
+                            {
+                            maxVol=intersectVol;
+                            maxVolIndex = i;
+                            }
+                    }
+        }
+    return(maxVolIndex);
+}
 
 @end

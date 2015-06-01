@@ -15,24 +15,23 @@
 @interface DeckObj (Card)
 
 
-@property (nonatomic,strong) NSMutableSet *deck;
+@property (nonatomic,strong) NSMutableArray *deck;
 
-@property (nonatomic,strong) NSMutableSet    *cardsMainArea; //
-@property(nonatomic,strong)  NSMutableSet   *cardsAceArea; //not sure i wil use this in Solitaire Screen
+@property (nonatomic,strong) NSMutableArray   *cardsMainArea; //
+@property(nonatomic,strong)  NSMutableArray   *cardsAceArea; //not sure i wil use this in Solitaire Screen
+@property (nonatomic,strong) NSMutableArray   *deckShownArea; // where deck is shown
 
-@property (nonatomic,strong) NSMutableSet   *cardsClubsArea;
-@property (nonatomic,strong) NSMutableSet   *cardsHeartsArea;
-@property (nonatomic,strong)  NSMutableSet   *cardsDiamondsArea;
-@property (nonatomic,strong) NSMutableSet   *cardsSpadesArea;
-
-
+@property (nonatomic,strong) NSMutableArray   *clubsArea;
+@property (nonatomic,strong) NSMutableArray   *heartsArea;
+@property (nonatomic,strong)  NSMutableArray  *diamondsArea;
+@property (nonatomic,strong) NSMutableArray   *spadesArea;
 @property (nonatomic ) Card *cardInPlay;
 @property (nonatomic,strong) NSMutableArray *cardsArray;
 @property NSArray *suitWords;
 @property NSArray *cardWords;
 
 - (Card *)      getCardFromSubViewRect : (CGRect) aSubview;
-- (Card *)      getCardFromRect : (NSMutableSet *) cardArray : (CGRect) aRect;
+- (Card *)      getCardFromRect : (NSMutableArray *) cardArray : (CGRect) aRect;
 
 - (void)        initDeck;
 - (Card *)      dealCard;
@@ -64,18 +63,13 @@
    // Deck *solDeck = [[Deck alloc] init];
     NSLog(@"InMakeDeck");
     NSLog(@"InMakeDeck CARDREVERSE= %@",CARDREVERSE);
-    _deck = [[NSMutableSet  alloc] initWithCapacity:52];
-     _cardsMainArea = [[NSMutableSet  alloc] initWithCapacity:52]; // Cards in Solitaire Screen
-     _cardsClubsArea = [[NSMutableSet  alloc] initWithCapacity:52];;
-      _cardsHeartsArea = [[NSMutableSet  alloc] initWithCapacity:52];;
-    _cardsDiamondsArea = [[NSMutableSet  alloc] initWithCapacity:52];;
-     _cardsSpadesArea = [[NSMutableSet  alloc] initWithCapacity:52];;
-    
+    _deck = [[NSMutableArray  alloc] initWithCapacity:52];
+     _cardsMainArea = [[NSMutableArray  alloc] initWithCapacity:52]; // Cards in Solitaire Screen
+    _deckShownArea = [[NSMutableArray  alloc] initWithCapacity:52]; // Cards in Solitaire Screen     _clubsArea = [[NSMutableArray  alloc] initWithCapacity:52];;
+      _heartsArea = [[NSMutableArray  alloc] initWithCapacity:52];;
+    _diamondsArea = [[NSMutableArray  alloc] initWithCapacity:52];;
+     _spadesArea = [[NSMutableArray  alloc] initWithCapacity:52];;
   
-    
-    
-    
-    
     
    // NSMutableArray *_cardsArray;
    // _cardsArray=[NSMutableArray   arrayWithCapacity:52];
@@ -272,23 +266,23 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
 }
 
 
--(Card *) getCardFromRect : (NSMutableSet *) cardArray : (CGRect) aRect
+-(Card *) getCardFromRect : (NSMutableArray *) cardArray : (CGRect) aRect
 {
-    NSLog(@"getCardFronRect arect.frame = %@  ",NSStringFromCGRect(aRect));
-    NSLog(@"getCardFromSubView count of deck = %lu", (unsigned long)[_deck count]);
+    NSLog(@"getCardFromRect arect.frame = %@  ",NSStringFromCGRect(aRect));
+    NSLog(@"getCardFromRect count of cardArray = %lu", (unsigned long)[cardArray count]);
     Card *c = [[Card alloc] init];
     for ( c in cardArray)
     {
-        NSLog(@"getCardFromSubview c.cardVal =%d aRect = %@ cardRect =%@",c.cardVal,NSStringFromCGRect(aRect),NSStringFromCGRect(c.cardRect));
+        NSLog(@"getCardFromRect c.cardVal =%d aRect = %@ cardRect =%@",c.cardVal,NSStringFromCGRect(aRect),NSStringFromCGRect(c.cardRect));
         
         if ( CGRectEqualToRect(aRect, c.cardRect))
         {
-            NSLog(@"getCardFomSubView Found Card : %d %@", c.cardVal, c.cardPic);
+            NSLog(@"getCardFromRect Found Card : %d %@", c.cardVal, c.cardPic);
             return (c);
         }
         
     }
-    NSLog(@"getCardFomSubView Returning Nil ");
+    NSLog(@"getCardFromRect Returning Nil ");
     return (nil);
     /*
      Frame A view's frame (CGRect) is the position of its rectangle in the superview's coordinate system. By default it starts at the top left.
