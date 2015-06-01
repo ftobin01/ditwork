@@ -136,8 +136,7 @@
         for ( int i=0; i<= cardColumnIndex; i++)
         {
             //       dealtCard = [[Card alloc] init];
-            dealtCard = [_Deck dealCard];  // Deal a Card
-            [_Deck.cardsMainArea addObject: dealtCard]; // add to Main Area
+           
             
             NSLog(@" Deck dealcard.cardval %d",dealtCard.cardVal);
             
@@ -145,6 +144,9 @@
             view1 = [[UIView alloc] initWithFrame:aRect];
             
             _Deck.cardRect = aRect;  // assign View made to card
+            dealtCard = [_Deck dealCard : view1];  // Deal a Card, Assign View
+            
+            [_Deck.cardsMainArea addObject: dealtCard]; // add to Main Area
             dealtCard.cardRect = aRect;  // assign View made to card
             [self drawCardPicture: view1 : CARDREVERSE];
             
@@ -282,9 +284,8 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
         {
             NSLog(@"calling showDeck");
             CGRect cardRect1 = CGRectMake( SHOWDECK_XPOS, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
-            
-            Card *dealtCard1= [_Deck dealCard];
             showCard1 = [[UIView alloc] initWithFrame:cardRect1];
+            Card *dealtCard1= [_Deck dealCard : showCard1];
             [self drawCardPicture : showCard1  : dealtCard1.cardPic];
             [self.view addSubview: showCard1];
             [[_Deck deckShownArea] addObject: dealtCard1];
@@ -294,26 +295,25 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                     
                     CGRect cardRect2 = CGRectMake( SHOWDECK_XPOS+10, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
                     showCard2=[[UIView alloc] initWithFrame:cardRect2];
-                  //  [_dropAreas addObject: showCard2];
-                    [self.view addSubview: showCard2];
-                    
-                    Card *dealtCard2= [_Deck dealCard];
+                    Card *dealtCard2= [_Deck dealCard : showCard2];
                     if ( dealtCard2  !=nil)
                         {
-                            
-                            CGRect cardRect2 = CGRectMake( SHOWDECK_XPOS+10, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
-                            showCard2=[[UIView alloc] initWithFrame:cardRect2];
                             //  [_dropAreas addObject: showCard2];
-                            [self.view addSubview: showCard2];                            [self drawCardPicture : showCard2  : dealtCard2.cardPic];
+                            [self.view addSubview: showCard2];
+                            Card *dealtCard2= [_Deck dealCard : showCard2];
+                            
+                            [self drawCardPicture : showCard2  : dealtCard2.cardPic];
                 NSLog(@"showDeck: adding dealtCard2.cardPic =%@",dealtCard2.cardPic);
-                            [[_Deck deckShownArea] addObject: dealtCard2];                            [_dropAreas removeLastObject];
+                            [[_Deck deckShownArea] addObject: dealtCard2];
+                            [_dropAreas removeLastObject];
                             [_dropAreas addObject: showCard2];
-                            Card *dealtCard3= [_Deck dealCard];
+                            
+                            CGRect cardRect3 = CGRectMake( SHOWDECK_XPOS+20, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
+                            showCard3=[[UIView alloc] initWithFrame:cardRect3];
+                            Card *dealtCard3= [_Deck dealCard : showCard3];
                             if ( dealtCard3  !=nil)
                                 {
-                                CGRect cardRect3 = CGRectMake( SHOWDECK_XPOS+20, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
-                                showCard3=[[UIView alloc] initWithFrame:cardRect3];
-                                    [self drawCardPicture : showCard3  : dealtCard3.cardPic];
+                                [self drawCardPicture : showCard3  : dealtCard3.cardPic];
          NSLog(@"showDeck: adding dealtCard3.cardPic =%@",dealtCard2.cardPic);                                    [[_Deck deckShownArea] addObject: dealtCard3];
                                     
                 NSLog(@"showDeck: after adding dealtCard2.cardPic =%@",[[_Deck deckShownArea] objectAtIndex: 1] );
@@ -333,7 +333,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
     else
         
             {
-                Card *dealtCard1= [_Deck dealCard];
+                Card *dealtCard1= [_Deck dealCard : showCard1];
                 if ( dealtCard1  !=nil)
                 {
                 // Deal 1 card
@@ -341,22 +341,24 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                 {
                  //showCard1.backgroundColor = [UIColor colorWithPatternImage:dealtCard1.cardPic];
                 [self drawCardPicture : showCard1  : dealtCard1.cardPic];
-                [[_Deck deckShownArea] addObject: dealtCard1];
+                [[_Deck deckShownArea] replaceObjectAtIndex:0 withObject: dealtCard1];
                 }
                 else
-                {
-                    Card *dealtCard2 = [_Deck dealCard];
+                    {
+                    Card *dealtCard2 = [_Deck dealCard : showCard2];
                     if (dealtCard2!=nil )
                         {
                         [self drawCardPicture : showCard2  : dealtCard2.cardPic ];
-                        [[_Deck deckShownArea] addObject: dealtCard2];                        }
+                        [[_Deck deckShownArea] replaceObjectAtIndex:1 withObject: dealtCard2];
+                    }
                     else
                         return ;
-                    Card *dealtCard3 = [_Deck dealCard];
+                    Card *dealtCard3 = [_Deck dealCard : showCard3];
                     if (dealtCard3 !=nil)
                         {
                         [self drawCardPicture : showCard3  : dealtCard3.cardPic ];
-                        [[_Deck deckShownArea] addObject: dealtCard3];                        }
+                            [[_Deck deckShownArea] replaceObjectAtIndex:2 withObject: dealtCard3];
+                        }
                     else
                         return;
                 }
@@ -446,10 +448,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
             {
                 NSLog(@"Drag Detected - Not Drag Area");
                 panGestureRecognizer.enabled = NO;
-                //panGestureRecognizer.cancelsTouchesInView=YES;
-                // panGestureRecognizer.delaysTouchesBegan=YES;
-                //panGestureRecognizer.RequiredToFailByGestureRecognize=YES;                //   [
-                //panGestureRecognizer.delaysTouchesEnded=YES;
+                
                 break;
             }
             else
@@ -461,14 +460,24 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                   */
                 // make Aces Area = clubsArea +spadesArea +    eartsArea +diamondsArea;
                // _cardInPlay.cardPic=CARDREVERSE;
-              if (! (_cardInPlay= [_Deck getCardFromRect :[_Deck cardsMainArea] :rectInView]))
-                {
-                    if ((_cardInPlay=[_Deck getCardFromRect: [_Deck deckShownArea] :rectInView ]))
+                 NSLog(@"In DragDetected rectInView before getCardfromrect Main=%@",NSStringFromCGRect(rectInView));
+                NSLog(@"In DragDetected rectInView=%@",NSStringFromCGRect(rectInView));                if (! (_cardInPlay= [_Deck getCardFromRect :[_Deck cardsMainArea] :rectInView]))
+                    {
+                        NSLog(@"In DragDetected card not in Main *** rectInView=%@",NSStringFromCGRect(rectInView));
+                        NSLog(@"DD card not in Main- About to chk Deck Shown Area rectInView=%@",NSStringFromCGRect(rectInView));
+                        for (Card *c in [_Deck deckShownArea])
+                        {
+                            NSLog(@"DD Card c.cardVal=%d",c.cardVal);
+                        }
+                        NSLog(@"DD End Showing deckShown Area");
+                        {
+                     if ((_cardInPlay=[_Deck getCardFromRect: [_Deck deckShownArea] :rectInView ]))
                         NSLog(@"cardInPlay.cardPic - after deckShownArea -  getCardFromRect = %@",_cardInPlay.cardPic);
                         //if (!(_cardInPlay=getCardFromRect [_Deck acesArea] : rectInView))
-                    else
-                    NSLog(@"ERROR - CARD NOTFOUND ANYWHERE");
-                }
+                     else
+                            NSLog(@"ERROR - CARD NOTFOUND ANYWHERE");
+                        }
+                    }
                 CountOfStartingSubviews=[subviews count];
                 NSLog(@"**** UIGestureRecognizerStateBegan - Drag Started %@", NSStringFromCGPoint(locationInView));
                 // NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.view.frame));
@@ -507,7 +516,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
         case UIGestureRecognizerStateEnded:    //Dropped!!!!!  - Dragging Ended
         {
             CGPoint dropLocationInView = [panGestureRecognizer locationInView:self.view];
-            NSLog(@"DROPPED UIGestureRecogniserStateEnded %@", NSStringFromCGPoint(dropLocationInView));
+            NSLog(@"DROPPED UIGestureRecogniserStateEnded %@", (NSStringFromCGPoint(dropLocationInView)));
             
             unsigned long CurrentSubviewCount = [subviews count];
             NSLog(@"CurrentSubviewCount = %lu, Count ofStartingSubviews= %lu", CurrentSubviewCount ,CountOfStartingSubviews);
@@ -610,7 +619,7 @@ NSComparisonResult compare(UIView *firstView, UIView *secondView, void *context)
 -(void) makeDragCardView: (float) dragCardOriginX :(float) dragCardOriginY
 {
     
-    NSLog(@"in makeTmpCardView..\7dragCardOriginX %d,dragCardOriginY %d ",dragCardOriginX,dragCardOriginY);
+    NSLog(@"in makeTmpCardView..\7dragCardOriginX %f,dragCardOriginY %f ",dragCardOriginX,dragCardOriginY);
     
     CGRect tmpRect=CGRectMake( dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
     //C dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
@@ -734,5 +743,32 @@ NSComparisonResult compare(UIView *firstView, UIView *secondView, void *context)
         }
     return(maxVolIndex);
 }
+
+
+
+-(void) EndOfGameAnimation
+    {
+        
+        // Depending On Suit:
+        // for any Cards in Main Area  - animated move to Aces Are
+        // forAny Cards in DeckShown Are move to0 aces Area
+        // for Any cards in Deck - Show Face and Move To Aces Area
+      /*
+        for (Card *c in [_Deck mainCardsArea))
+            {
+                //if (!c.cardFaceUp)
+                             //get Card picture
+                             // show picture
+                             
+         
+            UIView.animateWithDuration(0.5, delay: 0.3, options: nil, animations: {
+                    self.username.center.x += self.view.bounds.width
+            }, completion: nil);
+                
+                
+                
+            }
+       */
+    }
 
 @end

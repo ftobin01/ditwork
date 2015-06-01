@@ -34,7 +34,9 @@
 - (Card *)      getCardFromRect : (NSMutableArray *) cardArray : (CGRect) aRect;
 
 - (void)        initDeck;
-- (Card *)      dealCard;
+//- (Card *)      dealCard;
+-(Card *) dealCard : (UIView *)dealView;
+
 - (NSString *)  getPicFileName : (Card *) acard;
 
 //- (Card *)       initCardWithData : (int ) suitNum :( int ) cardNumVal : (NSString *) cardPicName : (CGRect) cardRect : (BOOL ) cardFaceUp;
@@ -181,7 +183,7 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
 
 
 
--(Card *) dealCard
+-(Card *) dealCard : (UIView *)dealView
     {
          NSLog(@"In dealCard");
        // Card *cardDealt = [[Card alloc] init];
@@ -193,6 +195,7 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
         {
         //Card *cardDealt = [[Card alloc] init];
         // *cardDealt = *dealCard;
+            dealCard.cardRect = dealView.frame;
         NSLog(@"In dealCard :  1 [%d] = %@",(int)i++,dealCard.cardPic);
         NSLog(@"In dealCard : dealCard.cardVal 1.1 = %d",dealCard.cardVal);
        
@@ -268,21 +271,21 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
 
 -(Card *) getCardFromRect : (NSMutableArray *) cardArray : (CGRect) aRect
 {
-    NSLog(@"getCardFromRect arect.frame = %@  ",NSStringFromCGRect(aRect));
-    NSLog(@"getCardFromRect count of cardArray = %lu", (unsigned long)[cardArray count]);
+    NSLog(@"getCardFromRect  1: arect.frame = %@  ",NSStringFromCGRect(aRect));
+    NSLog(@"getCardFromRect  2: count of cardArray = %lu", (unsigned long)[cardArray count]);
     Card *c = [[Card alloc] init];
     for ( c in cardArray)
     {
-        NSLog(@"getCardFromRect c.cardVal =%d aRect = %@ cardRect =%@",c.cardVal,NSStringFromCGRect(aRect),NSStringFromCGRect(c.cardRect));
+        NSLog(@"getCardFromRect 3: c.cardVal =%d aRect = %@ cardRect =%@",c.cardVal,NSStringFromCGRect(aRect),NSStringFromCGRect(c.cardRect));
         
         if ( CGRectEqualToRect(aRect, c.cardRect))
         {
-            NSLog(@"getCardFromRect Found Card : %d %@", c.cardVal, c.cardPic);
+            NSLog(@"getCardFromRect Found Card 4: %d %@", c.cardVal, c.cardPic);
             return (c);
         }
         
     }
-    NSLog(@"getCardFromRect Returning Nil ");
+    NSLog(@"getCardFromRect Returning Nil 5:");
     return (nil);
     /*
      Frame A view's frame (CGRect) is the position of its rectangle in the superview's coordinate system. By default it starts at the top left.

@@ -37,8 +37,8 @@
 -(Card *) getCardFromRect : (NSMutableArray *) cardArray : (CGRect) aRect;
 
 -(NSString *) getPicFileName : (Card *) acard;
--(Card *) dealCard;
- -(void) initDeck;
+//-(Card *) dealCard;
+-(Card *) dealCard : (UIView *)dealView; -(void) initDeck;
 -(void) compareColumns;
 // -( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
 @end
