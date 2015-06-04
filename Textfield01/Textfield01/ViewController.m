@@ -20,7 +20,7 @@
     // Do any additional setup after loading theview, typically from a nib.
 
     
-    [self turnOffKeyBoard];
+    //[self turnOffKeyBoard];
     
     
     [_mytextfield becomeFirstResponder];
