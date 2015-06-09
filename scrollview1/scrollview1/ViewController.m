@@ -8,13 +8,16 @@
 
 #import "ViewController.h"
 #import "ScrollCell.h"
+#import "SpeechBubble1.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic,strong) NSArray *responseOut;
-@property (nonatomic, strong) NSArray *responseIn;
+@property (nonatomic,strong) NSMutableArray *responseOut;
+@property (nonatomic, strong) NSMutableArray *responseIn;
 
-- (void)updateScreenView:(int *)loadIndex;
+
+-(void) updateScrollView: (NSMutableArray *)response;
+//- (void)updateScreenView:(int *)loadIndex;
 @end
 
 @implementation ViewController
@@ -29,8 +32,8 @@
 
     */
     
-    _responseIn= [[NSArray alloc] init];
-    _responseOut = [[NSArray alloc] init];
+    _responseIn= [[NSMutableArray alloc] init];
+    _responseOut = [[NSMutableArray alloc] init];
     
     UIView *myView = [[UIView alloc] initWithFrame : CGRectMake(100,100,200,200)];
     myView.backgroundColor = [UIColor redColor];
@@ -73,16 +76,23 @@ scrollView.contentSize = CGSizeMake(self.view.frame.size.width * numberOfViews, 
          
          lab.text = [NSString stringWithFormat:@"This is label %i", i+1];
          [lab sizeToFit];
-        [sv addSubview : lab];
+        //[sv addSubview : lab];
         
-                  y += lab.bounds.size.height + 5;
+        y += lab.bounds.size.height + 5;
          
          CGSize sz = sv.bounds.size;
-         sz.height = 10.0f;// y;
+         sz.height =  10.0f;//y;
          sv.contentSize = sz;
- 
-     
+        // [self makeBubble: sv];
+         
+         //[self makeBubble: sv];
+         
+         //[self makeBubble: sv];
+         [_responseIn addObject : lab];
      }
+         [self updateScrollView:_responseIn];
+         
+    
     
      // This is the crucial lineThe contentSize is just the sum of the widths of the three UIViews, if the width of each UIView is 320, and we have three UIViews, your contentSize width will be 920.
 }
@@ -102,9 +112,13 @@ scrollView.contentSize = CGSizeMake(self.view.frame.size.width * numberOfViews, 
 
 
 
--(void) updateCarousel: (NSArray *)response{
-    if(_responseIn && _responseIn.count>0){
-        int i=0;
+-(void) updateScroll: (NSMutableArray *)response{
+    
+    NSLog(@"updateScrollView =%lul",(unsigned long)_responseIn.count);
+    if(_responseIn && _responseIn.count>0)
+        {
+            NSLog(@"in updateScrollView - IF ");
+            int i=0;
         _scrollView.hidden=NO;
         [_scrollView setNeedsDisplay];
        // _view.pagingMode.hidden=NO;
@@ -129,17 +143,103 @@ scrollView.contentSize = CGSizeMake(self.view.frame.size.width * numberOfViews, 
             
             
             //cardView.backgroundColor = [UIColor colorWithWhite:1 alpha:0];
-           // i++;
+            i++;
             
             self.scrollView.contentSize = CGSizeMake(i*(self.scrollView.frame.size.width), self.scrollView.frame.size.height);
+            _scrollView.backgroundColor = [UIColor redColor];
            // self.pageControl.numberOfPages=i;
+            
+        [self updateScrollView:_responseIn];
+            
+            
+            {
+                UIView *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+                
+                // Add the tip balloon.
+                SpeechBubble1 *textExample =
+                [[SpeechBubble1 alloc] initAtPoint:CGPointMake(6.0f, 30.0f) withText: @"Hello world! I like to make things. Yay! They are really cool things!"];
+                [window addSubview:textExample];
+                
+                
+                window.backgroundColor = [UIColor brownColor];
+              //  .[window makeKeyAndVisible];
+                //return YES;
+            }
+            
+            
             
         }
 }
 
+- (void) makeBubble :(UIView *)bubbleView
+{
+    static int x =0;
+    static int y=0;
+    
+UIImage *bubble = [[UIImage imageNamed:@"greyBubble.png"]
+                   resizableImageWithCapInsets:UIEdgeInsetsMake(0+x, 21, 0, 21)];
+UIImageView *imgView =[[UIImageView alloc] initWithImage:bubble];
+imgView.frame = CGRectMake(250, 350+y, 0, 0);
+UILabel  *xlabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
+    
+xlabel.text = @"This is a dialogue text!!!";
+    //imgView.backgroundColor = [UIColor redColor];
+//[imgView addSubview:xlabel];
+[bubbleView addSubview:imgView];
+[UIView animateWithDuration:0.8
+                 animations:^(void) {
+                     imgView.frame = CGRectMake(250+x, 350+y, 200, 30);
+                 } completion:^(BOOL finished) {
+                     NSLog(@"SpeechViewController ==> SPEECH BUBBLE ANIMATION COMPLETE.");
+                 }];
+    
+    //x+=10;
+    y+=100;
 
-NSNumber
+}
+
+
+
+
+- (id)initWithText:(NSString *)text fontSize:(float)fontSize noteChrome:(UIImage *)img edgeInsets:(UIEdgeInsets)insets  maximumWidth:(CGFloat)width topLeftCorner:(CGPoint)corner
+{
+    if (self = [super init])
+    {
+    }
+    return self;
+}
+
+
+#define LARGE_NUMBER 10000 // just a large (but arbitrary) number because we don't want to impose any vertical constraint on our note size
+/*
+-(void) note
+        {
+        _text = [NSString stringWithString:_text];
+        CGSize computedSize = [text sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:CGSizeMake(width, LARGE_NUMBER) lineBreakMode:NSLineBreakByWordWrapping];
         
+        UILabel *textLabel = [[UILabel alloc] init];
+        textLabel.font = [UIFont systemFontOfSize:fontSize];
+        textLabel.text = self.text;
+        textLabel.numberOfLines = 0; // unlimited number of lines
+        textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        
+        textLabel.frame = CGRectMake(insets.left, insets.top, computedSize.width , computedSize.height);
+        _noteView = [[UIImageView alloc] initWithFrame:CGRectMake(corner.x, corner.y, textLabel.bounds.size.width+insets.left+insets.right, textLabel.bounds.size.height+insets.top+insets.bottom)];
+        _noteView.image = [img resizableImageWithCapInsets:insets];
+        
+        [_noteView addSubview:textLabel];
+        
+    }
+    
+    
+}
+
+ 
+@end
+*/
+
+
+
 - (void) updateScreenView:(NSNumber *)loadIdx
         {
             int loadIndex = [NSNumber numberWithInt: loadIdx];
@@ -154,11 +254,14 @@ NSNumber
                 // Here we schedule another call of this function if there is anything
                 if (loadIndex < _responseIn.count - 1)
                 {
-                    [self performSelector:@selector(updateScreenView:) withObject:[NSNumber numberWithInt:(loadIndex+1) afterDelay:0.5f];
-                     }
-                     }
+                  //  [_responseIn performSelector:@selector(updateScreenView:) withObject:[NSNumber numberWithInt:(loadIndex+1) afterDelay :0.5f]];
+                 //   - (id)performSelector:(SEL)aSelector withObject:(id)object;
+
+                    
+                }
+            }
                      
-                     }
+        }
                      
 
 
@@ -182,7 +285,7 @@ NSNumber
 
 
 
-
+/*
 
 
 
@@ -197,7 +300,7 @@ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ROFL"
 }                     [alert show];
 
 
-
+*/
 
 
 

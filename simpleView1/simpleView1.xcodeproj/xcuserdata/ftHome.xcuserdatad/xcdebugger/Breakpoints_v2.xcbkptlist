@@ -9,29 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SpeechBubble1.m"
-            timestampString = "455148497.864717"
+            filePath = "simpleView1/ViewController.m"
+            timestampString = "455421457.092317"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "@implementation SpeechBubble1"
-            landmarkType = "3">
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "-showLabel"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SpeechBubble1.m"
-            timestampString = "455147933.430328"
+            filePath = "simpleView1/ViewController.m"
+            timestampString = "455420999.513411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "-initAtPoint:withText:"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "-setUpView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -16,6 +16,8 @@
 		B4CDED131B1F075500D225C7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CDED111B1F075500D225C7 /* LaunchScreen.xib */; };
 		B4CDED1F1B1F075500D225C7 /* scrollview1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CDED1E1B1F075500D225C7 /* scrollview1Tests.m */; };
 		B4CDED2A1B1F07BA00D225C7 /* scrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CDED291B1F07BA00D225C7 /* scrollCell.m */; };
+		B4E647281B20EC31008829DC /* greyBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = B4E647271B20EC31008829DC /* greyBubble.png */; };
+		B4E6472B1B20FB98008829DC /* SpeechBubble1.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E6472A1B20FB98008829DC /* SpeechBubble1.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,9 @@
 		B4CDED1E1B1F075500D225C7 /* scrollview1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = scrollview1Tests.m; sourceTree = "<group>"; };
 		B4CDED281B1F07BA00D225C7 /* scrollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scrollCell.h; sourceTree = "<group>"; };
 		B4CDED291B1F07BA00D225C7 /* scrollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scrollCell.m; sourceTree = "<group>"; };
+		B4E647271B20EC31008829DC /* greyBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyBubble.png; sourceTree = "<group>"; };
+		B4E647291B20FB98008829DC /* SpeechBubble1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechBubble1.h; sourceTree = "<group>"; };
+		B4E6472A1B20FB98008829DC /* SpeechBubble1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechBubble1.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +73,8 @@
 		B4CDECF31B1F075400D225C7 = {
 			isa = PBXGroup;
 			children = (
+				B4E647291B20FB98008829DC /* SpeechBubble1.h */,
+				B4E6472A1B20FB98008829DC /* SpeechBubble1.m */,
 				B4CDECFE1B1F075400D225C7 /* scrollview1 */,
 				B4CDED1B1B1F075500D225C7 /* scrollview1Tests */,
 				B4CDECFD1B1F075400D225C7 /* Products */,
@@ -87,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				B4CDED031B1F075500D225C7 /* AppDelegate.h */,
+				B4E647271B20EC31008829DC /* greyBubble.png */,
 				B4CDED041B1F075500D225C7 /* AppDelegate.m */,
 				B4CDED091B1F075500D225C7 /* ViewController.h */,
 				B4CDED0A1B1F075500D225C7 /* ViewController.m */,
@@ -207,6 +215,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4E647281B20EC31008829DC /* greyBubble.png in Resources */,
 				B4CDED0E1B1F075500D225C7 /* Main.storyboard in Resources */,
 				B4CDED131B1F075500D225C7 /* LaunchScreen.xib in Resources */,
 				B4CDED101B1F075500D225C7 /* Images.xcassets in Resources */,
@@ -228,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4CDED051B1F075500D225C7 /* AppDelegate.m in Sources */,
+				B4E6472B1B20FB98008829DC /* SpeechBubble1.m in Sources */,
 				B4CDED081B1F075500D225C7 /* scrollview1.xcdatamodeld in Sources */,
 				B4CDED0B1B1F075500D225C7 /* ViewController.m in Sources */,
 				B4CDED021B1F075500D225C7 /* main.m in Sources */,
@@ -422,6 +432,7 @@
 				B4CDED241B1F075500D225C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4CDED251B1F075500D225C7 /* Build configuration list for PBXNativeTarget "scrollview1Tests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +441,7 @@
 				B4CDED271B1F075500D225C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
