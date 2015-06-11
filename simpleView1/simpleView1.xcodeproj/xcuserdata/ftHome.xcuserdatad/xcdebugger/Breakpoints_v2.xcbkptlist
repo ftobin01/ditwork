@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "simpleView1/ViewController.m"
-            timestampString = "455580959.108836"
+            timestampString = "455698797.920773"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "-showLabel"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "simpleView1/ViewController.m"
-            timestampString = "455580959.108836"
+            timestampString = "455694510.753092"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "-showResponseOut:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "simpleView1/ViewController.m"
-            timestampString = "455580959.108836"
+            timestampString = "455701443.338668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
+            startingLineNumber = "383"
+            endingLineNumber = "383"
             landmarkName = "@implementation ViewController"
             landmarkType = "3">
          </BreakpointContent>

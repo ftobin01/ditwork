@@ -12,6 +12,9 @@
 @interface ViewController ()
 @property (nonatomic, strong) UILabel   *speechLabel;
 @property (nonatomic, strong) UIBezierPath *bezierPath;
+
+-(CGRect) makeBoundingRect : (NSString *) textStr;
+
 @end
 
 @implementation ViewController
@@ -28,13 +31,20 @@ static NSDictionary *commsOutArray;
     //[self drawTriangle2];
     //[self.view.layer display];
  //   [self drawRect2:self.view.frame];
-    [self setUpView];
+  [self setUpView];
   //  UIGraphicsEndImageContext();
     
-   [self showResponseOut : @"text Out"];
-        [self showResponseIn : @"text  In"];
-    [self drawDateBubble];
-    UIGraphicsEndImageContext();
+  [self showResponseOut : @"text Out"];
+  [self showResponseIn : @"\ntext  In, loads of text, teasdfasa\n"];
+  [self drawDateBubble];
+  //  UIGraphicsEndImageContext();
+  /*
+    [self makeBoundingRect : @"Hello there World"];
+    [self makeBoundingRect : @"Hello there World,Hello there World, Hello there World,Hello there World"];
+    [self makeBoundingRect : @"Hello there World, Hello there World , Hello there World "];
+    [self makeBoundingRect : @"Hello there WorldHello there World,"];
+   */
+
 }
 -(void) setUpView
 {
@@ -51,11 +61,14 @@ UIRectFill(CGRectMake(0, 0, size.width, size.height));
     //CGRect smallRect = CGRectMake(50,200,200,100);
     CGRect smallRect3 =CGRectMake(150,100,200,100);
 
+    NSDictionary *textAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:12.0f]};
+    
+    
     //[ UIGraphicsGetCurrentContext()] fill];
     _bezierPath = [UIBezierPath bezierPathWithRoundedRect:smallRect3 cornerRadius:4] ;
     
     UILabel *myLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 420, 320, 100)];
-    CGPoint  t1=CGPointMake(smallRect3.origin.x+ smallRect3.size.width-2,smallRect3.origin.y);
+    CGPoint  t1=CGPointMake(smallRect3.origin.x+ smallRect3.size.width-3,smallRect3.origin.y);
     CGPoint t2=CGPointMake( smallRect3.origin.x+smallRect3.size.width+10,smallRect3.origin.y);
     CGPoint t3=CGPointMake( smallRect3.origin.x+smallRect3.size.width,smallRect3.origin.y+15);
     
@@ -76,9 +89,9 @@ bezierPath.lineWidth = 0.0;
 [_bezierPath stroke];
 [[UIColor redColor] setFill];
 [_bezierPath fill];
-   
-[self drawText :  textStr: smallRect3];
-// (5) Deriving a new UIImage instance from the bitmap context:
+    [self drawText :  textStr: smallRect3: textAttributes];
+ 
+  // (5) Deriving a new UIImage instance from the bitmap context:
 UIImage *fImg = UIGraphicsGetImageFromCurrentImageContext();
 // (6) Closing the context:
 //UIGraphicsEndImageContext();
@@ -93,12 +106,14 @@ UIImageView *iv = [[UIImageView alloc] initWithImage:fImg];
 {
             //CGRect smallRect = CGRectMake(50,200,200,100);
         CGRect smallRect3 =CGRectMake(200,300,20,50);
-        
+    
+     NSDictionary *textAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:12.0f]};
+    
+    
         //[ UIGraphicsGetCurrentContext()] fill];
         _bezierPath = [UIBezierPath bezierPathWithRoundedRect:smallRect3 cornerRadius:4] ;
     
-        
-        
+    [self drawText :  @" 26 May 2015": smallRect3 :textAttributes ];
         // [bezierPath addLineToPoint:t3];
         //  [bezierPath  closePath];
         _bezierPath.lineWidth = 0.0;
@@ -110,7 +125,7 @@ UIImageView *iv = [[UIImageView alloc] initWithImage:fImg];
         [[UIColor redColor] setFill];
         [_bezierPath fill];
         
-        [self drawText :  @" 26 May 2015": smallRect3];
+    
         // (5) Deriving a new UIImage instance from the bitmap context:
         UIImage *fImg = UIGraphicsGetImageFromCurrentImageContext();
         // (6) Closing the context:
@@ -127,46 +142,69 @@ UIImageView *iv = [[UIImageView alloc] initWithImage:fImg];
 
 -(void)showResponseIn: ( NSString *) textStr
 {
-    CGRect smallRect = CGRectMake(10,150,200,100);
-    //CGRect smallRect3 =CGRectMake(57,100,200,100);
+   NSDictionary *textAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:25.0f]};
     
-    _bezierPath = [UIBezierPath bezierPathWithRoundedRect:smallRect cornerRadius:4];
-  /*
+    CGRect smallRect = [self makeBoundingRect :textStr: textAttributes];
+    smallRect.origin.x = 50;
+    smallRect.origin.y =270;
+    CGRect msgRect = CGRectMake(50,270,smallRect.size.width+2,smallRect.size.height+2);
     
-    CGPoint  tl1=CGPointMake(smallRect.origin.x-2,smallRect.origin.y);
-    CGPoint tl2=CGPointMake( smallRect.origin.x-10,smallRect.origin.y);
-    CGPoint tl3=CGPointMake( smallRect.origin.x-10,smallRect.origin.y+15);
-  
-    [_bezierPath moveToPoint: tl1];
-    [_bezierPath addLineToPoint:tl2];
-    [_bezierPath addLineToPoint:tl3];
+    UIColor *messageColor = [UIColor blueColor];
     
+    
+    //CGRect smallRect =CGRectMake(57,100,200,100);
+    
+    [self makeBox : msgRect : messageColor];
    
-    // [bezierPath addLineToPoint:t3];
+    [self addTriangle : msgRect : messageColor];
     
-   
-   [_bezierPath  closePath];
-   */
-   
-   _bezierPath.lineWidth = 0.0;
-   
+    [self drawText : textStr : msgRect :textAttributes];
     
-    [_bezierPath stroke];
-   
-    [[UIColor greenColor] setFill];
-    [_bezierPath fill];
     
-    [self drawText : textStr : smallRect];
     // (5) Deriving a new UIImage instance from the bitmap context:
     UIImage *fImg = UIGraphicsGetImageFromCurrentImageContext();
     // (6) Closing the context:
   //  UIGraphicsEndImageContext();
     // (7) Setting the image view's image property to the created image, and displaying
     UIImageView *iv = [[UIImageView alloc] initWithImage:fImg];
+    
+ 
     [self.view addSubview:iv];
     
   
 }
+
+-(void)makeBox : (CGRect) smallRect : (UIColor *) boxColor
+{
+    //[[UIColor boxColor] setStroke];
+    [boxColor setStroke];
+    [boxColor  setFill];
+    _bezierPath = [UIBezierPath bezierPathWithRoundedRect:smallRect cornerRadius:4];
+    [ _bezierPath stroke];
+    [_bezierPath fill];
+}
+
+
+-(void)addTriangle : (CGRect) smallRect : (UIColor *) triangleColor
+{
+    CGPoint  tl1=CGPointMake(smallRect.origin.x+3,smallRect.origin.y-.3f);
+    CGPoint tl2=CGPointMake( smallRect.origin.x-15,smallRect.origin.y-.1);
+    CGPoint tl3=CGPointMake( smallRect.origin.x+3,smallRect.origin.y+15);
+    
+    _bezierPath.lineWidth = 0.0;
+    [_bezierPath moveToPoint: tl1];
+    [_bezierPath addLineToPoint:tl2];
+    [_bezierPath addLineToPoint:tl3];
+    // [_bezierPath addLineToPoint:tl1];
+    
+    [_bezierPath  closePath];
+    [ _bezierPath stroke];
+    [triangleColor setFill];
+    [_bezierPath fill];
+    
+    
+}
+
 
 
 -(void) makePhotoCircle
@@ -175,9 +213,6 @@ UIImageView *iv = [[UIImageView alloc] initWithImage:fImg];
 //
 //  UIBezierPath *bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(size.width/2, size.height/2) radius:140 startAngle:0 endAngle:2 * M_PI clockwise:YES];
 }
-
-
-
 
 -(void) createLabel
 {
@@ -250,32 +285,80 @@ myLabel.backgroundColor = [UIColor greenColor];
 }
 
 
--(void)drawText : (NSString *) textStr : (CGRect) drawRect
+-(CGRect) makeBoundingRect : (NSString *) textStr : (NSDictionary *) textAttributes
+{
+    NSAttributedString *header = [[NSAttributedString alloc ] initWithString : textStr
+        attributes: textAttributes];
+    
+    
+        // CGContextRef *currentContext = UIGraphicsGetCurrentContext();
+        // Create text attributes
+       //NSDictionary *textAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:5.0f]};
+        
+        // Create string drawing context
+        NSStringDrawingContext *drawingContext = [[NSStringDrawingContext alloc] init];
+       drawingContext.minimumScaleFactor = 0.5; // Half the font size
+    
+    //    UILabel *label = [[UILabel alloc] initWithFrame: drawRect];
+      //  label.font = [UIFont systemFontOfSize: 18.0];
+    
+ //   CGSize maxSize = CGSizeMake(label.frame.size.width,MAXFLOAT);
+        
+     //   CGRect labelRect = [textStr boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: label.font} context:drawingContext];
+    
+    CGRect boundingRect = [header boundingRectWithSize:CGSizeMake(100.f, CGFLOAT_MAX)
+                options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                    context: nil];
+    
+  NSLog(@"size %@", NSStringFromCGSize(boundingRect.size));
+        
+        
+        
+        
+        //CGRect drawRect = CGRectMake(0.0, 0.0, 200.0, 100.0);
+   //     [textStr drawWithRect:labelRect
+   //                  options:NSStringDrawingUsesLineFragmentOrigin
+    //               attributes:textAttributes
+    //                  context:drawingContext];
+   // }
+ 
+    return (boundingRect);
+}
+
+
+
+
+
+
+
+
+-(void)drawText : (NSString *) textStr : (CGRect) drawRect :(NSDictionary *) textAttributes
 {
     
    // CGContextRef *currentContext = UIGraphicsGetCurrentContext();
 // Create text attributes
-NSDictionary *textAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:18.0]};
+//NSDictionary *textAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:12.0]};
 
 // Create string drawing context
-NSStringDrawingContext *drawingContext = [[NSStringDrawingContext alloc] init];
-drawingContext.minimumScaleFactor = 0.2; // Half the font size
-    UILabel *label = [[UILabel alloc] initWithFrame: drawRect];
-    label.font = [UIFont systemFontOfSize: 18.0];
-    CGSize maxSize = CGSizeMake(label.frame.size.width,MAXFLOAT);
+   NSStringDrawingContext *drawingContext = [[NSStringDrawingContext alloc] init];
+
+    drawingContext.minimumScaleFactor = 0.5; // Half the font size
+  //  UILabel *label = [[UILabel alloc] initWithFrame: drawRect];
+   // label.font = [UIFont systemFontOfSize: 18.0];
+    //CGSize maxSize = CGSizeMake(label.frame.size.width,MAXFLOAT);
     
-CGRect labelRect = [textStr boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: label.font} context:drawingContext];
+//CGRect labelRect = [textStr boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: label.font} context:drawingContext];
     
-    NSLog(@"size %@", NSStringFromCGSize(labelRect.size));
+   // NSLog(@"size %@", NSStringFromCGSize(labelRect.size));
     
     
     
     
 //CGRect drawRect = CGRectMake(0.0, 0.0, 200.0, 100.0);
-[textStr drawWithRect:labelRect
+[textStr drawWithRect:drawRect
              options:NSStringDrawingUsesLineFragmentOrigin
           attributes:textAttributes
-             context:drawingContext];
+                      context:nil] ; //]drawingContext];
 }
 
 
