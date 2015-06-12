@@ -595,8 +595,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
             
             //Delete Tails
             [self deleteSubViewTails :countStartingSubviews ];
-            
-                       CGPoint dropLocationInView = [panGestureRecognizer locationInView:self.view];
+            CGPoint dropLocationInView = [panGestureRecognizer locationInView:self.view];
             CGRect dropRectInView =[self  inDropViewList :dropLocationInView];
             NSLog(@"dropLocationInView =%@ ",NSStringFromCGRect(dropRectInView));
             NSLog(@"About to Check Drop  Area");
@@ -611,12 +610,17 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                 {
                 // Find Specific Area to Drop To
                 // Check Main Area
-                NSLog(@"About to check if  Drop is in Main Area");                if (!CGRectIsEmpty ([self chkAreaByRect :_Deck.cardsMainArea :dropRectInView  ]))
+                NSLog(@"About to check if  Drop is in Main Area");
+                    if (!CGRectIsEmpty ([self chkAreaByRect :_Deck.cardsMainArea :dropRectInView  ]))
                     {
                     NSLog(@"Drop in Main Area");
                 NSLog(@"DROPPED - location Point %@", (NSStringFromCGPoint(dropLocationInView)));
                 NSLog(@"DROPPED - location Rect %@", (NSStringFromCGRect(dropRectInView)));
-                        
+                     
+     int mainCardIndex=[self maxVolIntersection : _Deck.cardsMainArea : dropRectInView ];
+            Card *cardDroppingOn= [[Card alloc] init];
+            cardDroppingOn = [_Deck.cardsMainArea objectAtIndex : mainCardIndex];
+                        NSLog(@"Card with Biggest Volume = %d , cardSuit %d",cardDroppingOn.cardVal, cardDroppingOn.cardSuit);
                     }
                 else
                     {
@@ -868,21 +872,24 @@ NSComparisonResult compare(UIView *firstView, UIView *secondView, void *context)
 
 
 
--(int ) maxVolIntersection : (NSMutableArray *)ViewsToCheck : (CGRect) rectToChk
+-(int ) maxVolIntersection : (NSMutableArray *) cardsToCheck : (CGRect) rectToChk
 {
-    int maxVol;
+    int maxVol=0;
     CGRect intVol;
     int maxVolIndex=0;
-    
-    for (int i=0; i<[ViewsToCheck count]; i++)
+    for (int i=0; i<[cardsToCheck count]; i++)
         {
-            UIView   *checkView =(UIView *) [ViewsToCheck objectAtIndex : i];
-            CGRect viewRect = checkView.frame;
-            CGRect intersectVolRect=CGRectIntersection(rectToChk,viewRect);
-                if (!CGRectIsNull(intVol)) // ! CGRectNull - they Intersect volume returned
+        Card   *checkCard = [cardsToCheck objectAtIndex : i];
+        CGRect viewRect = checkCard.cardRect;
+        CGRect intersectVolRect=CGRectIntersection(rectToChk,viewRect);
+                if (!CGRectIsNull(intVol))
+                    // ! CGRectNull - they Intersect index to Card Array returned
                     {
-                        int intersectVol = intersectVolRect.size.height * intersectVolRect.size.width;
-                        if (intersectVol > maxVol)
+                   // calculate Volume of Card
+                    int intersectVol = intersectVolRect.size.height * intersectVolRect.size.width;
+                        
+                    // if Greater Save the Index
+                    if (intersectVol > maxVol)
                             {
                             maxVol=intersectVol;
                             maxVolIndex = i;
