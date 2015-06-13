@@ -44,6 +44,7 @@
 		B4D436AD1B24FD2F00F14291 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4D436AE1B24FD2F00F14291 /* simpleView1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = simpleView1Tests.m; sourceTree = "<group>"; };
 		B4D436B81B25021500F14291 /* greyBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyBubble.png; sourceTree = "<group>"; };
+		B4E255891B2C47B100A00906 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = constants.h; path = ../constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +86,7 @@
 		B4D4368E1B24FD2E00F14291 /* simpleView1 */ = {
 			isa = PBXGroup;
 			children = (
+				B4E255891B2C47B100A00906 /* constants.h */,
 				B4D436931B24FD2F00F14291 /* AppDelegate.h */,
 				B4D436941B24FD2F00F14291 /* AppDelegate.m */,
 				B4D436991B24FD2F00F14291 /* ViewController.h */,
@@ -420,6 +422,7 @@
 				B4D436B41B24FD2F00F14291 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4D436B51B24FD2F00F14291 /* Build configuration list for PBXNativeTarget "simpleView1Tests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +431,7 @@
 				B4D436B71B24FD2F00F14291 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

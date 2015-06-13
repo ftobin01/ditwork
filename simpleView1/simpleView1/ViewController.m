@@ -6,8 +6,34 @@
 //  Copyright (c) 2015 FT. All rights reserved.
 //
 
+
+
+// Programming Notes:
+//
+// Implemented a simple View as I did not feel that Whats App is based on a table.
+// Basic functionality for writing messages to a view based on whats app look and feel have been implement.
+// Test Data input is processed from a dictionary as this App
+// is anticipated being used with JASON type data frm a network.
+//
+// It took several days before I gave up trying to get UTTextAlignnemnt to work for Right Justification.
+//  Gave up in the end and managed it by checking width
+//  length and Padding Space. I am amazed that a simple thing like this is not easy to do in IOS.
+//
+// It took another couple of days to Get bounding Rect with size to work - probably quicker to write from scratch.
+//
+// It took another few days to try everything except UIBezierPaths looking for another way .. eventually realized - it should be used.
+//
+// TO DO
+// TO give  scrolling ability  add in a ScrollView the size of the Screen and then subclass it so everything moves at once - if I get time.
+//
+//  Put in Rounded Photgraph.
+//
+// Last UPdate: 12:08 Mon 14/6/2015
+
+
 #import "ViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#include "constants.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) UILabel   *speechLabel;
@@ -22,14 +48,6 @@
 
 static NSDictionary *commsInArray;
 static NSDictionary *commsOutArray;
-
-
-
-#define MSG_FONT_SIZE 45.0f
-#define TIMESTAMP_FONT_SIZE  8.0f
-#define MSG_TXT_COLOR blackColor // UIColor words
-#define FONT_HELVETICA @"Helvetica-Light"
-#define BLACK_SHADOW [UIColor colorWithRed:40.0f/255.0f green:40.0f/255.0f blue:40.0f/255.0f alpha:0.4f]
 
 
 
