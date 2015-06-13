@@ -32,8 +32,9 @@
 
 
 //-(Card *)initCardWithData : (int ) suitNum :( int ) cardNumVal : (NSString *) cardPicName : (CGRect) cardRect : (BOOL ) cardFaceUp;
-
+-(int ) maxVolIntersection : (NSMutableArray *) cardsToCheck : (CGRect) rectToChk;
 -(Card *) getCardFromSubViewRect : (CGRect ) aRect;
+
 -(Card *) getCardFromRect : (NSMutableArray *) cardArray : (CGRect) aRect;
 
 -(NSString *) getPicFileName : (Card *) acard;

@@ -8,10 +8,9 @@
 #import "ViewController.h"
 #import "Deck.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "UIViewController+Helper.h"
 #include "constants.h"
-
-
+#import "Card+View.h"
 @interface ViewController ()
 
 @property (nonatomic, strong) NSMutableArray *dragAreas;
@@ -26,7 +25,7 @@
 
 -(void)  showDeck;
 //-(CGRect ) inSubViewList : ( CGPoint ) locationInView;
--( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
+//-( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
 -(CGRect )chkAreaByRect : (NSArray *) viewArea : ( CGRect ) locationRect;
 
 //-(Card *) getCardFromSubView : (CGRect *) aRect;
@@ -39,26 +38,6 @@
 
 //- (IBAction)tapDetected:(id)sender {
 //}
--(void) setupAllView
-    {
-        self.view.userInteractionEnabled = YES;
-        [self.view setAutoresizesSubviews:YES];
-        // dragArea and dropArea -hold Views that
-        // can be dragged or dropped to
-        _dragAreas=[[NSMutableArray alloc] initWithCapacity:52];
-        _dropAreas=[[NSMutableArray alloc] initWithCapacity:52];
-
-        
-        
-        // Linking Pan Gesture Recogniser to entire view - as need to make it easier once item is dragged.
-        UIPanGestureRecognizer *panGesture =[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragDetected:)];
-        panGesture.minimumNumberOfTouches = 1;
-        panGesture.enabled = YES;
-        [self.view addGestureRecognizer:panGesture];
-        
-      
-    
-    }
 
 - (void)viewDidLoad
 {
@@ -155,7 +134,7 @@
             
             [_Deck.cardsMainArea addObject: dealtCard]; // add to Main Area
             dealtCard.cardRect = aRect;  // assign View made to card
-            [self drawCardPicture: view1 : CARDREVERSE];
+            [dealtCard drawCardPicture: view1 : CARDREVERSE];
             
             //[self drawCardPicture: view1 : dealtCard.cardPic];
             
@@ -177,7 +156,7 @@
         NSString *picFile =[_Deck getPicFileName :dealtCard];
         
         NSLog(@"viewDidLoad 2.5 ==> picFile = %@",picFile);
-        [self drawCardPicture : view1 : picFile ];
+        [dealtCard drawCardPicture : view1 : picFile ];
         
         NSLog(@"viewDidLoad 3");
     }
@@ -187,59 +166,6 @@
 
 
 
-
-
-
-
--( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName
-{
-   /* sizes image to card view */
-    NSLog(@"drawCardPicture 1. PicName=%@",cardPicName);
-    
-        UIGraphicsBeginImageContext(view1.frame.size);
-        [[UIImage imageNamed: cardPicName] drawInRect:view1.bounds];
-    NSLog(@"drawCardPicture 2. PicName=%@",cardPicName);
-_globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-       NSLog(@"drawCardPicture 3. PicName=%@",cardPicName);
-    view1.backgroundColor = [UIColor colorWithPatternImage:_globalCardImage ];
-      //view1.backgroundColor = [UIColor colorWithWhite:.5f alpha: .5f];
-    
-    //else if you want it to be another color use the general UIColor method: +colorWithRed:green:blue:alpha:    ];
-       NSLog(@"Leaving drawCardPicture 4. PicName=%@",cardPicName);
-    
-    
-    
-}
-
-
--  (UIImage *)  imageTint :(NSString *) name withTintColor: (UIColor *) tintColor
-{
-    
-    UIImage *baseImage = [UIImage imageNamed:name];
-    
-    CGRect drawRect = CGRectMake(0, 0, baseImage.size.width, baseImage.size.height);
-    
-    UIGraphicsBeginImageContextWithOptions(baseImage.size, NO, 0);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextTranslateCTM(context, 0, baseImage.size.height);
-    CGContextScaleCTM(context, 1.0, -1.0);
-    
-    // draw original image
-    CGContextSetBlendMode(context, kCGBlendModeNormal);
-    CGContextDrawImage(context, drawRect, baseImage.CGImage);
-    
-    // draw color atop
-    CGContextSetFillColorWithColor(context, tintColor.CGColor);
-    CGContextSetBlendMode(context, kCGBlendModeSourceAtop);
-    CGContextFillRect(context, drawRect);
-    
-    UIImage *tintedImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return tintedImage;
-}
 
 - (void)tapDetected: (UIGestureRecognizer *)tapGestureRecognizer
 {
@@ -300,7 +226,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
         CGRect cardRect1 = CGRectMake( SHOWDECK_XPOS, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
         showCard1 = [[UIView alloc] initWithFrame:cardRect1];
         Card *dealtCard1= [_Deck dealCard : showCard1];
-        [self drawCardPicture : showCard1  : dealtCard1.cardPic];
+        [dealtCard1 drawCardPicture : showCard1  : dealtCard1.cardPic];
         [self.view addSubview: showCard1];
         [[_Deck deckShownArea] addObject: dealtCard1];
         
@@ -316,7 +242,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                 [self.view addSubview: showCard2];
                 Card *dealtCard2= [_Deck dealCard : showCard2];
                 
-                [self drawCardPicture : showCard2  : dealtCard2.cardPic];
+                [dealtCard2 drawCardPicture : showCard2  : dealtCard2.cardPic];
                 NSLog(@"showDeck: adding dealtCard2.cardPic =%@",dealtCard2.cardPic);
                 [[_Deck deckShownArea] addObject: dealtCard2];
                 [_dragAreas removeLastObject];
@@ -327,7 +253,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                 Card *dealtCard3= [_Deck dealCard : showCard3];
                 if ( dealtCard3  !=nil)
                 {
-                    [self drawCardPicture : showCard3  : dealtCard3.cardPic];
+                    [dealtCard3 drawCardPicture : showCard3  : dealtCard3.cardPic];
                     NSLog(@"showDeck: adding dealtCard3.cardPic =%@",dealtCard2.cardPic);                                    [[_Deck deckShownArea] addObject: dealtCard3];
                     
                     NSLog(@"showDeck: after adding dealtCard2.cardPic =%@",[[_Deck deckShownArea] objectAtIndex: 1] );
@@ -355,7 +281,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
             if (SHOW_3_CARDS==FALSE)
             {
                 //showCard1.backgroundColor = [UIColor colorWithPatternImage:dealtCard1.cardPic];
-                [self drawCardPicture : showCard1  : dealtCard1.cardPic];
+                [dealtCard1 drawCardPicture : showCard1  : dealtCard1.cardPic];
                 [self updateDeckShownArea : dealtCard1 : 0];
                     }
             else
@@ -363,7 +289,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                 Card *dealtCard2 = [_Deck dealCard : showCard2];
                 if (dealtCard2!=nil )
                 {
-                    [self drawCardPicture : showCard2  : dealtCard2.cardPic ];
+                    [dealtCard2 drawCardPicture : showCard2  : dealtCard2.cardPic ];
                     
                     [self updateDeckShownArea : dealtCard1 : 1];
                     
@@ -373,7 +299,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                 Card *dealtCard3 = [_Deck dealCard : showCard3];
                 if (dealtCard3 !=nil)
                 {
-                    [self drawCardPicture : showCard3  : dealtCard3.cardPic ];
+                    [dealtCard3 drawCardPicture : showCard3  : dealtCard3.cardPic ];
                    [self updateDeckShownArea : dealtCard1 : 2];                }
                 else
                     return;
@@ -638,7 +564,7 @@ else
                 NSLog(@"DROPPED - location Point %@", (NSStringFromCGPoint(dropLocationInView)));
                 NSLog(@"DROPPED - location Rect %@", (NSStringFromCGRect(dropRectInView)));
                      
-     int mainCardIndex=[self maxVolIntersection : _Deck.cardsMainArea : dropRectInView ];
+     int mainCardIndex=[_Deck maxVolIntersection : _Deck.cardsMainArea : dropRectInView ];
             Card *cardDroppingOn= [[Card alloc] init];
             cardDroppingOn = [_Deck.cardsMainArea objectAtIndex : mainCardIndex];
                         NSLog(@"Card with Biggest Volume = %d , cardSuit %d",cardDroppingOn.cardVal,cardDroppingOn.cardSuit);
@@ -792,7 +718,7 @@ else
     CGRect newRect = CGRectMake(newXPos,newYPos,  CARDWIDTH, CARDLENGTH);
     UIView *newView =[[UIView alloc] initWithFrame: newRect];
    
-      [self drawCardPicture : newView : oldCard.cardPic ];
+      [oldCard drawCardPicture : newView : oldCard.cardPic ];
       [[self view] addSubview:newView];
    // [self updateSuperView:oldCard.cardRect] ;
     
@@ -896,7 +822,7 @@ NSComparisonResult compare(UIView *firstView, UIView *secondView, void *context)
                 newView.backgroundColor = [UIColor orangeColor];
                 // need to do Card processing! also
                 [self.view  addSubview: newView];
-                [self drawCardPicture : newView : _cardInPlay.cardPic];
+                [_cardInPlay drawCardPicture : newView : _cardInPlay.cardPic];
                 [self deleteSubviewByRect : origRect ];
                 
             }
@@ -939,7 +865,7 @@ NSComparisonResult compare(UIView *firstView, UIView *secondView, void *context)
     
     //   tmpView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed: _cardInPlay.cardPic] ];
     
-    [self drawCardPicture :  tmpView : _cardInPlay.cardPic];
+    [_cardInPlay drawCardPicture :  tmpView : _cardInPlay.cardPic];
     [self.view addSubview: tmpView];
     [self.view setNeedsDisplay];
 
@@ -1030,59 +956,24 @@ NSComparisonResult compare(UIView *firstView, UIView *secondView, void *context)
 
 
 
-
--(int ) maxVolIntersection : (NSMutableArray *) cardsToCheck : (CGRect) rectToChk
+-(void) setupAllView
 {
-    int maxVol=0;
-    CGRect intVol;
-    int maxVolIndex=0;
-    for (int i=0; i<[cardsToCheck count]; i++)
-        {
-        Card   *checkCard = [cardsToCheck objectAtIndex : i];
-        CGRect viewRect = checkCard.cardRect;
-        CGRect intersectVolRect=CGRectIntersection(rectToChk,viewRect);
-                if (!CGRectIsNull(intVol))
-                    // ! CGRectNull - they Intersect index to Card Array returned
-                    {
-                   // calculate Volume of Card
-                    int intersectVol = intersectVolRect.size.height * intersectVolRect.size.width;
-                        
-                    // if Greater Save the Index
-                    if (intersectVol > maxVol)
-                            {
-                            maxVol=intersectVol;
-                            maxVolIndex = i;
-                            }
-                    }
-        }
-    return(maxVolIndex);
+    self.view.userInteractionEnabled = YES;
+    [self.view setAutoresizesSubviews:YES];
+    // dragArea and dropArea -hold Views that
+    // can be dragged or dropped to
+    _dragAreas=[[NSMutableArray alloc] initWithCapacity:52];
+    _dropAreas=[[NSMutableArray alloc] initWithCapacity:52];
+    
+    
+    
+    // Linking Pan Gesture Recogniser to entire view - as need to make it easier once item is dragged.
+    UIPanGestureRecognizer *panGesture =[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragDetected:)];
+    panGesture.minimumNumberOfTouches = 1;
+    panGesture.enabled = YES;
+    [self.view addGestureRecognizer:panGesture];
+    
+    
+    
 }
-
-
-
--(void) EndOfGameAnimation
-    {
-        
-        // Depending On Suit:
-        // for any Cards in Main Area  - animated move to Aces Are
-        // forAny Cards in DeckShown Are move to0 aces Area
-        // for Any cards in Deck - Show Face and Move To Aces Area
-      /*
-        for (Card *c in [_Deck mainCardsArea))
-            {
-                //if (!c.cardFaceUp)
-                             //get Card picture
-                             // show picture
-                             
-         
-            UIView.animateWithDuration(0.5, delay: 0.3, options: nil, animations: {
-                    self.username.center.x += self.view.bounds.width
-            }, completion: nil);
-                
-                
-                
-            }
-       */
-    }
-
 @end

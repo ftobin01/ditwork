@@ -32,7 +32,7 @@
 
 - (Card *)      getCardFromSubViewRect : (CGRect) aSubview;
 - (Card *)      getCardFromRect : (NSMutableArray *) cardArray : (CGRect) aRect;
-
+-(int ) maxVolIntersection : (NSMutableArray *) cardsToCheck : (CGRect) rectToChk;
 - (void)        initDeck;
 //- (Card *)      dealCard;
 -(Card *) dealCard : (UIView *)dealView;
@@ -319,4 +319,36 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
     
     return (TRUE);
 }
+
+
+
+
+
+-(int ) maxVolIntersection : (NSMutableArray *) cardsToCheck : (CGRect) rectToChk
+{
+    int maxVol=0;
+    CGRect intVol;
+    int maxVolIndex=0;
+    for (int i=0; i<[cardsToCheck count]; i++)
+    {
+        Card   *checkCard = [cardsToCheck objectAtIndex : i];
+        CGRect viewRect = checkCard.cardRect;
+        CGRect intersectVolRect=CGRectIntersection(rectToChk,viewRect);
+        if (!CGRectIsNull(intVol))
+            // ! CGRectNull - they Intersect index to Card Array returned
+        {
+            // calculate Volume of Card
+            int intersectVol = intersectVolRect.size.height * intersectVolRect.size.width;
+            
+            // if Greater Save the Index
+            if (intersectVol > maxVol)
+            {
+                maxVol=intersectVol;
+                maxVolIndex = i;
+            }
+        }
+    }
+    return(maxVolIndex);
+}
+
 @end
