@@ -31,6 +31,7 @@
 
 //-(Card *) getCardFromSubView : (CGRect *) aRect;
 //- (void) deleteSubViewByRect : (CGRect ) aRect;
+
 @end
 
 
@@ -42,6 +43,8 @@
     {
         self.view.userInteractionEnabled = YES;
         [self.view setAutoresizesSubviews:YES];
+        // dragArea and dropArea -hold Views that
+        // can be dragged or dropped to
         _dragAreas=[[NSMutableArray alloc] initWithCapacity:52];
         _dropAreas=[[NSMutableArray alloc] initWithCapacity:52];
 
@@ -280,11 +283,16 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
 #define SHOWDECK_XPOS    60
 -(void) showDeck
 {
+    if ([[_Deck deck ] count] ==0)
+           return; // DEck Empty!
     static BOOL SHOW_3_CARDS= TRUE;
     static BOOL DECK_SHOWN=FALSE;
-    static UIView *showCard1;       //change to show card view
+    static UIView *showCard1;   //change to show card view
     static UIView *showCard2;
     static UIView *showCard3;
+    int countDeckArea=(int) [[_Deck deckShownArea] count];
+    if (countDeckArea==0)
+        DECK_SHOWN=FALSE;
     if (!DECK_SHOWN)
         // need at least 1 view
     {
@@ -340,6 +348,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
         
     {
         Card *dealtCard1= [_Deck dealCard : showCard1];
+        
         if ( dealtCard1  !=nil)
         {
             // Deal 1 card
@@ -347,15 +356,17 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
             {
                 //showCard1.backgroundColor = [UIColor colorWithPatternImage:dealtCard1.cardPic];
                 [self drawCardPicture : showCard1  : dealtCard1.cardPic];
-                [[_Deck deckShownArea] replaceObjectAtIndex:0 withObject: dealtCard1];
-            }
+                [self updateDeckShownArea : dealtCard1 : 0];
+                    }
             else
             {
                 Card *dealtCard2 = [_Deck dealCard : showCard2];
                 if (dealtCard2!=nil )
                 {
                     [self drawCardPicture : showCard2  : dealtCard2.cardPic ];
-                    [[_Deck deckShownArea] replaceObjectAtIndex:1 withObject: dealtCard2];
+                    
+                    [self updateDeckShownArea : dealtCard1 : 1];
+                    
                 }
                 else
                     return ;
@@ -363,8 +374,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                 if (dealtCard3 !=nil)
                 {
                     [self drawCardPicture : showCard3  : dealtCard3.cardPic ];
-                    [[_Deck deckShownArea] replaceObjectAtIndex:2 withObject: dealtCard3];
-                }
+                   [self updateDeckShownArea : dealtCard1 : 2];                }
                 else
                     return;
             }
@@ -377,8 +387,14 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
 }
 
 
-
-
+-(void) updateDeckShownArea : (Card*) dealtCard : (int) index
+{
+int countDeckArea = (int) [[_Deck deckShownArea] count];
+if (countDeckArea>index)
+    [[_Deck deckShownArea] replaceObjectAtIndex: index withObject: dealtCard] ;
+else
+    [[_Deck deckShownArea] addObject : dealtCard];
+ }
 
 
 
@@ -392,7 +408,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
     
         
         int dropViewCount =(int)  [_dropAreas count];
-        NSLog(@"InDropViewList...");
+        NSLog(@"InDropViewList...dropViewCount =%d",dropViewCount);
         UIView *subview = [[UIView alloc] init];
         
         if (dropViewCount >0)
@@ -625,15 +641,7 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
      int mainCardIndex=[self maxVolIntersection : _Deck.cardsMainArea : dropRectInView ];
             Card *cardDroppingOn= [[Card alloc] init];
             cardDroppingOn = [_Deck.cardsMainArea objectAtIndex : mainCardIndex];
-                        NSLog(@"Card with Biggest Volume = %d , cardSuit %d",cardDroppingOn.cardVal, cardDroppingOn.cardSuit);
-                      // - We now know the card we are moving to
-                      // Do card Logic
-                      // If OK
-                             //if  Card from DeckArea
-                               // - AddCard to End of Card View  Area
-                      //     // If Card from Main Area - column move
-                        
-                        
+                        NSLog(@"Card with Biggest Volume = %d , cardSuit %d",cardDroppingOn.cardVal,cardDroppingOn.cardSuit);
                    // Main Area to Main Area
                         /*
                         [self moveToColumnByRect : dropRectInView : cardDroppingOn.cardRect];
@@ -646,11 +654,14 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
                       */
                         
                     // Deck Area to Main Area
-                        // Check Card Logic - if OK
-                       [self addCardView :  _cardInPlay : cardDroppingOn ];
-                        [self updateDropArea : _cardInPlay: cardDroppingOn];
-                        [self updateDragArea :_cardInPlay : cardDroppingOn];
-                        [self updateDeckArea ];
+            // Check Card Logic - if OK AddCard to View
+        UIView *newView = [self addNewCardView :  _cardInPlay : cardDroppingOn];
+                        
+                       
+    [self updateDeckArea ];
+                _cardInPlay.cardRect=newView.frame;
+            [[_Deck cardsMainArea] addObject:_cardInPlay];
+                        
                     
                     }
                 else
@@ -685,44 +696,97 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
 
 -(void)updateDeckArea
 {
-    unsigned long count = [_Deck.deckShownArea count];
+    int count = (int)[_Deck.deckShownArea count];
     if (count >0)
         {
-            Card *deckCard = [[_Deck deckShownArea]  objectAtIndexedSubscript: count -1 ];
+            Card *deckCard = [[_Deck deckShownArea]objectAtIndexedSubscript: count -1 ];
+            // Remove DDeck Card from Deck Shown Area
             [_Deck.deckShownArea removeLastObject];
-            [self updateSuperView:deckCard.cardRect] ;
-                    }
-    
-    
+            //[];
+            // find next Deck Subview usig Rect
+            UIView *oldDeckView =[self deleteSubviewByRect : deckCard.cardRect];
+            if (count-2 >= 0 )
+                {
+            Card *newDeckCard = [[_Deck deckShownArea] objectAtIndexedSubscript: count -2 ];
+                UIView *newDeckView = [self findViewByRect : newDeckCard.cardRect ];
+                [self updateDragArea: deckCard :newDeckView];
+                }
+            else
+                
+                if (count ==0)
+                {
+            Card *newDeckCard = [[_Deck deckShownArea] objectAtIndexedSubscript: 0];
+            UIView *newDeckView = [self findViewByRect : newDeckCard.cardRect ];
+            [self updateDragArea: deckCard :newDeckView];
+                }
+        }
 }
 
--(void)updateDropArea : (Card*) oldCard : (Card*) newCard
+                                     
+                                     
+                                     
+                                     
+-(void)updateDropArea : (Card*) oldCard : (UIView*) newView
 {
-    [_dropAreas removeObjectIdenticalTo: oldCard];
-    [_dropAreas addObject : newCard];
+    UIView *oldViewFound = [self findViewByRect : oldCard.cardRect];
+    //if (oldViewFound!=nil)
+      //  {
+        [_dropAreas removeObjectIdenticalTo: oldViewFound];
+        [_dropAreas addObject : newView];
+        //}
+    //else
+      //  NSLog(@"Error : view not found : Drop Area");
+
+}
+
+-(void)updateDragArea : (Card*) oldCard : (UIView*) newView
+{
+     UIView *oldViewFound = [self findViewByRect : oldCard.cardRect];
+   // if (oldViewFound!=nil)
+     //   {
+        [_dragAreas removeObjectIdenticalTo: oldViewFound];
+        [_dragAreas addObject : newView];
+       // }
+   // else
+     //   NSLog(@"Error : view not found : Drag Area");
 }
 
 
--(void)updateDragArea : (Card*) oldCard : (Card*) newCard
+
+-(UIView *) updateSuperView : (CGRect ) viewRect
 {
-    [_dragAreas removeObjectIdenticalTo: oldCard];
-    [_dragAreas addObject : newCard];
-}
-
-
-
--(void)updateSuperView : (CGRect ) viewRect
-{
-    for ( UIView* v in [self.view subviews])
+    UIView* v;
+    for (v  in [self.view subviews])
     {
         if (CGRectEqualToRect(v.frame,viewRect))
             [v removeFromSuperview];
     }
+    return (v);
 }
 
 
--(void) addCardView : (Card*) oldCard : (Card*) cardBeingAddedTo
+                                     
+-(UIView *) findViewByRect : (CGRect ) viewRect
+    {
+    UIView* v;
+        for (v  in [self.view subviews])
+        {
+            if (CGRectEqualToRect(v.frame,viewRect))
+                break;
+        }
+        return (v);
+    }
+                     
+                    
+                     
+                                     
+                                     
+                                     
+                                     
+-(UIView *) addNewCardView : (Card*) oldCard : (Card*) cardBeingAddedTo
 {
+    
+    NSLog(@"addNewCardView : oldCard = %@",oldCard);
     float newXPos = cardBeingAddedTo.cardRect.origin.x;
     float newYPos = cardBeingAddedTo.cardRect.origin.y+CARDLENGTH/2;
     CGRect newRect = CGRectMake(newXPos,newYPos,  CARDWIDTH, CARDLENGTH);
@@ -730,7 +794,13 @@ _globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
    
       [self drawCardPicture : newView : oldCard.cardPic ];
       [[self view] addSubview:newView];
-    [self updateSuperView:oldCard.cardRect] ;
+   // [self updateSuperView:oldCard.cardRect] ;
+    
+    [self updateDragArea:oldCard : newView];
+    [self updateDropArea:oldCard :newView];
+    //oldCard.cardRect = newRect; // Update Card
+    
+    return (newView);
 }
 
     
@@ -835,15 +905,16 @@ NSComparisonResult compare(UIView *firstView, UIView *secondView, void *context)
 }
                             
                             
-- (void) deleteSubviewByRect : (CGRect ) aRect
+- (UIView *) deleteSubviewByRect : (CGRect ) aRect
     {
+        UIView *view1;
     for (int i=0; i<[self.view.subviews count]; i++)
         {
-        UIView *view1 = [self.view.subviews objectAtIndex:i];
-        if (aRect.origin.y == view1.frame.origin.y)
+       view1 = [self.view.subviews objectAtIndex:i];
+        if (CGRectEqualToRect(aRect, view1.frame))
             [view1 removeFromSuperview];
         }
-    
+        return (view1);
     }
                             
                             
