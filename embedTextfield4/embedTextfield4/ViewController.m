@@ -5,7 +5,7 @@
 //  Created by F T on 13/06/2015.
 //  Copyright (c) 2015 FT. All rights reserved.
 //
-
+#include <time.h>
 #import "ViewController.h"
 #include "constants.h"
 
@@ -24,22 +24,24 @@
 
 @implementation ViewController
 
-
-static NSDictionary *commsInArray;
-static NSDictionary *commsOutArray;
+// MEssage Storage Dictionaries
+static NSMutableDictionary *commsInArray;
+static NSMutableDictionary *commsOutArray;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-     [self setUpView];    
+     [self setUpView];
+ /*  
     _WZScrollView = [[UIScrollView  alloc] initWithFrame : CGRectMake(5,60,400,500)];
     _WZScrollView.contentSize = CGSizeMake(320, 400);
     _WZScrollView.showsHorizontalScrollIndicator = NO;                ;
       
     _WZScrollView.backgroundColor = [UIColor grayColor];
-     [self.view addSubview:_WZScrollView];    
   
+  [self.view addSubview:_WZScrollView];
+  */
   [self turnOffKeyBoard];
     
 //    [NSTimer scheduledTimerWithTimeInterval:60.0 target:self
@@ -58,6 +60,21 @@ static NSDictionary *commsOutArray;
 }
 
 
+
+-(NSDictionary *) makeOutGoingMsg : (NSString *)textStr
+{
+    NSString *dateStr =
+    [[NSString alloc] initWithString : [self ISO8601TimeAndDateString]];
+    NSDictionary *newMsg = [NSDictionary dictionaryWithObject : dateStr forKey: textStr];
+    // assign Dictionaery element to date srt and
+ 
+    //[self showResponseOut: textStr : dateStr]; // thizs will become assign to commsOutArray - when everything working
+    
+    return (newMsg);
+}
+
+
+//TO DO: Have Timer Call commsArrayProcessing function
 -(void)onTick:(NSTimer *)aTimer {
     NSLog(@"Tick");
 }
@@ -72,18 +89,20 @@ static NSDictionary *commsOutArray;
     //    [_mytextfield resignFirstResponder];
     
     //NSInteger nextTag = _mytextfield.tag ;
-    _myTextField.text=@"";    // Try to find next responder
+    //_myTextField.text=@"";    // Try to find next responder
     //UIResponder* nextResponder =
     //[_mytextfield.superview viewWithTag:nextTag];
     
     //[nextResponder becomeFirstResponder];
-    
-    [_myTextField nextResponder];
-    [self showResponseOut : _myTextField.text ];
+    [self showResponseOut : _myTextField.text : @"10/7/58 :12:22:36"];
+    [self showResponseIn : _myTextField.text : @"15/7/58 :12:22:36"];    [_myTextField nextResponder];
+   
     return YES;
     
 }
 
+
+//TO DO: Handle Keyboard situation properly - Probably with a scrollup
 -(void) turnOffKeyBoard
 {
     UIView *dummyView = [UIView new];
@@ -110,11 +129,11 @@ static NSDictionary *commsOutArray;
     [[UIColor yellowColor] setFill];
     UIRectFill(CGRectMake(0, 0, size.width, size.height));
     
-    _tabStops =[[NSArray alloc] init ];
+    //_tabStops =[[NSArray alloc] init ];
     
 }
 
--(void)showResponseOut : ( NSString *) textStr
+-(void)showResponseOut : (NSString *) textStr : (NSString *)timeStamp
 {
     //CGRect smallRect = CGRectMake(50,200,200,100);
     CGRect smallRect3 =CGRectMake(150,100,200,100);
@@ -147,7 +166,7 @@ static NSDictionary *commsOutArray;
     [_bezierPath stroke];
     [[UIColor redColor] setFill];
     [_bezierPath fill];
-    [self drawText :  textStr: smallRect3: textAttributes];
+ //**    [self drawText5 :  textStr: smallRect3: textAttributes];
     
     // (5) Deriving a new UIImage instance from the bitmap context:
     UIImage *fImg = UIGraphicsGetImageFromCurrentImageContext();
@@ -155,11 +174,11 @@ static NSDictionary *commsOutArray;
     //UIGraphicsEndImageContext();
     // (7) Setting the image view's image property to the created image, and displaying
     UIImageView *iv = [[UIImageView alloc] initWithImage:fImg];
-    [_WZScrollView addSubview:iv];
+    [self.view addSubview:iv];
     
 }
 
-
+// FIXME:
 -(void) drawDateBubble
 {
     //CGRect smallRect = CGRectMake(50,200,200,100);
@@ -197,8 +216,8 @@ static NSDictionary *commsOutArray;
 
 
 
-
--(void)showResponseIn: ( NSString *) textStr
+//FIXME:
+-(void)showResponseIn: ( NSString *) textStr : (NSString *) timeStampIn
 {
     
     
@@ -207,7 +226,8 @@ static NSDictionary *commsOutArray;
     NSDictionary *textAttributes =
     @{NSFontAttributeName: [UIFont systemFontOfSize:MSG_FONT_SIZE],NSForegroundColorAttributeName: color};
     
-    NSMutableAttributedString *timeString =[[NSMutableAttributedString alloc] initWithString: @"21:14:22    " ];
+   
+     NSMutableAttributedString *timeString =[[NSMutableAttributedString alloc] initWithString: timeStampIn];
     
     //  NSDictionary *smallTextAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:25.0f]};
     
@@ -227,9 +247,9 @@ static NSDictionary *commsOutArray;
     ;
     
     smallRect.origin.x = 50;
-    smallRect.origin.y =270;
+    smallRect.origin.y =self.view.frame.size.height - 75;
     
-    CGRect msgRect = CGRectMake(50,270,smallRect.size.width+2,smallRect.size.height+4);
+    CGRect msgRect = CGRectInset(smallRect,2,4);
     
     UIColor *messageColor = [UIColor blueColor];
     
@@ -262,7 +282,7 @@ static NSDictionary *commsOutArray;
     UIImageView *iv = [[UIImageView alloc] initWithImage:fImg];
     
     
-    [_WZScrollView addSubview:iv];
+    [self.view addSubview:iv];
     
     
 }
@@ -303,16 +323,18 @@ static NSDictionary *commsOutArray;
     
     [paragraphStyle setTabStops: tabStops2];
     
+     NSString *timeStr = [NSString stringWithFormat:@"%@", [self  timeFromISO860String ]];
+   // String str = "ABC[ This is the text to be extracted ]";
     NSMutableAttributedString *timeStamp =
     [[NSMutableAttributedString alloc]
-     initWithString : @"\t12:15:75"
+     initWithString : timeStr
      attributes :
      @{ NSParagraphStyleAttributeName : paragraphStyle,
         NSKernAttributeName : @1.0,
         NSFontAttributeName : labelFont,
         NSForegroundColorAttributeName : labelColor,
         NSShadowAttributeName : shadow }];
-    
+   
     
     return (timeStamp);
 }
@@ -337,6 +359,23 @@ static NSDictionary *commsOutArray;
     [ _bezierPath stroke];
     [_bezierPath fill];
 }
+
+
+-(NSString *)timeFromISO860String
+{
+   
+    int ISODATE=0;
+    int ISOTIME=1;
+    int ISOSECONDSFRACTION=2;
+    int ISOTZ=3;
+    
+    NSString *timeStamp =[self ISO8601TimeAndDateString];    NSArray *ISOcomponents  = [timeStamp componentsSeparatedByCharactersInSet:
+                [NSCharacterSet characterSetWithCharactersInString:@"T.+"]];
+    
+    NSLog(@"getTimefromISO... ISOcomponents = %@", ISOcomponents);
+    return(ISOcomponents[ISOTIME]);
+}
+
 
 
 -(void)addTriangle : (CGRect) smallRect : (UIColor *) triangleColor
@@ -487,8 +526,7 @@ Moreover, 14is the width that you want.
 -(void)drawText : (NSString *) textStr : (CGRect) drawRect :(NSDictionary *) textAttributes
 {
     
-    
-    
+   //  [self  setUpView];
     CGRect textRect = CGRectMake(drawRect.origin.x+2,drawRect.origin.y+1, drawRect.size.width, drawRect.size.height);
     
     [textStr drawWithRect:textRect
@@ -497,10 +535,12 @@ Moreover, 14is the width that you want.
                   context:nil] ; //]drawingContext];
 }
 
+
+// !!!: Main Drawing Function
 -(void)drawText5 : (NSMutableAttributedString *) textStr : (CGRect) drawRect
 {
-    
-    
+   
+   // [self  setUpView];
     
     CGRect textRect = CGRectMake(drawRect.origin.x+2,drawRect.origin.y+1, drawRect.size.width, drawRect.size.height);
     
@@ -528,44 +568,6 @@ Moreover, 14is the width that you want.
 }
 
 
-/* Creates an image with a home-grown graphics context, burns the supplied string into it. */
-/*
- - (UIImage *)burnTextIntoImage:(NSString *)text :(UIImage *)img {
- 
- NSFont *font = [NSFont fontWithName:@"Palatino-Roman" size:14.0];
- 
- NSDictionary *attrsDictionary =
- 
- [NSDictionary dictionaryWithObjectsAndKeys:
- font, NSFontAttributeName,
- [NSNumber numberWithFloat:1.0], NSBaselineOffsetAttributeName, nil]
- 
- 
- 
- 
- UIGraphicsBeginImageContext(img.size);
- 
- CGRect aRectangle = CGRectMake(0,0, img.size.width, img.size.height);
- [img drawInRect:aRectangle];
- 
- [[UIColor redColor] set];           // set text color
- NSInteger fontSize = 14;
- if ( [text length] > 200 ) {
- fontSize = 10;
- }
- UIFont *font = [UIFont boldSystemFontOfSize: fontSize];     // set text font
- 
- [ text drawInRect : aRectangle                      // render the text
- withFont : font
- lineBreakMode : NSLineBreakByTruncatingTail  // clip overflow from end of last line
- alignment : NSTextAlignmentCenter ];
- 
- UIImage *theImage=UIGraphicsGetImageFromCurrentImageContext();   // extract the image
- UIGraphicsEndImageContext();     // clean  up the context.
- return theImage;
- }
- 
- */
 
 
 
@@ -646,6 +648,10 @@ nil];
 nil];
 
 }
+
+
+#pragma mark - Comms Array Processing 
+
 /*
 
 Logic  for Processing Comms
@@ -749,8 +755,99 @@ While not Empty
 return (msg);
 }
 */
+
+
+// FIXME: Midhun
+
+// ???: Midhun
+
+// !!!: Midhun
+
+// MARK: Midhu
+
+#pragma mark   - Time and Date to International Standard ISO860
+
+
+// Written using C functions to save 7s of time with each message
+- (NSDate *)dateFromISO8601String:(NSString *)string {
+    if (!string) {
+        return nil;
+    }
+    
+    struct tm tm;
+    time_t t;
+    
+    strptime([string cStringUsingEncoding:NSUTF8StringEncoding], "%Y-%m-%dT%H:%M:%S%z", &tm);
+    tm.tm_isdst = -1;
+    t = mktime(&tm);
+ 
+    
+    
+    return [NSDate dateWithTimeIntervalSince1970:t + [[NSTimeZone localTimeZone] secondsFromGMT]];
+}
+
+
+-(NSString *)ISO8601TimeAndDateString {
+    struct tm *timeinfo;
+    char buffer[80];
+    time_t rawtime = [[NSDate date] timeIntervalSince1970] - [[NSTimeZone localTimeZone] secondsFromGMT];
+    timeinfo = localtime(&rawtime);
+    
+    strftime(buffer, 80, "%Y-%m-%dT%H:%M:%S%z", timeinfo);
+    
+    return [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
+}
+
+
+
+
+
+
+
+
+
 @end
 
+//** Redundant Ideas which may be useful later
+
+/* Creates an image with a home-grown graphics context, burns the supplied string into it. */
+/*
+ - (UIImage *)burnTextIntoImage:(NSString *)text :(UIImage *)img {
+ 
+ NSFont *font = [NSFont fontWithName:@"Palatino-Roman" size:14.0];
+ 
+ NSDictionary *attrsDictionary =
+ 
+ [NSDictionary dictionaryWithObjectsAndKeys:
+ font, NSFontAttributeName,
+ [NSNumber numberWithFloat:1.0], NSBaselineOffsetAttributeName, nil]
+ 
+ 
+ 
+ 
+ UIGraphicsBeginImageContext(img.size);
+ 
+ CGRect aRectangle = CGRectMake(0,0, img.size.width, img.size.height);
+ [img drawInRect:aRectangle];
+ 
+ [[UIColor redColor] set];           // set text color
+ NSInteger fontSize = 14;
+ if ( [text length] > 200 ) {
+ fontSize = 10;
+ }
+ UIFont *font = [UIFont boldSystemFontOfSize: fontSize];     // set text font
+ 
+ [ text drawInRect : aRectangle                      // render the text
+ withFont : font
+ lineBreakMode : NSLineBreakByTruncatingTail  // clip overflow from end of last line
+ alignment : NSTextAlignmentCenter ];
+ 
+ UIImage *theImage=UIGraphicsGetImageFromCurrentImageContext();   // extract the image
+ UIGraphicsEndImageContext();     // clean  up the context.
+ return theImage;
+ }
+ 
+ */
 
 
 
