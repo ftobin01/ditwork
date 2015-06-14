@@ -10,13 +10,14 @@
 
 // Programming Notes:
 //
-// Implemented a simple View as I did not feel that Whats App is based on a table.
-// Basic functionality for writing messages to a view based on whats app look and feel have been implement.
+// Implemented a simple View as I did not feltit gave more control th
+// Basic functionality for writing messages to a view based on whats app look and feel have been implemented.
+
 // Test Data input is processed from a dictionary as this App
 // is anticipated being used with JASON type data frm a network.
 //
 // It took several days before I gave up trying to get UTTextAlignnemnt to work for Right Justification.
-//  Gave up in the end and managed it by checking width
+//  If I have time I will  Manage it by checking width
 //  length and Padding Space. I am amazed that a simple thing like this is not easy to do in IOS.
 //
 // It took another couple of days to Get bounding Rect with size to work - probably quicker to write from scratch.
@@ -24,7 +25,7 @@
 // It took another few days to try everything except UIBezierPaths looking for another way .. eventually realized - it should be used.
 //
 // TO DO
-// TO give  scrolling ability  add in a ScrollView the size of the Screen and then subclass it so everything moves at once - if I get time.
+// Change View to scrollview
 //
 //  Put in Rounded Photgraph.
 //
@@ -36,14 +37,14 @@
 #include "constants.h"
 
 @interface ViewController ()
+
+@end
 @property (nonatomic, strong) UILabel   *speechLabel;
 @property (nonatomic, strong) UIBezierPath *bezierPath;
 @property(readwrite, copy, nonatomic) NSArray *tabStops;
 
 
 -(CGRect) makeBoundingRect : (NSString *) textStr : (NSDictionary *) textAttributes;
-@end
-
 @implementation ViewController
 
 static NSDictionary *commsInArray;
@@ -73,6 +74,7 @@ static NSDictionary *commsOutArray;
      */
     
 }
+
 -(void) setUpView
 {
     // (1) Creating a bitmap context, filling it with yellow as "background" color:
