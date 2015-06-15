@@ -12,7 +12,7 @@
 //@interface  Card
 
 //-(UIImage *) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
-
+//-(UIImage *) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName
 //@end
 
 @implementation Card (View)
@@ -27,19 +27,19 @@
     /* sizes image to card view */
     
     UIImage *globalCardImage = [[UIImage alloc] init];
-    NSLog(@"drawCardPicture 1. PicName=%@",cardPicName);
+    //Log(@"drawCardPicture 1. PicName=%@",cardPicName);
     
     UIGraphicsBeginImageContext(view1.frame.size);
     [[UIImage imageNamed: cardPicName] drawInRect:view1.bounds];
-    NSLog(@"drawCardPicture 2. PicName=%@",cardPicName);
+    //Log(@"drawCardPicture 2. PicName=%@",cardPicName);
     globalCardImage= UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    NSLog(@"drawCardPicture 3. PicName=%@",cardPicName);
+    //Log(@"drawCardPicture 3. PicName=%@",cardPicName);
     view1.backgroundColor = [UIColor colorWithPatternImage:globalCardImage ];
     //view1.backgroundColor = [UIColor colorWithWhite:.5f alpha: .5f];
     
     //else if you want it to be another color use the general UIColor method: +colorWithRed:green:blue:alpha:    ];
-    NSLog(@"Leaving drawCardPicture 4. PicName=%@",cardPicName);
+    //Log(@"Leaving drawCardPicture 4. PicName=%@",cardPicName);
     
     return (globalCardImage);
     

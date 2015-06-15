@@ -40,7 +40,7 @@
 -(NSString *) getPicFileName : (Card *) acard;
 //-(Card *) dealCard;
 -(Card *) dealCard : (UIView *)dealView; -(void) initDeck;
--(void) compareColumns;
+//-(void) compareColumns;
 // -( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
 -(void) updateDeckShownArea : (Card*) dealtCard : (int) index;
 

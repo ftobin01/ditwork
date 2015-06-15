@@ -43,8 +43,17 @@
     return self;
 }
 
-
-
+// CardShould be next in sequence - for droppping to Ace
+-(BOOL) cardIsNext : (Card *) dropCard : (Card *) dragCard
+{
+    if ((dragCard.cardVal+1)==dragCard.cardVal)
+        return(TRUE);
+    
+    return(FALSE);
+    
+    
+    
+}
 - (BOOL)  cardIsLower : (Card *) card1 : (Card *) card2
 {
     if ( card1.cardVal < card2.cardVal)
@@ -70,59 +79,59 @@
     
     if (((card1.cardSuit == SPADES ) || (card1.cardSuit == CLUBS )) && ((card2.cardSuit == HEARTS ) || (card2.cardSuit == SPADES )))
         return (TRUE);
-
+    
     return (FALSE);
-        }
-
-/*
-NSDictionary* defaults = @{kUserNameKey:@"GreatUser", kLevel1ScoreKey:@0, kLevel1CompletedKey:@NO};
-[[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
-
-
-
-
-
-
-(id)initWithAccountID:(NSString *)identifier {
-    
-    if ( self = [super init] ) {
-        
-        Account *ac = [accountDictionary objectForKey:identifier];
-        
-        if (ac) { // object with that ID already exists
-            
-            [self release];
-            
-            return [ac retain];
-            
-        }
-        
-        if (identifier) {
-            
-            accountID = [identifier copy]; // accountID is instance variable
-            
-            [accountDictionary setObject:self forKey:identifier];
-            
-            return self;
-            
-        } else {
-            
-            [self release];
-            
-            return nil;
-            
-        }
-        
-    } else
-        
-        return nil;
-    
 }
 
-
-
-
-*/
+/*
+ NSDictionary* defaults = @{kUserNameKey:@"GreatUser", kLevel1ScoreKey:@0, kLevel1CompletedKey:@NO};
+ [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+ 
+ 
+ 
+ 
+ 
+ 
+ (id)initWithAccountID:(NSString *)identifier {
+ 
+ if ( self = [super init] ) {
+ 
+ Account *ac = [accountDictionary objectForKey:identifier];
+ 
+ if (ac) { // object with that ID already exists
+ 
+ [self release];
+ 
+ return [ac retain];
+ 
+ }
+ 
+ if (identifier) {
+ 
+ accountID = [identifier copy]; // accountID is instance variable
+ 
+ [accountDictionary setObject:self forKey:identifier];
+ 
+ return self;
+ 
+ } else {
+ 
+ [self release];
+ 
+ return nil;
+ 
+ }
+ 
+ } else
+ 
+ return nil;
+ 
+ }
+ 
+ 
+ 
+ 
+ */
 
 
 
@@ -133,18 +142,18 @@ NSDictionary* defaults = @{kUserNameKey:@"GreatUser", kLevel1ScoreKey:@0, kLevel
 
 
 -(Card *)initCardWithData : (int ) suitNum :( int ) cardNumVal : (NSString *) cardPicName : (CGRect) cardRect : (BOOL ) cardFaceUp
-    {
-        if ((self = [super init])) {
+{
+    if ((self = [super init])) {
         
         _cardSuit=  suitNum;
         _cardVal = cardNumVal;
         _cardPic = cardPicName;
         _cardRect = CGRectMake(0,0,0,0);
         _cardFaceUp= cardFaceUp;
-        }
-        return (self);
     }
-    
+    return (self);
+}
+
 
 
 

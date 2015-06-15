@@ -5,6 +5,34 @@
 //  Created by Fergal Tobin on 23/03/2015.
 //  Copyright (c) 2015 ___FULLUSERNAME___. All rights reserved.
 //
+//
+// Programming Notes
+//
+// Found Solitaire is  challenging to program in the time given.
+// Again it would have been nice to have it fully working - but so much to do in so little time.
+// Games is working to the point where cards are moving about,
+// being dropped, Deck is being updated. game logic has been written
+// and partially impelemented. Time is the factor.
+//
+// Core Data - I went ahead and loaded up all the routines necessary for core Data - and - the result was just a monster of a project with basically a mountain of unmaintainable code - so in the interest of sanity - took it out and implemented a simple save of an integer representing High Score instead using NSUserDefaults. At least that way i will open this project again. Without a tableview - i don't think Core Data worth the effort.
+//
+// Deck Area was fully working for dragging and dropping - except to aces area- seemed to have knocked it out of shape yesterday trying to get the Aces Area to work!
+//
+// Dropping Cards from Main Area to Main Area works most of the time
+// with some bugs - card logic routines have been written and half tested but felt these bugs need to be remmved before implementing further.
+//
+// Left To Do
+//
+// Deck Cards working again for dropping to main area
+// Dropping to Aces Are from Main Area or Deck Area working
+// End of Game animation -  code finished  and tested
+// High Score - is half implemented including save data routines - but could prob display on screen and test being updated.
+// With more time I believe I could have finished it in full.
+
+// Thanks for all  help in getting me this to the point of being able to even attempt this which I couldnt have done last Sept. Of course all errors and omissions are mine!
+//
+// FT 15/6/2015
+
 #import "ViewController.h"
 #import "Deck.h"
 #import <QuartzCore/QuartzCore.h>
@@ -19,6 +47,7 @@
 @property (nonatomic, strong) UIImage *globalCardImage;
 @property (nonatomic, strong) Card    *cardInPlay;
 @property (nonatomic) UILabel *gameTimerLabel;
+
 // Sinks for Cards
 @property (nonatomic,strong) DeckObj *Deck;
 
@@ -36,6 +65,7 @@
 
 //- (IBAction)tapDetected:(id)sender {
 //}
+static NSInteger highScore;
 
 - (void)viewDidLoad
 {
@@ -47,8 +77,6 @@
         [_Deck  initDeck];
         done=TRUE;
         }
-  
-    
     [self setupAllView];
     // Create Main Card Area
     [self makeMainCardLayout];
@@ -56,7 +84,7 @@
      [self createAcesArea];
      //Create Deck Area
      [self createDeckArea];
-     NSLog(@"viewDidLoad 7");
+     //Log(@"viewDidLoad 7");
      // Start Game Timer
     [self makeGameTimerLabel];
      [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(gameTime) userInfo:nil repeats:YES];
@@ -64,153 +92,7 @@
 
 
 
-
-
-
-- (void)tapDetected: (UIGestureRecognizer *)tapGestureRecognizer
-{
-    NSLog(@"In Tap Detected");
-    
-    CGPoint locationInView = [tapGestureRecognizer locationInView:self.view];
-  
-    CGRect tmpDeckRect = CGRectMake(DECKCARD_XPOS, DECKCARD_YPOS, CARDWIDTH,CARDLENGTH);
-    
-    if (CGRectContainsPoint(tmpDeckRect, locationInView))
-        {
-        NSLog(@"Deck Pressed!!!!");
-            [self showDeck];
-        }
-        switch (tapGestureRecognizer.state)
-    {
-        case UIGestureRecognizerStateBegan:
-        {
-              NSLog(@"Tap |Recognised");
-            break;
-        }
-        case UIGestureRecognizerStateChanged:
-            NSLog(@"Tap |Recognised 2");
-            break;
-            
-        case UIGestureRecognizerStateEnded:
-            NSLog(@"Tap |Recognised 3");
-            
-            
-            break;
-        default:
-            NSLog(@"Error - Gesture State Not Recognised 4");
-            break;
-    
-    
-    }
-}
-
-
-
-#define SHOWDECK_XPOS    60
--(void) showDeck
-{
-    if ([[_Deck deck ] count] ==0)
-           return; // DEck Empty!
-    static BOOL SHOW_3_CARDS= TRUE;
-    static BOOL DECK_SHOWN=FALSE;
-    static UIView *showCard1;   //change to show card view
-    static UIView *showCard2;
-    static UIView *showCard3;
-    int countDeckArea=(int) [[_Deck deckShownArea] count];
-    if (countDeckArea==0)
-        DECK_SHOWN=FALSE;
-    if (!DECK_SHOWN)
-        // need at least 1 view
-    {
-        NSLog(@"calling showDeck");
-        CGRect cardRect1 = CGRectMake( SHOWDECK_XPOS, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
-        showCard1 = [[UIView alloc] initWithFrame:cardRect1];
-        Card *dealtCard1= [_Deck dealCard : showCard1];
-        [dealtCard1 drawCardPicture : showCard1  : dealtCard1.cardPic];
-        [self.view addSubview: showCard1];
-        [[_Deck deckShownArea] addObject: dealtCard1];
-        
-        if (SHOW_3_CARDS==TRUE)
-        {
-            
-            CGRect cardRect2 = CGRectMake( SHOWDECK_XPOS+10, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
-            showCard2=[[UIView alloc] initWithFrame:cardRect2];
-            Card *dealtCard2= [_Deck dealCard : showCard2];
-            if ( dealtCard2  !=nil)
-            {
-                //  [_dragAreas addObject: showCard2];
-                [self.view addSubview: showCard2];
-                Card *dealtCard2= [_Deck dealCard : showCard2];
-                
-                [dealtCard2 drawCardPicture : showCard2  : dealtCard2.cardPic];
-                NSLog(@"showDeck: adding dealtCard2.cardPic =%@",dealtCard2.cardPic);
-                [[_Deck deckShownArea] addObject: dealtCard2];
-                [_dragAreas removeLastObject];
-                [_dragAreas addObject: showCard2];
-                
-                CGRect cardRect3 = CGRectMake( SHOWDECK_XPOS+20, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
-                showCard3=[[UIView alloc] initWithFrame:cardRect3];
-                Card *dealtCard3= [_Deck dealCard : showCard3];
-                if ( dealtCard3  !=nil)
-                {
-                    [dealtCard3 drawCardPicture : showCard3  : dealtCard3.cardPic];
-                    NSLog(@"showDeck: adding dealtCard3.cardPic =%@",dealtCard2.cardPic);                                    [[_Deck deckShownArea] addObject: dealtCard3];
-                    
-                    NSLog(@"showDeck: after adding dealtCard2.cardPic =%@",[[_Deck deckShownArea] objectAtIndex: 1] );
-                    
-                    [_dragAreas removeLastObject];
-                    [_dragAreas addObject: showCard3];
-                    [self.view addSubview: showCard3];
-                    
-                    
-                }
-            }
-            else
-                [_dragAreas addObject: showCard1];
-        }
-        DECK_SHOWN=TRUE;
-    }
-    else
-        
-    {
-        Card *dealtCard1= [_Deck dealCard : showCard1];
-        
-        if ( dealtCard1  !=nil)
-        {
-            // Deal 1 card
-            if (SHOW_3_CARDS==FALSE)
-            {
-                //showCard1.backgroundColor = [UIColor colorWithPatternImage:dealtCard1.cardPic];
-                [dealtCard1 drawCardPicture : showCard1  : dealtCard1.cardPic];
-                [_Deck updateDeckShownArea : dealtCard1 : 0];
-                    }
-            else
-            {
-                Card *dealtCard2 = [_Deck dealCard : showCard2];
-                if (dealtCard2!=nil )
-                {
-                    [dealtCard2 drawCardPicture : showCard2  : dealtCard2.cardPic ];
-                    
-                    [_Deck updateDeckShownArea : dealtCard1 : 1];
-                    
-                }
-                else
-                    return ;
-                Card *dealtCard3 = [_Deck dealCard : showCard3];
-                if (dealtCard3 !=nil)
-                {
-                    [dealtCard3 drawCardPicture : showCard3  : dealtCard3.cardPic ];
-                   [_Deck updateDeckShownArea : dealtCard1 : 2];                }
-                else
-                    return;
-            }
-        }
-        else
-            return;
-    }
-    // update Deck shown with new card from Deck
-    
-}
+#pragma mark  - Card / View checking Routines
 
 
 
@@ -218,13 +100,13 @@
     {
    //  NSArray *subviews = _dragAreas;
         
-        [_dropAreas  setArray : _dragAreas];
-        NSArray *deckAreaCards = [[_Deck deckShownArea] copy];
-        [_dropAreas removeObjectsInArray: deckAreaCards];
+      //  [_dropAreas  addObjectsFropmArray : _dragAreas];
+       // NSArray *deckAreaCards = [[_Deck deckShownArea] copy];
+      //  [_dropAreas removeObjectsInArray: deckAreaCards];
     
         
         int dropViewCount =(int)  [_dropAreas count];
-        NSLog(@"InDropViewList...dropViewCount =%d",dropViewCount);
+        //Log(@"InDropViewList...dropViewCount =%d",dropViewCount);
         UIView *subview = [[UIView alloc] init];
         
         if (dropViewCount >0)
@@ -235,12 +117,12 @@
                 CGRect viewRect =  [subview frame];
                 if (CGRectContainsPoint(viewRect, locationInView)==TRUE)
                     {
-                NSLog(@"InDropViewList...return subview");
+                //Log(@"InDropViewList...return subview");
                 return(viewRect);
                     }
                 }
             }
-        NSLog(@"InDropViewList...return nil");
+        //Log(@"InDropViewList...return nil");
         //viewRect =;
         return ( CGRectMake(0,0,0,0));
     }
@@ -250,7 +132,7 @@
 {
     //  NSArray *subviews = _dragAreas;
     int dragViewCount =(int)  [_dragAreas count];
-    NSLog(@"inDragViewList...");
+    //Log(@"inDragViewList...");
     UIView *subview = [[UIView alloc] init];
     if (dragViewCount >0)
         {
@@ -260,12 +142,12 @@
                 CGRect viewRect =  [subview frame];
                 if (CGRectContainsPoint(viewRect, locationInView)==TRUE)
                     {
-                    NSLog(@"inDragViewList...return subview");
+                    //Log(@"inDragViewList...return subview");
                     return(viewRect);
                     }
                 }
     }
-    NSLog(@"inDragViewList...return nil");
+    //Log(@"inDragViewList...return nil");
     //viewRect =;
     return ( CGRectMake(0,0,0,0));
 }
@@ -277,7 +159,7 @@
 {
     //  NSArray *subviews = _dragAreas;
     int viewCount = (int)  [viewArea count];
-    NSLog(@"chkViewByPoint...");
+    //Log(@"chkViewByPoint...");
     UIView *view1 = [[UIView alloc] init];
     for (int  viewIdx = viewCount-1;  viewIdx >=0; viewIdx--)
     {
@@ -285,11 +167,11 @@
         CGRect viewRect =  [view1 frame];
         if (CGRectContainsPoint(viewRect,locationInView)==TRUE)
         {
-            NSLog(@"chkAreaByPoint...returning Rect");
+            //Log(@"chkAreaByPoint...returning Rect");
             return(viewRect);
         }
     }
-    NSLog(@"chkAreaByPoint...return nil");
+    //Log(@"chkAreaByPoint...return nil");
     //viewRect =;
     return ( CGRectMake(0,0,0,0));
 }
@@ -299,33 +181,66 @@
 
 -(CGRect ) chkAreaByRect : (NSMutableArray *) viewArea : ( CGRect ) locationRect
 {
-    NSLog(@"chkAreaByRect...0");    //  NSArray *subviews = _dragAreas;
+    //Log(@"chkAreaByRect...0");    //  NSArray *subviews = _dragAreas;
     int viewCount = (int)  [viewArea count];
-    NSLog(@"chkAreaByRect...1");
+    //Log(@"chkAreaByRect...1");
     Card *view1 = [[Card alloc] init];
-    NSLog(@"chkAreaByRect...2");
+    //Log(@"chkAreaByRect...2");
     for (int  viewIdx = viewCount-1;  viewIdx >=0; viewIdx--)
     {
-        NSLog(@"chkAreaByRect...3");
+        //Log(@"chkAreaByRect...3");
         view1 = [viewArea objectAtIndex:viewIdx];
-        NSLog(@"chkAreaByRect...4") ;
+        //Log(@"chkAreaByRect...4") ;
         CGRect viewRect =  view1.cardRect;
         if (CGRectEqualToRect(viewRect, locationRect)==TRUE)
         {
-            NSLog(@"chkAreaByRect...returning Rect: TRUE");
+            //Log(@"chkAreaByRect...returning Rect: TRUE");
             return(viewRect);
         }
     }
-    NSLog(@"chkAreaByRect...return nil FALSE");
+    //Log(@"chkAreaByRect...return nil FALSE");
     //viewRect =;
     return ( CGRectMake(0,0,0,0));
 }
 
+#pragma mark    - Tap and Gesture Routines
 
 
+// Tap is for Deck Card on Screen
+- (void)tapDetected: (UIGestureRecognizer *)tapGestureRecognizer
+{
+    //Log(@"In Tap Detected")
+    CGPoint locationInView = [tapGestureRecognizer locationInView:self.view];
+    CGRect tmpDeckRect = CGRectMake(DECKCARD_XPOS, DECKCARD_YPOS, CARDWIDTH,CARDLENGTH);
+    if (CGRectContainsPoint(tmpDeckRect, locationInView))
+    {
+        //Log(@"Deck Pressed!!!!");
+        [self showDeck];
+    }
+    switch (tapGestureRecognizer.state)
+    {
+        case UIGestureRecognizerStateBegan:
+        {
+            //Log(@"Tap |Recognised");
+            break;
+        }
+        case UIGestureRecognizerStateChanged:
+            //Log(@"Tap |Recognised 2");
+            break;
+        case UIGestureRecognizerStateEnded:
+            //Log(@"Tap |Recognised 3");
+            break;
+        default:
+            //Log(@"Error - Gesture State Not Recognised 4");
+            break;
+    }
+}
+
+
+// This is for All Cards that can be Dragged
 - (void)dragDetected: (UIPanGestureRecognizer *)panGestureRecognizer
 {
-    NSLog(@"Drag Dectected 0 ");
+    //Log(@"Drag Dectected 0 ");
     NSArray *subviews = [self.view subviews];
     CGPoint locationInView = [panGestureRecognizer locationInView:self.view];
     float x = locationInView.x;
@@ -333,15 +248,10 @@
     static float   dragCardOriginX;
     static float   dragCardOriginY;
     static int countStartingSubviews=0;
-    
-    //NB if subview dragged is not in draggable list return;
-    // means al;l face up cards are added to draggable list
-    
     dragCardOriginX=0; // viewRect.origin.x;
     dragCardOriginY=0; //  viewRect.origin.y;
-    CGRect rectInView;
-    NSLog(@"In DragDetected ");
-    
+    CGRect rectInView=CGRectZero;
+    //Log(@"In DragDetected ");
     switch (panGestureRecognizer.state)
     {
         case UIGestureRecognizerStateBegan:   //Drag Started
@@ -350,96 +260,55 @@
             rectInView =[self  inDragViewList :locationInView];
             if (CGRectIsEmpty(rectInView) )
             {
-                NSLog(@"Drag Detected - Not Drag Area");
+                //Log(@"Drag Detected - But Not Drag Area");
                 panGestureRecognizer.enabled = NO;
                 break;
             }
             else
-            {
-                NSLog(@"Drag Detected - Yes Drag Area");
-                // Need to Check if Pan has occorred in Rects Bounded by CArds Out on Table
-                // find CardArea to get card from
-                /*
-                 */
-                
-                NSMutableArray   *allAcesAreas = [_Deck combineArrays: [_Deck clubsArea] :[_Deck heartsArea] : [_Deck spadesArea] : [_Deck diamondsArea]];
-                
-                
-                // make Aces Area = clubsArea +spadesArea +    eartsArea +diamondsArea;
-                // _cardInPlay.cardPic=CARDREVERSE;
-                NSLog(@"In DragDetected rectInView before getCardfromrect Main=%@",NSStringFromCGRect(rectInView));
-                NSLog(@"In DragDetected rectInView=%@",NSStringFromCGRect(rectInView));
+                {
+                // find Card Area to get card from - Add All Aces Area Together
+               // NSMutableArray   *allAceAreas = [[NSMutableArray initWithCapacity : 52];
+         //       [_Deck combineArrays : [_Deck clubsArea] :[_Deck heartsArea] :  [_Deck spadesArea] : [_Deck diamondsArea]];
                 if (! (_cardInPlay= [_Deck getCardFromRect :[_Deck cardsMainArea] :rectInView]))
                 {
-                    NSLog(@"In DragDetected card not in Main *** rectInView=%@",NSStringFromCGRect(rectInView));
-                    NSLog(@"DD card not in Main- About to chk Deck Shown Area rectInView=%@",NSStringFromCGRect(rectInView));
-                    for (Card *c in [_Deck deckShownArea])
-                    {
-                        NSLog(@"DD Card c.cardVal=%d",c.cardVal);
-                    }
-                    NSLog(@"DD End Showing deckShown Area");
-                    {
                         if (!(_cardInPlay=[_Deck getCardFromRect: [_Deck deckShownArea] :rectInView ]))
-                            NSLog(@"cardInPlay.cardPic - after deckShownArea -  getCardFromRect = %@",_cardInPlay.cardPic);
-                        //if (!(_cardInPlay=getCardFromRect [_Deck acesArea] : rectInView))
-                        else
-                        {
-                            if ((_cardInPlay=[_Deck getCardFromRect : allAcesAreas :rectInView ]))
-                                NSLog(@"*** ACES AREA DETECTED ****");
-                        }
-                        NSLog(@"ERROR - CARD NOTFOUND ANYWHERE");
-                    }
+                            ;
+//TODO: finish CArd logic
+                        //if ((_cardInPlay=[self getCardFromRect [_Deck acesArea] : rectInView]))
+                            //Log(@"*** ACES AREA DETECTED ****");
+                        //else
+                        //Log(@"ERROR - CARD NOTFOUND ANYWHERE");
+                    
                 }
                 countStartingSubviews=(int) [subviews count];
-                NSLog(@"**** UIGestureRecognizerStateBegan - Drag Started %@", NSStringFromCGPoint(locationInView));
-                // NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.view.frame));
-                NSLog(@" Xpoint is %f",locationInView.x);
-                // find view started
-                NSLog(@"Subviews count %lu",(unsigned long) [subviews count]);
-                NSLog(@"NOW FINd subview Point Location is in....");
-                // NSLog(@"Count of number of subviews = %lu",q);
-                // -(UIView *)findTopMostViewForPoint : (CGPoint) point
-                //*** Need better way
-                dragCardOriginX = x -10;//+  ((dragCardOriginX >10) ? -10 : 0);
-                dragCardOriginY = y -11; //+  ((dragCardOriginY >10) ? -10 : 0);
-                //dragCardOriginX=0;
-                //var greeting = "Good" + ((now.getHours() > 17) ? " evening." : " day.");
-                /*
-                 CGRect tmpRect=CGRectMake( dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
-                 
-                 UIView *tmpView = [[UIView alloc] initWithFrame: tmpRect];
-                 cardInView.frame=tmpRect;
-                 */
+                dragCardOriginX = x -10;//+  ((dragCardOriginX
+                dragCardOriginY = y -11; //+  ((dragCardOriginY
             }
         }
+
             break;
         case UIGestureRecognizerStateChanged:
         {//While Dragging
-            dragCardOriginX = x -5;//+  ((dragCardOriginX >10) ? -10 : 0);
-            dragCardOriginY = y -5; //+  ((dragCardOriginY >10) ? -10 : 0);
-            NSLog(@"just before MAkeDragCardView dragCardOriginX %f, dragCardOriginY %f",dragCardOriginX,dragCardOriginY);
+            dragCardOriginX = x -5;//
+            dragCardOriginY = y -5; //
+            // find card to drag
             [self makeDragCardView : dragCardOriginX : dragCardOriginY];
-            NSLog(@"just after MAkeDragCardView dragCardOriginX %f, dragCardOriginY %f",dragCardOriginX,dragCardOriginY);
-            //  NSLog(@"just after MAkeDragCardView");
-            //   [self draggingCard ];
-            
         }
             break;
         case UIGestureRecognizerStateEnded:    //Dropped!!!!!  - Dragging Ended
         {
             //drop Area = Drag Area- Deck Area
-            NSLog(@"Dropped!!");
-            
             //Delete Tails
             [self deleteSubViewTails :countStartingSubviews ];
             CGPoint dropLocationInView = [panGestureRecognizer locationInView:self.view];
+/*Search Draggable Area */
             CGRect dropRectInView =[self  inDropViewList :dropLocationInView];
-            NSLog(@"dropLocationInView =%@ ",NSStringFromCGRect(dropRectInView));
-            NSLog(@"About to Check Drop  Area");
+            //Log(@"dropLocationInView =%@ ",NSStringFromCGRect(dropRectInView));
+            //Log(@"About to Check Drop  Area");
             
             if (CGRectIsEmpty(dropRectInView) )
             {
-                NSLog(@"Drop Area - Not Droppable ");
+                //Log(@"Drop Area - Not Droppable ");
                 //panGestureRecognizer.enabled = NO;
                 break;
             }
@@ -447,83 +316,76 @@
                 {
                 // Find Specific Area to Drop To
                 // Check Main Area
-                NSLog(@"About to check if  Drop is in Main Area");
+                //Log(@"About to check if  Drop is in Main Area");
                     if (!CGRectIsEmpty ([self chkAreaByRect :_Deck.cardsMainArea :dropRectInView  ]))
                     {
-                    NSLog(@"Drop in Main Area");
-                NSLog(@"DROPPED - location Point %@", (NSStringFromCGPoint(dropLocationInView)));
-                NSLog(@"DROPPED - location Rect %@", (NSStringFromCGRect(dropRectInView)));
-                     
-                int mainCardIndex=[_Deck maxVolIntersection : _Deck.cardsMainArea : dropRectInView ];
+            int mainCardIndex=[_Deck maxVolIntersection : _Deck.cardsMainArea : dropRectInView ];
             Card *cardDroppingOn= [[Card alloc] init];
             cardDroppingOn = [_Deck.cardsMainArea objectAtIndex : mainCardIndex];
-                        NSLog(@"Card with Biggest Volume = %d , cardSuit %d",cardDroppingOn.cardVal,cardDroppingOn.cardSuit);
+                        //Log(@"Card with Biggest Volume = %d , cardSuit %d",cardDroppingOn.cardVal,cardDroppingOn.cardSuit);
                    // Main Area to Main Area
-                        /*
-                        [self moveToColumnByRect : dropRectInView : cardDroppingOn.cardRect];
-                         */
-                    /*   - Add to end of Main Area
+/****                [self moveToColumnByRect : dropRectInView : cardDroppingOn.cardRect];
+                      - Add to end of Main Area
                         - search  for rect in cardsMain
                         - make new  from it
                         - change new card from reverse to Face UP
-                        -
-                      */
-                        
+*/
                     // Deck Area to Main Area
             // Check Card Logic - if OK AddCard to View
-        UIView *newView = [self addNewCardView :  _cardInPlay : cardDroppingOn];
-                        
-                       
-    [self updateDeckArea ];
-                _cardInPlay.cardRect=newView.frame;
+      UIView *newView = [self addNewCardView :  _cardInPlay : cardDroppingOn];
+        _cardInPlay.cardRect=newView.frame;
             [[_Deck cardsMainArea] addObject:_cardInPlay];
-                        
-                    
+                [self updateDeckArea ];
                     }
                 else
                     {
-                        NSLog(@"Drop Area not Main Area");
+                        //Log(@"Drop Area not Main Area");
                     if (!CGRectIsEmpty ([self chkAreaByRect :_Deck.cardsAceArea :dropRectInView  ]))
                         {
-                        NSLog(@"Drop in Aces Area");
+                            // Card not in Main or in Deck so must be in aCes
+int mainCardIndex=[_Deck maxVolIntersection : _Deck.cardsMainArea : dropRectInView ];
+                        //Log(@"Drop in Aces Area");
                         }
-                    
-                
-                // work out if dropped in an updatable area
-               // if (! (_cardInPlay= [_Deck getCardFromRect :[_Deck cardsMainArea] :rectInView]))
-                    
-                    else
-                        NSLog(@"Drop Area Area Unknown");
+                    // Dropable CArd Either from Deck or Main
+                        /*
+For both cases - Add cArd to Aces Area ;updateAcesArea ;if first card in AcesArea- update Draggable Areas
+if card is from main; -update main area
+     if (!CGRectIsEmpty ([self chkAreaByRect :_Deck.cardsAceArea :_cardInPlay.cardRect ]))
+                        - add Card to Aces Are
+                         if Card is from Deck - update Deckarea
+                        */
                     }
                 }
         }
             break;
         default:
-            NSLog(@"Error - Gesture State Not Recognised ");
+            //Log(@"Error - Gesture State Not Recognised ");
             break;
         }
             if (panGestureRecognizer.state ==UIGestureRecognizerStateCancelled)
                 panGestureRecognizer.enabled = YES;
-            
             [self.view setNeedsDisplay];
-            
 }
 
 
+    
 #pragma mark -  Card/View Display Update Routines
 
+
+// Routine assuming a card has been dropped from the Deck Area
 -(void)updateDeckArea
 {
     int count = (int)[_Deck.deckShownArea count];
-    if (count >0)
+    if (count >0) // If Cards In Deck
         {
+            // Take Card frm Top of Deck
             Card *deckCard = [[_Deck deckShownArea]objectAtIndexedSubscript: count -1 ];
-            // Remove DDeck Card from Deck Shown Area
+            // Remove Dropped  Card from Deck Shown Area
             [_Deck.deckShownArea removeLastObject];
-            //[];
-            // find next Deck Subview usig Rect
-            UIView *oldDeckView =[self deleteSubviewByRect : deckCard.cardRect];
-            if (count-2 >= 0 )
+            // Delete the View connected to it
+            [self deleteSubviewByRect : deckCard.cardRect];
+            // this will usually leave 2 views left
+            if (count-2 >= 0 ) // if at least 2 cards - left make the second view the draggable one.
                 {
             Card *newDeckCard = [[_Deck deckShownArea] objectAtIndexedSubscript: count -2 ];
                 UIView *newDeckView = [self findViewByRect : newDeckCard.cardRect ];
@@ -531,12 +393,13 @@
                 }
             else
                 
-                if (count ==0)
-                {
-            Card *newDeckCard = [[_Deck deckShownArea] objectAtIndexedSubscript: 0];
+                if (count ==1) //- 1 card left in Deck Shown Area
+                { // find
+            Card *newDeckCard = [[_Deck deckShownArea] objectAtIndexedSubscript: 1];
             UIView *newDeckView = [self findViewByRect : newDeckCard.cardRect ];
             [self updateDragArea: deckCard :newDeckView];
                 }
+            
         }
 }
 
@@ -553,7 +416,7 @@
         [_dropAreas addObject : newView];
         //}
     //else
-      //  NSLog(@"Error : view not found : Drop Area");
+      //  //Log(@"Error : view not found : Drop Area");
 
 }
 
@@ -566,7 +429,7 @@
         [_dragAreas addObject : newView];
        // }
    // else
-     //   NSLog(@"Error : view not found : Drag Area");
+     //   //Log(@"Error : view not found : Drag Area");
 }
 
 
@@ -591,7 +454,7 @@
     NSArray *subviews = [self.view subviews];
     
     unsigned long CurrentSubviewCount = [subviews count];
-    NSLog(@"DROPPED : CurrentSubviewCount = %lu,CountofStartingSubviews= %d",CurrentSubviewCount ,countStartingSubviews);
+    //Log(@"DROPPED : CurrentSubviewCount = %lu,CountofStartingSubviews= %d",CurrentSubviewCount ,countStartingSubviews);
     
     for (int  i=(int) CurrentSubviewCount-(int)1 ; i>= (int) countStartingSubviews; i--)
     {
@@ -608,7 +471,7 @@
 -(UIView *) addNewCardView : (Card*) oldCard : (Card*) cardBeingAddedTo
 {
     
-    NSLog(@"addNewCardView : oldCard = %@",oldCard);
+    //Log(@"addNewCardView : oldCard = %@",oldCard);
     float newXPos = cardBeingAddedTo.cardRect.origin.x;
     float newYPos = cardBeingAddedTo.cardRect.origin.y+CARDLENGTH/2;
     CGRect newRect = CGRectMake(newXPos,newYPos,  CARDWIDTH, CARDLENGTH);
@@ -631,42 +494,26 @@
 -(void) makeDragCardView: (float) dragCardOriginX :(float) dragCardOriginY
 {
     
-    NSLog(@"in makeTmpCardView..\7dragCardOriginX %f,dragCardOriginY %f ",dragCardOriginX,dragCardOriginY);
+    //Log(@"in makeTmpCardView..\7dragCardOriginX %f,dragCardOriginY %f ",dragCardOriginX,dragCardOriginY);
     
     CGRect tmpRect=CGRectMake( dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
-    //C dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
-    
-    UIView *tmpView = [[UIView alloc] initWithFrame: tmpRect];
+       UIView *tmpView = [[UIView alloc] initWithFrame: tmpRect];
     
     //   tmpView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed: _cardInPlay.cardPic] ];
     
+    
     [_cardInPlay drawCardPicture :  tmpView : _cardInPlay.cardPic];
+    
+    
     [self.view addSubview: tmpView];
     [self.view setNeedsDisplay];
     
     
-    //   unsigned long topSubviewCount = [subviews count];
-    // UIView *topSubview = [subviews objectAtIndex:(int) topSubviewCount];
-    //  CGRect  topviewRect =  [topSubview frame];
-    // FOUMD
-    
-    /*  NSLog(@"checking intersection..%lu",CountOfStartingSubviews);
-     for (int j= (int) CountOfStartingSubviews-1; j>0; j--)
-     {
-     UIView *subview = [subviews objectAtIndex:j];
-     CGRect checkViewRect=[subview frame];
-     if (CGRectIntersectsRect(tmpRect, checkViewRect))
-     {
-     NSLog(@"Found interection");
-     subview.backgroundColor = [UIColor blueColor];
-     }
-     } */
-    
 }
-
-
  
 #pragma mark - Routines Driven by  Rect Values
+
+
 
 -(void) moveToColumnByRect : (CGRect ) origRect : (CGRect ) dropRect
 {
@@ -752,71 +599,6 @@
 
 
 
-
--( void )draggingCard
-    {
-     
-       /*
-        if ((_cardInPlay =[_Deck  getCardFromSubViewRect : cardInView.frame])==nil)
-        {
-            NSLog(@"Error - NO Card found from Subview");
-            panGestureRecognizer.enabled = NO;
-            break;
-        }
-        
-        
-        NSLog(@"drag detected ==> aSubview.frame = %@  ",NSStringFromCGRect(cardInView.frame));
-        
-        
-        NSLog(@"Card found from Subview = %@" , _cardInPlay.cardPic);
-        
-        */
-        unsigned long dragAreaCount = [_dragAreas count];
-         /*
-       // NSLog(@"drag detected ==> aSubview.frame = %@  ",NSStringFromCGRect(cardInView.frame));
-        
-        
-        
-        // MAKE SUBVIEW RED
-        NSLog(@"Leaving Drag Detected : dragArea count =  %lu",(unsigned long)[_dragAreas count]);
-        NSLog(@"dragAreaCounbt = %lu",dragAreaCount);
-        UIColor *colorSave = nil;
-        for (int j=0; j<(int) dragAreaCount; j++)
-        {
-            UIView *dropView = [_dragAreas objectAtIndex:j];
-            NSLog(@"Checking dragrect in dragArea %@\nj= %d",dropView,j);
-            
-            CGRect checkViewRect=[dropView frame];
-            NSLog(@"About to compare Intersection of  dragArea j= %d",j);
-            
-            NSLog(@"tmpRect =%@",NSStringFromCGRect(tmpRect));
-            NSLog(@"CheckViewRect =%@",NSStringFromCGRect(checkViewRect));
-            
- 
-            if (CGRectIntersectsRect(tmpRect, checkViewRect))  //they interSect
-            {
-                
-                // *** show some animation to show could be dropped...
-                
-                // CGRect newFrame = dropView.frame;
-                CGRect oldFrame = dropView.frame;
-                
-                
-                NSLog(@"Found interection....");
-   */
-        
-            /*
-             else
-             {
-             if (dropView.backgroundColor == [UIColor blueColor])
-             {
-             dropView.backgroundColor = RANDOM_COLOR;
-             }
-             }
-             */
-            
-        }
-
 #pragma mark - Game Timer Routines
 
 
@@ -857,6 +639,114 @@
 
 #pragma mark  - Game Display Setup Routines
 
+
+
+-(void) showDeck
+{
+    if ([[_Deck deck ] count] ==0)
+        return; // DEck Empty!
+    static BOOL SHOW_3_CARDS= TRUE;
+    static BOOL DECK_SHOWN=FALSE;
+    static UIView *showCard1;   //change to show card view
+    static UIView *showCard2;
+    static UIView *showCard3;
+    int countDeckArea=(int) [[_Deck deckShownArea] count];
+    if (countDeckArea==0)
+        DECK_SHOWN=FALSE;
+    if (!DECK_SHOWN)
+        // need at least 1 view
+    {
+        //Log(@"calling showDeck");
+        CGRect cardRect1 = CGRectMake( SHOWDECK_XPOS, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
+        showCard1 = [[UIView alloc] initWithFrame:cardRect1];
+        Card *dealtCard1= [_Deck dealCard : showCard1];
+        [dealtCard1 drawCardPicture : showCard1  : dealtCard1.cardPic];
+        [self.view addSubview: showCard1];
+        [[_Deck deckShownArea] addObject: dealtCard1];
+        
+        if (SHOW_3_CARDS==TRUE)
+        {
+            
+            CGRect cardRect2 = CGRectMake( SHOWDECK_XPOS+10, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
+            showCard2=[[UIView alloc] initWithFrame:cardRect2];
+            Card *dealtCard2= [_Deck dealCard : showCard2];
+            if ( dealtCard2  !=nil)
+            {
+                
+                [self.view addSubview: showCard2];
+                Card *dealtCard2= [_Deck dealCard : showCard2];
+                
+                [dealtCard2 drawCardPicture : showCard2  : dealtCard2.cardPic];
+                //Log(@"showDeck: adding dealtCard2.cardPic =%@",dealtCard2.cardPic);
+                [[_Deck deckShownArea] addObject: dealtCard2];
+                [_dragAreas removeLastObject];
+                [_dragAreas addObject: showCard2];
+                
+                CGRect cardRect3 = CGRectMake( SHOWDECK_XPOS+20, DECKCARD_YPOS, CARDWIDTH, CARDLENGTH);
+                showCard3=[[UIView alloc] initWithFrame:cardRect3];
+                Card *dealtCard3= [_Deck dealCard : showCard3];
+                if ( dealtCard3  !=nil)
+                {
+                    [dealtCard3 drawCardPicture : showCard3  : dealtCard3.cardPic];
+                    //Log(@"showDeck: adding dealtCard3.cardPic =%@",dealtCard2.cardPic);                                    [[_Deck deckShownArea] addObject: dealtCard3];
+                    //Log(@"showDeck: after adding dealtCard2.cardPic =%@",[[_Deck deckShownArea] objectAtIndex: 1] );
+                    [_dragAreas removeLastObject];
+                    [_dragAreas addObject: showCard3];
+                    [self.view addSubview: showCard3];
+                }
+            }
+            else
+                [_dragAreas addObject: showCard1];
+        }
+        DECK_SHOWN=TRUE;
+    }
+    else
+        
+    {
+        Card *dealtCard1= [_Deck dealCard : showCard1];
+        
+        if ( dealtCard1  !=nil)
+        {
+            // Deal 1 card
+            if (SHOW_3_CARDS==FALSE)
+            {
+                //showCard1.backgroundColor = [UIColor colorWithPatternImage:dealtCard1.cardPic];
+                [dealtCard1 drawCardPicture : showCard1  : dealtCard1.cardPic];
+                [_Deck updateDeckShownArea : dealtCard1 : 0];
+            }
+            else
+            {
+                Card *dealtCard2 = [_Deck dealCard : showCard2];
+                if (dealtCard2!=nil )
+                {
+                    [dealtCard2 drawCardPicture : showCard2  : dealtCard2.cardPic ];
+                    
+                    [_Deck updateDeckShownArea : dealtCard1 : 1];
+                    
+                }
+                else
+                    return ;
+                Card *dealtCard3 = [_Deck dealCard : showCard3];
+                if (dealtCard3 !=nil)
+                {
+                    [dealtCard3 drawCardPicture : showCard3  : dealtCard3.cardPic ];
+                    [_Deck updateDeckShownArea : dealtCard1 : 2];                }
+                else
+                    return;
+            }
+        }
+        else
+            return;
+    }
+    // update Deck shown with new card from Deck
+    
+}
+
+
+
+
+
+
 - (void) createAcesArea
 {
     int acesArea_YPos = (6 * CARDLENGTH );
@@ -864,15 +754,15 @@
     for (int i=0; i<(CARDWIDTH+GAPBETWEENACECARDS)*4; i+=CARDWIDTH+GAPBETWEENACECARDS)
     {
         CGRect cardRect = CGRectMake(acesArea_XPos+i, acesArea_YPos, CARDWIDTH,CARDLENGTH);
-        NSLog(@"Frame cardRect f = %@", NSStringFromCGRect(cardRect));
+        //Log(@"Frame cardRect f = %@", NSStringFromCGRect(cardRect));
         
         UIView *aceView = [[UIView alloc] initWithFrame:cardRect];
         aceView.backgroundColor = [UIColor blackColor];
         [[self view] addSubview:aceView];
         [_dropAreas addObject: aceView];
-        // NSLog(@"create Aces dropAreas Count = %ul",_dropAreas.count);
+        // //Log(@"create Aces dropAreas Count = %ul",_dropAreas.count);
     }
-    NSLog(@"create Aces dropAreas Count = %lu",(unsigned long)_dropAreas.count);
+    //Log(@"create Aces dropAreas Count = %lu",(unsigned long)_dropAreas.count);
 }
 
 
@@ -910,7 +800,7 @@
         for ( int i=0; i<= cardColumnIndex; i++)
         {
             //       dealtCard = [[Card alloc] init];
-            NSLog(@" Deck dealcard.cardval %d",dealtCard.cardVal);
+            //Log(@" Deck dealcard.cardval %d",dealtCard.cardVal);
             aRect = CGRectMake( j, cardRow, CARDWIDTH, CARDLENGTH);
             view1 = [[UIView alloc] initWithFrame:aRect];
             _Deck.cardRect = aRect;  // assign View made to card
@@ -933,16 +823,17 @@
         // Adding last card area in Each column as a draggable area.
         // [_dragAreas addObject:[NSValue valueWithCGRect:aRect]];//Add last Cartd which will be face up as A droppable
         
-        NSLog(@"viewDidLoad 1");
-        [_dragAreas addObject: view1];      // Add last Card in Column to Droppable Area
+        //Log(@"viewDidLoad 1 - Adding LAst Card in Column");
         
-        NSLog(@"viewDidLoad 2");       // Show its Real Face
+        [_dragAreas addObject: view1];      // Add last Card in Column to Droppable Area
+        [_dropAreas addObject: view1];
+        //Log(@"viewDidLoad 2");       // Show its Real Face
         NSString *picFile =[_Deck getPicFileName :dealtCard];
         
-        NSLog(@"viewDidLoad 2.5 ==> picFile = %@",picFile);
+        //Log(@"viewDidLoad 2.5 ==> picFile = %@",picFile);
         [dealtCard drawCardPicture : view1 : picFile ];
         
-        NSLog(@"viewDidLoad 3");
+        //Log(@"viewDidLoad 3");
     }
 }
 
@@ -956,15 +847,75 @@
     _dragAreas=[[NSMutableArray alloc] initWithCapacity:52];
     _dropAreas=[[NSMutableArray alloc] initWithCapacity:52];
     
-    
-    
     // Linking Pan Gesture Recogniser to entire view - as need to make it easier once item is dragged.
     UIPanGestureRecognizer *panGesture =[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragDetected:)];
     panGesture.minimumNumberOfTouches = 1;
     panGesture.enabled = YES;
     [self.view addGestureRecognizer:panGesture];
     
+       [self  loadHighScore ];
+}
+
+
+
+#pragma mark - End Of Game Routines and Load/Save HighScore
+
+-(void) EndOfGameAnimation
+{
     
+    
+    //Check if Current Score > HighScore
+    // if so
+    
+    [self saveHighScore  : 9000];//:(NSInteger ) highScoreSec
+    //  if (deckCArds NOT Nil)
+    //        - animate movement to aCes Area
+    //    if (mainCards NOt nil)
+    //        - animate movement to aces Area
+    
+    //for (Card * c in [_Deck mainCardsArea))
+    {
+        //if (!c.cardFaceUp==TRUE)
+        // get Card picture
+        //show picture
+        
+        // Animate Movement
+        //     UIView.animateWithDuration(0.5, delay: 0.3, options: nil, animations: {
+        //     self.c.cardRect.center.x += self.view.bounds.width
+        //     }, completion: nil);
+        
+        //
+        
+    }
     
 }
+
+
+-(void) loadHighScore
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSInteger loadHighScore = [defaults integerForKey:@"HighScore"];
+    highScore = loadHighScore;
+}
+
+
+
+-(void) saveHighScore :(NSInteger ) highScoreSec
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setInteger:9001 forKey:@"HighScore"];
+    [defaults synchronize];
+
+}
+
+
+
+
+
+
+
+
+
 @end

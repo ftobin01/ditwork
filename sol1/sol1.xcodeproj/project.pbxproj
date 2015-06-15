@@ -14,7 +14,6 @@
 		A62413D81AC09BC500364556 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A62413D71AC09BC500364556 /* main.m */; };
 		A62413DC1AC09BC500364556 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A62413DB1AC09BC500364556 /* AppDelegate.m */; };
 		A62413DF1AC09BC600364556 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A62413DD1AC09BC600364556 /* Main_iPhone.storyboard */; };
-		A62413E21AC09BC600364556 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A62413E01AC09BC600364556 /* Main_iPad.storyboard */; };
 		A62413E51AC09BC600364556 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A62413E41AC09BC600364556 /* ViewController.m */; };
 		A62413E71AC09BC600364556 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A62413E61AC09BC600364556 /* Images.xcassets */; };
 		A62413EE1AC09BC600364556 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62413ED1AC09BC600364556 /* XCTest.framework */; };
@@ -24,7 +23,6 @@
 		A62413FA1AC09BC600364556 /* sol1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A62413F91AC09BC600364556 /* sol1Tests.m */; };
 		A62414051AC0A3F300364556 /* Cards.m in Sources */ = {isa = PBXBuildFile; fileRef = A62414041AC0A3F300364556 /* Cards.m */; };
 		B45C97901B13D6AF00A84005 /* card reverse 2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B45C978F1B13D6AF00A84005 /* card reverse 2.jpeg */; };
-		B4E255841B2C3A0E00A00906 /* UIViewController+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E255831B2C3A0E00A00906 /* UIViewController+Helper.m */; };
 		B4E255871B2C3C5000A00906 /* Card+View.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E255861B2C3C5000A00906 /* Card+View.m */; };
 		B4EB8A1E1B13246000CD8E97 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = B4EB8A1D1B13246000CD8E97 /* Deck.m */; };
 		B4F5AFF51ADD219C007C2192 /* 10_of_clubs.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F5AFB21ADD219C007C2192 /* 10_of_clubs.png */; };
@@ -126,7 +124,6 @@
 		A62413DA1AC09BC500364556 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A62413DB1AC09BC500364556 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A62413DE1AC09BC600364556 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		A62413E11AC09BC600364556 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		A62413E31AC09BC600364556 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A62413E41AC09BC600364556 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A62413E61AC09BC600364556 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -137,12 +134,9 @@
 		A62413F91AC09BC600364556 /* sol1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sol1Tests.m; sourceTree = "<group>"; };
 		A62414031AC0A3F300364556 /* Cards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cards.h; sourceTree = "<group>"; };
 		A62414041AC0A3F300364556 /* Cards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cards.m; sourceTree = "<group>"; };
-		B402E8621AD5792300B55A30 /* screen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = screen.h; sourceTree = "<group>"; };
 		B4293DEC1B1A1178003D8059 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		B4293DED1B1A2B4B003D8059 /* saveData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = saveData.h; sourceTree = "<group>"; };
 		B45C978F1B13D6AF00A84005 /* card reverse 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "card reverse 2.jpeg"; path = "PNG-cards-1.3/card reverse 2.jpeg"; sourceTree = "<group>"; };
-		B4E255821B2C3A0E00A00906 /* UIViewController+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Helper.h"; sourceTree = "<group>"; };
-		B4E255831B2C3A0E00A00906 /* UIViewController+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Helper.m"; sourceTree = "<group>"; };
 		B4E255851B2C3C5000A00906 /* Card+View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Card+View.h"; sourceTree = "<group>"; };
 		B4E255861B2C3C5000A00906 /* Card+View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Card+View.m"; sourceTree = "<group>"; };
 		B4EB8A1C1B13246000CD8E97 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
@@ -251,7 +245,6 @@
 		A62413BF1AC09BC500364556 = {
 			isa = PBXGroup;
 			children = (
-				B402E8621AD5792300B55A30 /* screen.h */,
 				A62413D11AC09BC500364556 /* sol1 */,
 				A62413F31AC09BC600364556 /* sol1Tests */,
 				A62413CA1AC09BC500364556 /* Frameworks */,
@@ -292,11 +285,8 @@
 				B4293DED1B1A2B4B003D8059 /* saveData.h */,
 				B4EB8A1C1B13246000CD8E97 /* Deck.h */,
 				B4EB8A1D1B13246000CD8E97 /* Deck.m */,
-				A62413E01AC09BC600364556 /* Main_iPad.storyboard */,
 				A62413E31AC09BC600364556 /* ViewController.h */,
 				A62413E41AC09BC600364556 /* ViewController.m */,
-				B4E255821B2C3A0E00A00906 /* UIViewController+Helper.h */,
-				B4E255831B2C3A0E00A00906 /* UIViewController+Helper.m */,
 				B4293DEC1B1A1178003D8059 /* constants.h */,
 				A62413E61AC09BC600364556 /* Images.xcassets */,
 				B45C978F1B13D6AF00A84005 /* card reverse 2.jpeg */,
@@ -547,7 +537,6 @@
 				B4F5B0111ADD219C007C2192 /* 8_of_clubs.png in Resources */,
 				B4F5B0081ADD219C007C2192 /* 5_of_spades.png in Resources */,
 				B4F5B0291ADD219C007C2192 /* king_of_diamonds.png in Resources */,
-				A62413E21AC09BC600364556 /* Main_iPad.storyboard in Resources */,
 				A62413E71AC09BC600364556 /* Images.xcassets in Resources */,
 				B4F5B0001ADD219C007C2192 /* 3_of_spades.png in Resources */,
 				B4F5B0371ADD219C007C2192 /* red_joker.png in Resources */,
@@ -602,7 +591,6 @@
 			files = (
 				A62413E51AC09BC600364556 /* ViewController.m in Sources */,
 				A62413DC1AC09BC500364556 /* AppDelegate.m in Sources */,
-				B4E255841B2C3A0E00A00906 /* UIViewController+Helper.m in Sources */,
 				A62413D81AC09BC500364556 /* main.m in Sources */,
 				B4EB8A1E1B13246000CD8E97 /* Deck.m in Sources */,
 				A62414051AC0A3F300364556 /* Cards.m in Sources */,
@@ -643,14 +631,6 @@
 				A62413DE1AC09BC600364556 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		A62413E01AC09BC600364556 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A62413E11AC09BC600364556 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		A62413F61AC09BC600364556 /* InfoPlist.strings */ = {

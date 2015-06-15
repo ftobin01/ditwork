@@ -41,7 +41,7 @@
 #define             MYLONGLOG     NSLog(@"%_func %s, _line %d, _file %s, calling _func %s", __func__, __Line__, __File__, __PRETTY_FUNCTION__);
 #endif
 
-
+#define     ACE_CARDVAL         14      /* King is 13, ace is 14 */
 #define     CARDWIDTH           33.0
 #define     CARDLENGTH          60.0
 
@@ -61,7 +61,7 @@
 #define     DECKCARD_XPOS       14
 #define     DECKCARD_YPOS    ( (MAXCARDROWS-2) * CARDLENGTH )
 
-
+#define     SHOWDECK_XPOS    60
 
 #define     HEARTS      0
 #define     SPADES      1
