@@ -14,6 +14,10 @@
 #define RANDOM_COLOR                                                           \
 [UIColor colorWithRed : (CGFloat)random() / (CGFloat)RAND_MAX green : (CGFloat)random() / (CGFloat)RAND_MAX blue : (CGFloat)random() / (CGFloat)RAND_MAX alpha : 1.0]
 
+#define TIMER_COLOR     [UIColor colorWithRed : (255/255)  green :(204/255) blue : (204/255) alpha : 1.0]
+
+#define RGB_UIColor(r, g, b)  [UIColor colorWithRed:((r) / 255.0) green:((g) / 255.0) blue:((b) / 255.0) alpha:1.0]
+
 //#ifdef NDEBUG
 #ifdef NDEBUG              // NO DEBUG or RELEASE MODE   - Tiredof stopping for mispelt NSLOG DEbug mssages
 #define          MYLOG  MyLog(...)

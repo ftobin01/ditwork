@@ -42,4 +42,8 @@
 -(Card *) dealCard : (UIView *)dealView; -(void) initDeck;
 -(void) compareColumns;
 // -( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
+-(void) updateDeckShownArea : (Card*) dealtCard : (int) index;
+
+-(NSMutableArray *) combineArrays :(NSMutableArray *) array1 : (NSMutableArray *) array2 : (NSMutableArray *) array3 : (NSMutableArray *) array4;
+
 @end

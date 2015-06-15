@@ -38,6 +38,9 @@
 -(Card *) dealCard : (UIView *)dealView;
 
 - (NSString *)  getPicFileName : (Card *) acard;
+-(void) updateDeckShownArea : (Card*) dealtCard : (int) index;
+
+
 
 //- (Card *)       initCardWithData : (int ) suitNum :( int ) cardNumVal : (NSString *) cardPicName : (CGRect) cardRect : (BOOL ) cardFaceUp;
 
@@ -181,6 +184,15 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
     
 }
 
+
+-(void) updateDeckShownArea : (Card*) dealtCard : (int) index
+{
+    int countDeckArea = (int) [[self deckShownArea] count];
+    if (countDeckArea>index)
+        [[self deckShownArea] replaceObjectAtIndex: index withObject: dealtCard] ;
+    else
+        [[self deckShownArea] addObject : dealtCard];
+}
 
 
 -(Card *) dealCard : (UIView *)dealView
@@ -350,5 +362,40 @@ NSLog(@"InMakeDeck - _cardsArray.count 2 = >> %lu",(unsigned long)[_cardsArray c
     }
     return(maxVolIndex);
 }
+
+
+
+
+NSComparisonResult compare(UIView *firstView, UIView *secondView, void *context)
+{
+    if ( firstView.frame.origin.y < secondView.frame.origin.y)
+        return NSOrderedAscending;
+    else if (firstView.frame.origin.y > secondView.frame.origin.y)
+        return NSOrderedDescending;
+    else
+        return NSOrderedSame;
+}
+
+
+-(NSMutableArray *) combineArrays :(NSMutableArray *) array1 : (NSMutableArray *) array2 : (NSMutableArray *) array3 : (NSMutableArray *) array4
+
+{
+    if (array1!=nil)
+    {
+        NSMutableArray *newArray = [NSMutableArray arrayWithArray:[array1 arrayByAddingObjectsFromArray:array2]];
+        NSMutableArray *newArray2 = [NSMutableArray arrayWithArray:[newArray arrayByAddingObjectsFromArray:array3]];
+        
+        NSMutableArray *newArray3 = [NSMutableArray arrayWithArray:[newArray2 arrayByAddingObjectsFromArray:array4]];
+        
+        return (newArray3);
+    }
+    else
+    {
+        NSLog(@"Error: 1st Array Passedto combine Arrays is nil");
+        return( array1); // nil
+    }
+}
+
+
 
 @end

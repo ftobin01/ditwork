@@ -18,8 +18,7 @@
 @property (nonatomic, strong) NSArray *subviews;
 @property (nonatomic, strong) UIImage *globalCardImage;
 @property (nonatomic, strong) Card    *cardInPlay;
-
-
+@property (nonatomic) UILabel *gameTimerLabel;
 // Sinks for Cards
 @property (nonatomic,strong) DeckObj *Deck;
 
@@ -27,7 +26,6 @@
 //-(CGRect ) inSubViewList : ( CGPoint ) locationInView;
 //-( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
 -(CGRect )chkAreaByRect : (NSArray *) viewArea : ( CGRect ) locationRect;
-
 //-(Card *) getCardFromSubView : (CGRect *) aRect;
 //- (void) deleteSubViewByRect : (CGRect ) aRect;
 
@@ -42,13 +40,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-   
-    
+    // Do any additional setup after loading the view, typically from a nib
     static bool done=FALSE;
-    /* Set  up object properly */
-    
- /**/   if(done==FALSE)
         {
         _Deck = [[DeckObj alloc] init];
         [_Deck  initDeck];
@@ -57,109 +50,16 @@
   
     
     [self setupAllView];
-    NSArray *subviews = [NSArray array];
-    
+    // Create Main Card Area
     [self makeMainCardLayout];
-   subviews = [self.view subviews] ;
-    NSLog(@"subview count 1 %lu",(unsigned long)[subviews count]);
-    
-     NSLog(@"viewDidLoad 5");    // Create Aces Area
+    // Create Aces Area
      [self createAcesArea];
-     NSLog(@"viewDidLoad 6");
      //Create Deck Area
      [self createDeckArea];
      NSLog(@"viewDidLoad 7");
-   
-    NSLog(@"Leaving ViewDidload  8 dragArea count =  %d",(int ) [_dragAreas count]);
-}
-
-- (void) createAcesArea
-{
-    int acesArea_YPos = (6 * CARDLENGTH );
-    int acesArea_XPos = self.view.bounds.size.width - (4*(CARDWIDTH) + 6*(GAPBETWEENACECARDS));
-    for (int i=0; i<(CARDWIDTH+GAPBETWEENACECARDS)*4; i+=CARDWIDTH+GAPBETWEENACECARDS)
-    {
-        CGRect cardRect = CGRectMake(acesArea_XPos+i, acesArea_YPos, CARDWIDTH,CARDLENGTH);
-        NSLog(@"Frame cardRect f = %@", NSStringFromCGRect(cardRect));
-        
-        UIView *aceView = [[UIView alloc] initWithFrame:cardRect];
-        aceView.backgroundColor = [UIColor blackColor];
-        [[self view] addSubview:aceView];
-        [_dropAreas addObject: aceView];
-       // NSLog(@"create Aces dropAreas Count = %ul",_dropAreas.count);
-    }
- NSLog(@"create Aces dropAreas Count = %lu",(unsigned long)_dropAreas.count);
-}
-
-
-- (void) createDeckArea
-{
-    
-    CGRect cardRect = CGRectMake(DECKCARD_XPOS, DECKCARD_YPOS, CARDWIDTH,CARDLENGTH);
-    UIView *deckView = [[UIView alloc] initWithFrame:cardRect];
-    
-    deckView.backgroundColor = [UIColor blueColor];
-    
-    [[self view] addSubview:deckView];
-    
-    UITapGestureRecognizer *tapGesture =[[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(tapDetected:)];
-    
-    [deckView addGestureRecognizer:tapGesture];
-    
-}
-
-
-
-
-- (void) makeMainCardLayout     // check out subviewe layout
-{
-    Card *dealtCard;
-
-    CGRect aRect;
-    float j=15;
-    float cardRow=CARDSTARTPOS;
-    
-        UIView *view1;
-    
-    for (int cardColumnIndex=0; cardColumnIndex<MAXCARDCOLUMNS; cardColumnIndex++)
-    {
-        for ( int i=0; i<= cardColumnIndex; i++)
-        {
-            //       dealtCard = [[Card alloc] init];
-            NSLog(@" Deck dealcard.cardval %d",dealtCard.cardVal);
-            aRect = CGRectMake( j, cardRow, CARDWIDTH, CARDLENGTH);
-            view1 = [[UIView alloc] initWithFrame:aRect];
-            _Deck.cardRect = aRect;  // assign View made to card
-            dealtCard = [_Deck dealCard : view1];  // Deal a Card, Assign View
-            
-            [_Deck.cardsMainArea addObject: dealtCard]; // add to Main Area
-            dealtCard.cardRect = aRect;  // assign View made to card
-            [dealtCard drawCardPicture: view1 : CARDREVERSE];
-            
-            //[self drawCardPicture: view1 : dealtCard.cardPic];
-            
-            [[self view] addSubview:view1];
-            
-            cardRow+=CARDLENGTH/2;
-        }
-        // Section - For Last card Each Column
-        j+=CARDWIDTH + GAPBETWEENCARDS;
-        cardRow=CARDSTARTPOS;
-        
-        // Adding last card area in Each column as a draggable area.
-        // [_dragAreas addObject:[NSValue valueWithCGRect:aRect]];//Add last Cartd which will be face up as A droppable
-        
-        NSLog(@"viewDidLoad 1");
-        [_dragAreas addObject: view1];      // Add last Card in Column to Droppable Area
-        
-        NSLog(@"viewDidLoad 2");       // Show its Real Face
-        NSString *picFile =[_Deck getPicFileName :dealtCard];
-        
-        NSLog(@"viewDidLoad 2.5 ==> picFile = %@",picFile);
-        [dealtCard drawCardPicture : view1 : picFile ];
-        
-        NSLog(@"viewDidLoad 3");
-    }
+     // Start Game Timer
+    [self makeGameTimerLabel];
+     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(gameTime) userInfo:nil repeats:YES];
 }
 
 
@@ -282,7 +182,7 @@
             {
                 //showCard1.backgroundColor = [UIColor colorWithPatternImage:dealtCard1.cardPic];
                 [dealtCard1 drawCardPicture : showCard1  : dealtCard1.cardPic];
-                [self updateDeckShownArea : dealtCard1 : 0];
+                [_Deck updateDeckShownArea : dealtCard1 : 0];
                     }
             else
             {
@@ -291,7 +191,7 @@
                 {
                     [dealtCard2 drawCardPicture : showCard2  : dealtCard2.cardPic ];
                     
-                    [self updateDeckShownArea : dealtCard1 : 1];
+                    [_Deck updateDeckShownArea : dealtCard1 : 1];
                     
                 }
                 else
@@ -300,7 +200,7 @@
                 if (dealtCard3 !=nil)
                 {
                     [dealtCard3 drawCardPicture : showCard3  : dealtCard3.cardPic ];
-                   [self updateDeckShownArea : dealtCard1 : 2];                }
+                   [_Deck updateDeckShownArea : dealtCard1 : 2];                }
                 else
                     return;
             }
@@ -311,16 +211,6 @@
     // update Deck shown with new card from Deck
     
 }
-
-
--(void) updateDeckShownArea : (Card*) dealtCard : (int) index
-{
-int countDeckArea = (int) [[_Deck deckShownArea] count];
-if (countDeckArea>index)
-    [[_Deck deckShownArea] replaceObjectAtIndex: index withObject: dealtCard] ;
-else
-    [[_Deck deckShownArea] addObject : dealtCard];
- }
 
 
 
@@ -472,7 +362,7 @@ else
                 /*
                  */
                 
-                NSMutableArray   *allAcesAreas = [self combineArrays: [_Deck clubsArea] :[_Deck heartsArea] : [_Deck spadesArea] : [_Deck diamondsArea]];
+                NSMutableArray   *allAcesAreas = [_Deck combineArrays: [_Deck clubsArea] :[_Deck heartsArea] : [_Deck spadesArea] : [_Deck diamondsArea]];
                 
                 
                 // make Aces Area = clubsArea +spadesArea +    eartsArea +diamondsArea;
@@ -489,7 +379,7 @@ else
                     }
                     NSLog(@"DD End Showing deckShown Area");
                     {
-                        if ((_cardInPlay=[_Deck getCardFromRect: [_Deck deckShownArea] :rectInView ]))
+                        if (!(_cardInPlay=[_Deck getCardFromRect: [_Deck deckShownArea] :rectInView ]))
                             NSLog(@"cardInPlay.cardPic - after deckShownArea -  getCardFromRect = %@",_cardInPlay.cardPic);
                         //if (!(_cardInPlay=getCardFromRect [_Deck acesArea] : rectInView))
                         else
@@ -564,7 +454,7 @@ else
                 NSLog(@"DROPPED - location Point %@", (NSStringFromCGPoint(dropLocationInView)));
                 NSLog(@"DROPPED - location Rect %@", (NSStringFromCGRect(dropRectInView)));
                      
-     int mainCardIndex=[_Deck maxVolIntersection : _Deck.cardsMainArea : dropRectInView ];
+                int mainCardIndex=[_Deck maxVolIntersection : _Deck.cardsMainArea : dropRectInView ];
             Card *cardDroppingOn= [[Card alloc] init];
             cardDroppingOn = [_Deck.cardsMainArea objectAtIndex : mainCardIndex];
                         NSLog(@"Card with Biggest Volume = %d , cardSuit %d",cardDroppingOn.cardVal,cardDroppingOn.cardSuit);
@@ -619,6 +509,8 @@ else
             
 }
 
+
+#pragma mark -  Card/View Display Update Routines
 
 -(void)updateDeckArea
 {
@@ -691,22 +583,26 @@ else
 }
 
 
-                                     
--(UIView *) findViewByRect : (CGRect ) viewRect
-    {
-    UIView* v;
-        for (v  in [self.view subviews])
-        {
-            if (CGRectEqualToRect(v.frame,viewRect))
-                break;
-        }
-        return (v);
-    }
-                     
+
                     
                      
-                                     
-                                     
+-(void) deleteSubViewTails : (int)countStartingSubviews
+{
+    NSArray *subviews = [self.view subviews];
+    
+    unsigned long CurrentSubviewCount = [subviews count];
+    NSLog(@"DROPPED : CurrentSubviewCount = %lu,CountofStartingSubviews= %d",CurrentSubviewCount ,countStartingSubviews);
+    
+    for (int  i=(int) CurrentSubviewCount-(int)1 ; i>= (int) countStartingSubviews; i--)
+    {
+        UIView *subview = [subviews objectAtIndex:i];
+        [subview removeFromSuperview];
+        //[NSThread sleepForTimeInterval:0.6];
+    }
+}
+
+
+
                                      
                                      
 -(UIView *) addNewCardView : (Card*) oldCard : (Card*) cardBeingAddedTo
@@ -730,57 +626,47 @@ else
 }
 
     
--(void) deleteSubViewTails : (int)countStartingSubviews
-    {
-        NSArray *subviews = [self.view subviews];
-        
-        unsigned long CurrentSubviewCount = [subviews count];
-        NSLog(@"DROPPED : CurrentSubviewCount = %lu,CountofStartingSubviews= %d",CurrentSubviewCount ,countStartingSubviews);
-        
-        for (int  i=(int) CurrentSubviewCount-(int)1 ; i>= (int) countStartingSubviews; i--)
-        {
-            UIView *subview = [subviews objectAtIndex:i];
-            [subview removeFromSuperview];
-            //[NSThread sleepForTimeInterval:0.6];
-        }
-    }
-    
 
 
-
-    
-
-NSComparisonResult compare(UIView *firstView, UIView *secondView, void *context)
+-(void) makeDragCardView: (float) dragCardOriginX :(float) dragCardOriginY
 {
-    if ( firstView.frame.origin.y < secondView.frame.origin.y)
-        return NSOrderedAscending;
-    else if (firstView.frame.origin.y > secondView.frame.origin.y)
-        return NSOrderedDescending;
-    else
-        return NSOrderedSame;
+    
+    NSLog(@"in makeTmpCardView..\7dragCardOriginX %f,dragCardOriginY %f ",dragCardOriginX,dragCardOriginY);
+    
+    CGRect tmpRect=CGRectMake( dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
+    //C dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
+    
+    UIView *tmpView = [[UIView alloc] initWithFrame: tmpRect];
+    
+    //   tmpView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed: _cardInPlay.cardPic] ];
+    
+    [_cardInPlay drawCardPicture :  tmpView : _cardInPlay.cardPic];
+    [self.view addSubview: tmpView];
+    [self.view setNeedsDisplay];
+    
+    
+    //   unsigned long topSubviewCount = [subviews count];
+    // UIView *topSubview = [subviews objectAtIndex:(int) topSubviewCount];
+    //  CGRect  topviewRect =  [topSubview frame];
+    // FOUMD
+    
+    /*  NSLog(@"checking intersection..%lu",CountOfStartingSubviews);
+     for (int j= (int) CountOfStartingSubviews-1; j>0; j--)
+     {
+     UIView *subview = [subviews objectAtIndex:j];
+     CGRect checkViewRect=[subview frame];
+     if (CGRectIntersectsRect(tmpRect, checkViewRect))
+     {
+     NSLog(@"Found interection");
+     subview.backgroundColor = [UIColor blueColor];
+     }
+     } */
+    
 }
 
 
--(NSMutableArray *) combineArrays :(NSMutableArray *) array1 : (NSMutableArray *) array2 : (NSMutableArray *) array3 : (NSMutableArray *) array4
-
-{
-    if (array1!=nil)
-    {
-    NSMutableArray *newArray = [NSMutableArray arrayWithArray:[array1 arrayByAddingObjectsFromArray:array2]];
-    NSMutableArray *newArray2 = [NSMutableArray arrayWithArray:[newArray arrayByAddingObjectsFromArray:array3]];
-
-     NSMutableArray *newArray3 = [NSMutableArray arrayWithArray:[newArray2 arrayByAddingObjectsFromArray:array4]];
-        
-        return (newArray3);
-    }
-    else
-        {
-            NSLog(@"Error: 1st Array Passedto combine Arrays is nil");
-            return( array1); // nil
-        }
-}
-
-
+ 
+#pragma mark - Routines Driven by  Rect Values
 
 -(void) moveToColumnByRect : (CGRect ) origRect : (CGRect ) dropRect
 {
@@ -853,41 +739,18 @@ NSComparisonResult compare(UIView *firstView, UIView *secondView, void *context)
 
 
 
--(void) makeDragCardView: (float) dragCardOriginX :(float) dragCardOriginY
+-(UIView *) findViewByRect : (CGRect ) viewRect
 {
-    
-    NSLog(@"in makeTmpCardView..\7dragCardOriginX %f,dragCardOriginY %f ",dragCardOriginX,dragCardOriginY);
-    
-    CGRect tmpRect=CGRectMake( dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
-    //C dragCardOriginX,dragCardOriginY , CARDWIDTH, CARDLENGTH) ;
-    
-    UIView *tmpView = [[UIView alloc] initWithFrame: tmpRect];
-    
-    //   tmpView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed: _cardInPlay.cardPic] ];
-    
-    [_cardInPlay drawCardPicture :  tmpView : _cardInPlay.cardPic];
-    [self.view addSubview: tmpView];
-    [self.view setNeedsDisplay];
+    UIView* v;
+    for (v  in [self.view subviews])
+    {
+        if (CGRectEqualToRect(v.frame,viewRect))
+            break;
+    }
+    return (v);
+}
 
-    
- //   unsigned long topSubviewCount = [subviews count];
-    // UIView *topSubview = [subviews objectAtIndex:(int) topSubviewCount];
-    //  CGRect  topviewRect =  [topSubview frame];
-    // FOUMD
-    
-    /*  NSLog(@"checking intersection..%lu",CountOfStartingSubviews);
-     for (int j= (int) CountOfStartingSubviews-1; j>0; j--)
-     {
-     UIView *subview = [subviews objectAtIndex:j];
-     CGRect checkViewRect=[subview frame];
-     if (CGRectIntersectsRect(tmpRect, checkViewRect))
-     {
-     NSLog(@"Found interection");
-     subview.backgroundColor = [UIColor blueColor];
-     }
-     } */
-     
-     }
+
 
 
 -( void )draggingCard
@@ -954,6 +817,134 @@ NSComparisonResult compare(UIView *firstView, UIView *secondView, void *context)
             
         }
 
+#pragma mark - Game Timer Routines
+
+
+-(void)gameTime
+{
+    static int gtime = 1;
+    int seconds = gtime % 60;
+    int minutes = (gtime / 60) % 60;
+    int hours = gtime / 3600;
+    _gameTimerLabel.text = [NSString stringWithFormat:@" %02d:%02d:%02d ",hours,minutes,seconds];
+    gtime++;
+}
+
+-(void)makeGameTimerLabel
+{
+    _gameTimerLabel=[[UILabel alloc]initWithFrame:CGRectMake(40, 195, 80, 80)];//Set frame of label
+    [_gameTimerLabel setBackgroundColor: TIMER_COLOR];//Set background color of label.
+    [_gameTimerLabel setText:@"game on"];//Set text in label.
+    [_gameTimerLabel setTextColor:[UIColor blackColor]];//Set text color in label.
+    [_gameTimerLabel setTextAlignment:NSTextAlignmentCenter];//Set text alignment in label.
+    [_gameTimerLabel setAdjustsFontSizeToFitWidth:YES];
+    [_gameTimerLabel setBaselineAdjustment:UIBaselineAdjustmentAlignBaselines];//Set line adjustment.
+    [_gameTimerLabel setLineBreakMode:NSLineBreakByClipping];//Set linebreaking mode..
+    [_gameTimerLabel setNumberOfLines:1];//Set number of lines in label.
+    [_gameTimerLabel.layer setCornerRadius:25.0];//Set corner radius of label to change the shape.
+    [_gameTimerLabel.layer setBorderWidth:2.0f];//Set border width of label.
+    [_gameTimerLabel setClipsToBounds:YES];//Set its to YES for Corner radius to work.
+    [_gameTimerLabel.layer setBorderColor:[UIColor blackColor].CGColor];//Set Border color.
+    [self.view addSubview:_gameTimerLabel];//Add it to the view of your choice.
+}
+
+
+
+
+
+
+
+
+#pragma mark  - Game Display Setup Routines
+
+- (void) createAcesArea
+{
+    int acesArea_YPos = (6 * CARDLENGTH );
+    int acesArea_XPos = self.view.bounds.size.width - (4*(CARDWIDTH) + 6*(GAPBETWEENACECARDS));
+    for (int i=0; i<(CARDWIDTH+GAPBETWEENACECARDS)*4; i+=CARDWIDTH+GAPBETWEENACECARDS)
+    {
+        CGRect cardRect = CGRectMake(acesArea_XPos+i, acesArea_YPos, CARDWIDTH,CARDLENGTH);
+        NSLog(@"Frame cardRect f = %@", NSStringFromCGRect(cardRect));
+        
+        UIView *aceView = [[UIView alloc] initWithFrame:cardRect];
+        aceView.backgroundColor = [UIColor blackColor];
+        [[self view] addSubview:aceView];
+        [_dropAreas addObject: aceView];
+        // NSLog(@"create Aces dropAreas Count = %ul",_dropAreas.count);
+    }
+    NSLog(@"create Aces dropAreas Count = %lu",(unsigned long)_dropAreas.count);
+}
+
+
+- (void) createDeckArea
+{
+    
+    CGRect cardRect = CGRectMake(DECKCARD_XPOS, DECKCARD_YPOS, CARDWIDTH,CARDLENGTH);
+    UIView *deckView = [[UIView alloc] initWithFrame:cardRect];
+    
+    deckView.backgroundColor = [UIColor blueColor];
+    
+    [[self view] addSubview:deckView];
+    
+    UITapGestureRecognizer *tapGesture =[[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(tapDetected:)];
+    
+    [deckView addGestureRecognizer:tapGesture];
+    
+}
+
+
+
+
+- (void) makeMainCardLayout     // check out subviewe layout
+{
+    Card *dealtCard;
+    
+    CGRect aRect;
+    float j=15;
+    float cardRow=CARDSTARTPOS;
+    
+    UIView *view1;
+    
+    for (int cardColumnIndex=0; cardColumnIndex<MAXCARDCOLUMNS; cardColumnIndex++)
+    {
+        for ( int i=0; i<= cardColumnIndex; i++)
+        {
+            //       dealtCard = [[Card alloc] init];
+            NSLog(@" Deck dealcard.cardval %d",dealtCard.cardVal);
+            aRect = CGRectMake( j, cardRow, CARDWIDTH, CARDLENGTH);
+            view1 = [[UIView alloc] initWithFrame:aRect];
+            _Deck.cardRect = aRect;  // assign View made to card
+            dealtCard = [_Deck dealCard : view1];  // Deal a Card, Assign View
+            
+            [_Deck.cardsMainArea addObject: dealtCard]; // add to Main Area
+            dealtCard.cardRect = aRect;  // assign View made to card
+            [dealtCard drawCardPicture: view1 : CARDREVERSE];
+            
+            //[self drawCardPicture: view1 : dealtCard.cardPic];
+            
+            [[self view] addSubview:view1];
+            
+            cardRow+=CARDLENGTH/2;
+        }
+        // Section - For Last card Each Column
+        j+=CARDWIDTH + GAPBETWEENCARDS;
+        cardRow=CARDSTARTPOS;
+        
+        // Adding last card area in Each column as a draggable area.
+        // [_dragAreas addObject:[NSValue valueWithCGRect:aRect]];//Add last Cartd which will be face up as A droppable
+        
+        NSLog(@"viewDidLoad 1");
+        [_dragAreas addObject: view1];      // Add last Card in Column to Droppable Area
+        
+        NSLog(@"viewDidLoad 2");       // Show its Real Face
+        NSString *picFile =[_Deck getPicFileName :dealtCard];
+        
+        NSLog(@"viewDidLoad 2.5 ==> picFile = %@",picFile);
+        [dealtCard drawCardPicture : view1 : picFile ];
+        
+        NSLog(@"viewDidLoad 3");
+    }
+}
 
 
 -(void) setupAllView

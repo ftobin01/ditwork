@@ -13,6 +13,6 @@
 
 //-(CGRect ) inSubViewList : ( CGPoint ) locationInView;
 //-( void ) drawCardPicture : (UIView *)  view1 : (NSString *)cardPicName;
-- (void) deleteSubViewByRect : (CGRect ) aRect;
-
+//- (void) deleteSubViewByRect : (CGRect ) aRect;
+//-(void) updateDeckShownArea : (Card*) dealtCard : (int) index;
 @end
