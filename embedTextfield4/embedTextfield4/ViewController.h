@@ -10,7 +10,6 @@
 
 @interface ViewController : UIViewController <UITextFieldDelegate >
 @property (weak, nonatomic) IBOutlet UIView *mainMsgView;
-
 @property (weak, nonatomic) IBOutlet UITextField *myTextField;
 
 -(void)drawText : (NSString *) textStr : (CGRect) drawRect :(NSDictionary *) textAttributes;

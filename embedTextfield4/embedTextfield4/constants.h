@@ -9,6 +9,9 @@
 #ifndef simpleView1_constants_h
 #define simpleView1_constants_h
 
+#define OUT_MSG_COLOR   [UIColor blueColor];
+#define IN_MSG_COLOR   [UIColor blueColor];
+
 
 
 #define MSG_FONT_SIZE 45.0f
@@ -16,6 +19,9 @@
 #define MSG_TXT_COLOR blackColor // UIColor words
 #define FONT_HELVETICA @"Helvetica-Light"
 #define BLACK_SHADOW [UIColor colorWithRed:40.0f/255.0f green:40.0f/255.0f blue:40.0f/255.0f alpha:0.4f]
+
+#define TICK            @"\u2713"  // unicode correction mark
+#define HEAVY_TICK      @"\u2714"  // Heavy Correction mark
 
 #endif
 

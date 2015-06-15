@@ -83,7 +83,7 @@
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" placeholder="Type SomeText here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tdh-nT-xJN">
                                 <rect key="frame" x="85" y="551" width="287" height="39"/>
-                                <color key="backgroundColor" red="0.29419925320000001" green="1" blue="0.220094654" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="307" id="CWq-12-RmW"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="307" id="KE0-SE-GCx"/>
@@ -189,13 +189,13 @@
                                 <exclude reference="ea1-35-ZxZ"/>
                                 <exclude reference="jfg-DI-hiZ"/>
                                 <exclude reference="n28-XL-6pa"/>
+                                <exclude reference="aiV-jL-Oob"/>
                                 <exclude reference="q9Z-8Z-c2M"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="MainMsgView" destination="SOS-io-hN3" id="9Lz-U1-8Lg"/>
-                        <outlet property="mainMsgView" destination="SOS-io-hN3" id="wmR-ac-MtV"/>
                         <outlet property="myTextField" destination="tdh-nT-xJN" id="J73-fL-qCl"/>
                     </connections>
                 </viewController>
